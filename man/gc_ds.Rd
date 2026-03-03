@@ -10,6 +10,11 @@ gc_ds(x, ...)
 \item{x}{a list of mrgsimsds objects or a single mrgsimsds object.}
 
 \item{...}{not used.}
+
+\item{value}{logical; if \code{TRUE} the underlying files will be cleaned up.}
+
+\item{notify}{logical; if \code{TRUE} a message will be issued when files are
+cleaned up; this is intended for debugging or troubleshooting purposes.}
 }
 \value{
 An mrgsimsds object or a list of those objects is returned, potentially

@@ -12,9 +12,9 @@ clear_ownership <- function() {
 # not the mrgsimsds object.
 clean_up_ds <- function(x) {
   if(x$gc && check_ownership(x) && !pid_changed(x$mod)) {
-    if(getOption("mrgsim.ds.show.gc", FALSE)) {
+    if(isTRUE(x$gc_notify)) {
       n <- length(x$files)
-      msg <- glue("[mrgsim.ds.show.gc] cleaning up {n} file(s) ...")
+      msg <- glue("[mrgsim.ds] cleaning up {n} file(s) ...")
       message(msg)
     }
     on.exit(disown(x), add = TRUE)
@@ -225,6 +225,7 @@ copy_ds <- function(x, own = TRUE) {
   ans$variables <- x$variables
   ans$pid <- Sys.getpid()
   ans$gc <- x$gc
+  ans$gc_notify <- x$gc_notify
   ans$address <- obj_addr(ans)
   class(ans) <- c("mrgsimsds", "environment")
   names_out <- names(ans)
