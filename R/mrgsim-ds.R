@@ -60,7 +60,7 @@ as_mrgsim_ds <- function(x, id = NULL, verbose = FALSE, gc = TRUE) {
   ans$pid <- Sys.getpid()
   ans$gc <- isTRUE(gc)
   ans$address <- obj_addr(ans)
-  
+
   rm(x)
   
   if(isTRUE(ans$gc)) {
@@ -208,8 +208,7 @@ plot.mrgsimsds <- function(x, y = NULL, ...,  nid = 16, batch_size = 20000,
     sims$ID <- consecutive_id(sims$ID)  
   }
   if(!is_formula(y)) {
-    cols <- names(sims)
-    cols <- cols[!(cols %in% c("ID", "id", "TIME", "time"))]
+    cols <- intersect(x$variables, x$names)
     y <- paste0(cols, collapse = "+")
     y <- paste0("~", y)
     y <- as.formula(y, env = emptyenv())
