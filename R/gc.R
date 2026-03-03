@@ -30,6 +30,7 @@
 #' 
 #' @export
 gc_ds <- function(x, ...) UseMethod("gc_ds")
+#' @rdname gc_ds
 #' @export
 gc_ds.mrgsimsds <- function(x, value = NULL, notify = NULL, ...) {
   if(is.logical(value) && length(value)) {
@@ -40,7 +41,7 @@ gc_ds.mrgsimsds <- function(x, value = NULL, notify = NULL, ...) {
   }
   invisible(x)
 }
-
+#' @rdname gc_ds
 #' @export
 gc_ds.list <- function(x, value = NULL, notify = NULL, ...) {
   x <- lapply(x, gc_ds, value = value, notify = notify, ...)

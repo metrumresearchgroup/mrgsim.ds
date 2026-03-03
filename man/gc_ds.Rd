@@ -2,9 +2,15 @@
 % Please edit documentation in R/gc.R
 \name{gc_ds}
 \alias{gc_ds}
+\alias{gc_ds.mrgsimsds}
+\alias{gc_ds.list}
 \title{Set collection status for mrgsimsds objects}
 \usage{
 gc_ds(x, ...)
+
+\method{gc_ds}{mrgsimsds}(x, value = NULL, notify = NULL, ...)
+
+\method{gc_ds}{list}(x, value = NULL, notify = NULL, ...)
 }
 \arguments{
 \item{x}{a list of mrgsimsds objects or a single mrgsimsds object.}
