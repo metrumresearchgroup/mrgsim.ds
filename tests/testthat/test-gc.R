@@ -27,4 +27,11 @@ test_that("set gc status - list", {
   
 })
 
+test_that("set gc notify status", {
+  out <- mrgsim_ds(mod)
+  expect_false(out$gc_notify)
+  out <- gc_ds(out, notify = TRUE)
+  expect_true(out$gc_notify)
+})
+
 rm(mod)

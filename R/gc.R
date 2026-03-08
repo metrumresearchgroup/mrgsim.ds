@@ -1,6 +1,9 @@
 #' Set collection status for mrgsimsds objects
 #' 
 #' @param x a list of mrgsimsds objects or a single mrgsimsds object.
+#' @param value logical; if `TRUE` the underlying files will be cleaned up.
+#' @param notify logical; if `TRUE` a message will be issued when files are 
+#' cleaned up; this is intended for debugging or troubleshooting purposes.
 #' @param ... not used.
 #' 
 #' @examples
@@ -27,14 +30,20 @@
 #' 
 #' @export
 gc_ds <- function(x, ...) UseMethod("gc_ds")
+#' @rdname gc_ds
 #' @export
-gc_ds.mrgsimsds <- function(x, value, ...) {
-  x$gc <- isTRUE(value)
+gc_ds.mrgsimsds <- function(x, value = NULL, notify = NULL, ...) {
+  if(is.logical(value) && length(value)) {
+    x$gc <- value[[1]]  
+  }
+  if(is.logical(notify) && length(notify)) {
+    x$gc_notify <- notify[[1]]  
+  }
   invisible(x)
 }
-
+#' @rdname gc_ds
 #' @export
-gc_ds.list <- function(x, value, ...) {
-  x <- lapply(x, gc_ds, value = value)
+gc_ds.list <- function(x, value = NULL, notify = NULL, ...) {
+  x <- lapply(x, gc_ds, value = value, notify = notify, ...)
   x
 }

@@ -2,14 +2,25 @@
 % Please edit documentation in R/gc.R
 \name{gc_ds}
 \alias{gc_ds}
+\alias{gc_ds.mrgsimsds}
+\alias{gc_ds.list}
 \title{Set collection status for mrgsimsds objects}
 \usage{
 gc_ds(x, ...)
+
+\method{gc_ds}{mrgsimsds}(x, value = NULL, notify = NULL, ...)
+
+\method{gc_ds}{list}(x, value = NULL, notify = NULL, ...)
 }
 \arguments{
 \item{x}{a list of mrgsimsds objects or a single mrgsimsds object.}
 
 \item{...}{not used.}
+
+\item{value}{logical; if \code{TRUE} the underlying files will be cleaned up.}
+
+\item{notify}{logical; if \code{TRUE} a message will be issued when files are
+cleaned up; this is intended for debugging or troubleshooting purposes.}
 }
 \value{
 An mrgsimsds object or a list of those objects is returned, potentially
