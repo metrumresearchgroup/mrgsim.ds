@@ -1,4 +1,4 @@
-#' Manage simulated outputs in tempdir()
+#' Manage simulated outputs in the per-session temporary directory
 #' 
 #' @param ... objects whose files will not be purged.
 #' 

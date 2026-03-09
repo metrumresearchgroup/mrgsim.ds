@@ -1,4 +1,4 @@
-#' Refresh 'Arrow' dataset pointers.
+#' Refresh 'Arrow' dataset pointers
 #' 
 #' Pointers to arrow data sets will be invalid when the simulation is run in a 
 #' different process, for example when simulating in parallel. The pointers

@@ -1,5 +1,5 @@
 
-#' Coerce an mrgsims object to 'Arrow'-backed mrgsimsds object
+#' Coerce an mrgsims object to 'Apache' 'Arrow'-backed mrgsimsds object
 #' 
 #' All simulation data is saved to `tempdir()` according to the parent or head
 #' node that the computation is run from. See [move_ds()] to [write_ds()]
@@ -75,7 +75,7 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   ans
 }
 
-#' Simulate from a model object, returning an arrow-backed output object
+#' Simulate from a model object, returning an 'Apache' 'Arrow'-backed output object
 #' 
 #' All simulation data is saved to `tempdir()` according to the parent or head
 #' node that the computation is run from. See [move_ds()] to [write_ds()]

@@ -4,7 +4,7 @@
 \alias{refresh_ds}
 \alias{refresh_ds.mrgsimsds}
 \alias{refresh_ds.list}
-\title{Refresh 'Arrow' dataset pointers.}
+\title{Refresh 'Arrow' dataset pointers}
 \usage{
 refresh_ds(x, ...)
 

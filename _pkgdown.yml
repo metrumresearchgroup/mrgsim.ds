@@ -2,6 +2,9 @@ url: https://kylebaron.github.io/mrgsim.ds/
 template:
   bootstrap: 5
 reference:
+- title: Landing page
+  contents: 
+  - mrgsim.ds
 - title: Read or load models
   desc: Functions to read models configured for use with `mrgsim_ds()`.
   contents:
@@ -10,7 +13,7 @@ reference:
   - mcode_ds
   - modlib_ds
   - house_ds
-- title: Generate Apache Arrow Dataset-backed simulation outputs
+- title: Generate Apache Arrow dataset-backed simulation outputs
   desc: Simulate and write output to disk.
   contents:
   - mrgsim_ds
@@ -28,7 +31,9 @@ reference:
   - write_ds
   - rename_ds
 - title: Manage or query ownership
-  desc: This applies to parquet files holding simulation outputs.
+  desc: |
+    This applies to ownership parquet files holding simulation outputs for the
+    duration of the working R session.
   contents:
   - ownership
   - check_ownership
@@ -61,7 +66,5 @@ reference:
   - as_arrow_ds
   - as_arrow_table.mrgsimsds
   - as_duckdb_ds
-- title: Landing page
-  contents: 
-  - mrgsim.ds
+
 

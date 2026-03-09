@@ -2,7 +2,7 @@
 % Please edit documentation in R/mrgsim-ds.R
 \name{as_mrgsim_ds}
 \alias{as_mrgsim_ds}
-\title{Coerce an mrgsims object to 'Arrow'-backed mrgsimsds object}
+\title{Coerce an mrgsims object to 'Apache' 'Arrow'-backed mrgsimsds object}
 \usage{
 as_mrgsim_ds(x, verbose = FALSE, gc = TRUE)
 }

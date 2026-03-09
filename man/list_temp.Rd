@@ -4,7 +4,7 @@
 \alias{list_temp}
 \alias{retain_temp}
 \alias{purge_temp}
-\title{Manage simulated outputs in tempdir()}
+\title{Manage simulated outputs in the per-session temporary directory}
 \usage{
 list_temp()
 
@@ -16,7 +16,7 @@ purge_temp()
 \item{...}{objects whose files will not be purged.}
 }
 \description{
-Manage simulated outputs in tempdir()
+Manage simulated outputs in the per-session temporary directory
 }
 \examples{
 mod <- house_ds()

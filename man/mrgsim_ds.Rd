@@ -2,7 +2,7 @@
 % Please edit documentation in R/mrgsim-ds.R
 \name{mrgsim_ds}
 \alias{mrgsim_ds}
-\title{Simulate from a model object, returning an arrow-backed output object}
+\title{Simulate from a model object, returning an 'Apache' 'Arrow'-backed output object}
 \usage{
 mrgsim_ds(x, ..., tags = list(), verbose = FALSE, gc = TRUE)
 }
