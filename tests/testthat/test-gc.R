@@ -34,4 +34,26 @@ test_that("set gc notify status", {
   expect_true(out$gc_notify)
 })
 
+test_that("send to trash", {
+  glo <- mrgsim.ds:::.global
+  out <- list(mrgsim_ds(mod), mrgsim_ds(mod))
+  out <- reduce_ds(out)
+  
+  f <- list.files(glo$trashcan)
+  unlink(f, recursive = TRUE)
+  mrgsim.ds:::clean_up_ds(out)
+  
+  expect_setequal(out$hash, list.files(glo$trashcan)) 
+  
+  l <- list.files(glo$trashcan, full.names = TRUE)
+  f <- unname(sapply(l, readLines))
+  
+  f <- sort(basename(f))
+  files <- sort(basename(out$files))
+  
+  expect_setequal(basename(f), basename(out$files))
+    
+})
+
+
 rm(mod)
