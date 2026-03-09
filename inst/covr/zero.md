@@ -8,9 +8,6 @@
 "349","R/mrgsim-ds.R","mrgsim_ds",115,0
 "450","R/mrgsim-ds.R","tail.mrgsimsds",187,0
 "469","R/mrgsim-ds.R","plot.mrgsimsds",208,0
-"51","R/own.R","clean_up_ds",16,0
-"55","R/own.R","clean_up_ds",17,0
-"61","R/own.R","clean_up_ds",18,0
 "183","R/own.R","can_take_ownership",41,0
 "333","R/own.R","ownership",109,0
 "336","R/own.R","ownership",110,0

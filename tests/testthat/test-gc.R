@@ -52,7 +52,13 @@ test_that("send to trash", {
   files <- sort(basename(out$files))
   
   expect_setequal(basename(f), basename(out$files))
-    
+  
+  out <- mrgsim_ds(mod)
+  out <- gc_ds(out, notify = TRUE)
+  expect_message(
+    mrgsim.ds:::clean_up_ds(out), 
+    "cleaning up 1 file"
+  )
 })
 
 
