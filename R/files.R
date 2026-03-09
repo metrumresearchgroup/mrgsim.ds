@@ -30,18 +30,6 @@ check_files_fatal <- function(x) {
   return(invisible(TRUE))
 }
 
-#' Create an output file name
-#' 
-#' @param id a tag used to form the file name; if not provided, a random name 
-#' will be generated.
-#' 
-#' @return 
-#' A character file name.
-#' 
-#' @examples
-#' file_ds()
-#' 
-#' @export
 file_ds <- function(id = NULL) {
   ext <- ".parquet"
   if(is.atomic(id) && !is.null(id)) {
