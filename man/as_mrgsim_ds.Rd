@@ -4,12 +4,10 @@
 \alias{as_mrgsim_ds}
 \title{Coerce an mrgsims object to 'Arrow'-backed mrgsimsds object}
 \usage{
-as_mrgsim_ds(x, id = NULL, verbose = FALSE, gc = TRUE)
+as_mrgsim_ds(x, verbose = FALSE, gc = TRUE)
 }
 \arguments{
 \item{x}{an mrgsims object.}
-
-\item{id}{used to generate an output file name.}
 
 \item{verbose}{if \code{TRUE}, print progress information to the console.}
 

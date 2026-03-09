@@ -21,12 +21,16 @@ NULL
 #' @keywords internal
 "_PACKAGE"
 
+# nocov start
 .global <- new.env(parent = emptyenv())
 assign("file.prefix", "mrgsims-ds-", .global)
 assign("file.re", "^mrgsims-ds-.*\\.parquet$", .global)
 assign("nullptr", new("externalptr"), .global)
 
-
+.onLoad <- function(libname, pkgname) { 
+  assign("trashcan", file.path(tempdir(), "mrgsim-ds-trash-can_"), .global) 
+  dir.create(.global$trashcan)
+} # nocov end
 
 #' @section Package-wide options:
 #' 

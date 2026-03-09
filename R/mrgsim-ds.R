@@ -28,7 +28,7 @@
 #' @seealso [mrgsim_ds()].
 #' 
 #' @export
-as_mrgsim_ds <- function(x, id = NULL, verbose = FALSE, gc = TRUE) {
+as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   
   verbose <- isTRUE(verbose)
   
@@ -38,7 +38,7 @@ as_mrgsim_ds <- function(x, id = NULL, verbose = FALSE, gc = TRUE) {
   
   dir <- get_mread_tempdir(x@mod)
 
-  file <- file.path(dir, file_ds(id))
+  file <- file.path(dir, file_ds())
   if(grepl(" ", file)) {
     abort("output file name cannot contain spaces.")  
   }
@@ -84,7 +84,6 @@ as_mrgsim_ds <- function(x, id = NULL, verbose = FALSE, gc = TRUE) {
 #' 
 #' @param x a model object loaded through [mread_ds()], [mcode_ds()], 
 #' [modlib_ds()], [mread_cache_ds()], or [house_ds()].
-#' @param id used to generate an output file name.
 #' @param ... passed to [mrgsolve::mrgsim()]. 
 #' @param tags a named list of atomic data to tag (or mutate) the simulated 
 #' output.
@@ -110,7 +109,7 @@ as_mrgsim_ds <- function(x, id = NULL, verbose = FALSE, gc = TRUE) {
 #' @seealso [as_mrgsim_ds()], [mrgsimsds-methods].
 #' 
 #' @export
-mrgsim_ds <- function(x,  ..., id = NULL, tags = list(), verbose = FALSE, 
+mrgsim_ds <- function(x,  ..., tags = list(), verbose = FALSE, 
                       gc = TRUE) {
   verbose <- isTRUE(verbose)
   if(verbose) message("Simulating data [1/3].")
@@ -123,7 +122,7 @@ mrgsim_ds <- function(x,  ..., id = NULL, tags = list(), verbose = FALSE,
       out@data[[j]] <- tags[[j]]  
     }
   }
-  ans <- as_mrgsim_ds(x = out, id = id, verbose = verbose, gc = gc)
+  ans <- as_mrgsim_ds(x = out, verbose = verbose, gc = gc)
   ans
 }
 

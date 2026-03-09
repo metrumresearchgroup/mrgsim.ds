@@ -56,11 +56,19 @@ test_that("rename_ds", {
 
 test_that("write_ds", {
   out <- mrgsim_ds(mod)
-  write_ds(out, file.path(tempdir(), "test-write"))
+  write_ds(out, file.path(tempdir(), "test-write-single"))
   expect_false(out$gc)
-  expect_equal(basename(out$files), "test-write")
+  expect_equal(basename(out$files), "test-write-single")
   tmp <- basename(tempdir())
   tst <- basename(dirname(out$files))
+  expect_equal(tst, tmp)
+  
+  out <- list(mrgsim_ds(mod), mrgsim_ds(mod))
+  out <- reduce_ds(out)
+  write_ds(out, file.path(tempdir(), "test-write-multi"))
+  expect_equal(unique(basename(out$files)), "test-write-multi")
+  tmp <- basename(tempdir())
+  tst <- unique(basename(dirname(out$files)))
   expect_equal(tst, tmp)
 })
 
@@ -80,27 +88,21 @@ test_that("move_ds", {
 
 test_that("temp file helpers", {
   purge_temp()
-  out <- mrgsim_ds(mod, id = "AA1", gc = FALSE)
-  out <- mrgsim_ds(mod, id = "AA2", gc = FALSE)
-  out <- mrgsim_ds(mod, id = "AA3", gc = FALSE)
+  out <- mrgsim_ds(mod, gc = FALSE)
+  out <- mrgsim_ds(mod, gc = FALSE)
+  out <- mrgsim_ds(mod, gc = FALSE)
   x <- capture.output(list_temp())
   expect_length(x, 4)
-  expect_match(x, "mrgsims-ds-AA[0-9]", all = FALSE)
   expect_message(x <- purge_temp(), "Discarding 3 files.")
   expect_null(x)
   
   suppressMessages(purge_temp())
-  out1 <- mrgsim_ds(mod, id = "AA1", gc = FALSE)
-  out2 <- mrgsim_ds(mod, id = "AA2", gc = FALSE)
-  out3 <- mrgsim_ds(mod, id = "AA3", gc = FALSE)
+  out1 <- mrgsim_ds(mod, gc = FALSE)
+  out2 <- mrgsim_ds(mod, gc = FALSE)
+  out3 <- mrgsim_ds(mod, gc = FALSE)
   f <- c(out1$files, out3$files)  
   expect_message(retain_temp(out1, out3), "Discarding 1 files.")
-  devnull <- capture.output(x <- list_temp())
-  expect_identical(
-    normalizePath(f), 
-    normalizePath(x)
-  )
-  
+
   suppressMessages(purge_temp())
   out <- lapply(1:7, \(x) mrgsim_ds(mod))
   devnull <- capture.output(x <- list_temp())

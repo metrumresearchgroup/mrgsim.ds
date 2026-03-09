@@ -59,16 +59,16 @@ plot(out, nid = 10)
 
 Simulation files are always initially stored in `tempdir()` 
 
-
-```{r}
-out1 <- mrgsim_ds(mod, data)
-out2 <- mrgsim_ds(mod, data, id = "regimens")
-out3 <- mrgsim_ds(mod, data = filter(data, AMT==300))
-
-list_temp()
+```{r, echo = FALSE, message = FALSE}
+purge_temp()
 ```
 
 
+```{r}
+out <- lapply(1:10, \(x) mrgsim_ds(mod, data)) %>% reduce_ds()
+
+list_temp()
+```
 
 To save outputs to a persistent location, use `write_ds()`.
 

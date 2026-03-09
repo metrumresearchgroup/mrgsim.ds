@@ -51,7 +51,6 @@ reference:
   - purge_temp
 - title: Utility functions
   contents:
-  - file_ds
   - save_process_info
   - is_mrgsimsds
 - title: Coerce output to an R object

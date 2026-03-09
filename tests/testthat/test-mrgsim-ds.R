@@ -33,13 +33,6 @@ test_that("as_mrgsim_ds", {
   expect_false(mrgsim.ds:::invalid_ds(out))
 })
 
-test_that("named output files", {
-  mod <- house_ds(end = 3, delta = 1)
-  out <- mrgsim_ds(mod, id = "testthat")
-  expect_match(out$files, "testthat.parquet", fixed = TRUE)
-  expect_error(mrgsim_ds(mod, id = "a bc"), "cannot contain spaces")
-})
-
 test_that("tag output data", {
   mod <- house_ds(end = 3, delta = 1)
   tg <- list(a = 1, b = 2)

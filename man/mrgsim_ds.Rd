@@ -4,15 +4,13 @@
 \alias{mrgsim_ds}
 \title{Simulate from a model object, returning an arrow-backed output object}
 \usage{
-mrgsim_ds(x, ..., id = NULL, tags = list(), verbose = FALSE, gc = TRUE)
+mrgsim_ds(x, ..., tags = list(), verbose = FALSE, gc = TRUE)
 }
 \arguments{
 \item{x}{a model object loaded through \code{\link[=mread_ds]{mread_ds()}}, \code{\link[=mcode_ds]{mcode_ds()}},
 \code{\link[=modlib_ds]{modlib_ds()}}, \code{\link[=mread_cache_ds]{mread_cache_ds()}}, or \code{\link[=house_ds]{house_ds()}}.}
 
 \item{...}{passed to \code{\link[mrgsolve:mrgsim]{mrgsolve::mrgsim()}}.}
-
-\item{id}{used to generate an output file name.}
 
 \item{tags}{a named list of atomic data to tag (or mutate) the simulated
 output.}
