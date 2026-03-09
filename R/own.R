@@ -14,7 +14,7 @@ clean_up_ds <- function(x) {
   if(x$gc && check_ownership(x) && !pid_changed(x$mod)) {
     if(isTRUE(x$gc_notify)) {
       n <- length(x$files)
-      msg <- glue("[mrgsim.ds] cleaning up {n} file(s) ...")
+      msg <- paste0("[mrgsim.ds] cleaning up ", n, " file(s) ...")
       message(msg)
     }
     send_to_trash(x)
