@@ -6,17 +6,26 @@
 \alias{purge_temp}
 \title{Manage simulated outputs in the per-session temporary directory}
 \usage{
-list_temp()
+list_temp(quietly = FALSE)
 
-retain_temp(...)
+retain_temp(..., quietly = FALSE)
 
-purge_temp()
+purge_temp(quietly = FALSE)
 }
 \arguments{
-\item{...}{objects whose files will not be purged.}
+\item{quietly}{if \code{TRUE}, messages will be suppressed.}
+
+\item{...}{objects whose files will be retained.}
+}
+\value{
+\code{list_temp()} returns a vector of file names. Other functions return \code{NULL}.
+All return values are invisible.
 }
 \description{
-Manage simulated outputs in the per-session temporary directory
+Note: \code{purge_temp()} should not be needed or used in routine usage when
+simulation output objects are subject to the garbage collector. If you
+run \code{purge_temp()} with active objects pointing to those files, you will
+get an error when trying to access the data.
 }
 \examples{
 mod <- house_ds()

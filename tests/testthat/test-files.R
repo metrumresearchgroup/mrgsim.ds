@@ -37,12 +37,12 @@ test_that("clean up", {
 
 test_that("file_ds", {
   set.seed(123)
-  x <- file_ds()
+  x <- mrgsim.ds:::file_ds()
   expect_is(x, "character")
   expect_match(x, "mrgsims-ds-", fixed = TRUE)
   expect_match(x, ".parquet", fixed = TRUE)
   
-  x <- file_ds("fizz")
+  x <- mrgsim.ds:::file_ds("fizz")
   expect_equal(x, "mrgsims-ds-fizz.parquet")
 })
 
@@ -87,7 +87,7 @@ test_that("move_ds", {
 })
 
 test_that("temp file helpers", {
-  purge_temp()
+  purge_temp(quietly = TRUE)
   out <- mrgsim_ds(mod, gc = FALSE)
   out <- mrgsim_ds(mod, gc = FALSE)
   out <- mrgsim_ds(mod, gc = FALSE)
@@ -96,17 +96,29 @@ test_that("temp file helpers", {
   expect_message(x <- purge_temp(), "Discarding 3 files.")
   expect_null(x)
   
-  suppressMessages(purge_temp())
+  expect_silent(purge_temp(quietly = TRUE))
   out1 <- mrgsim_ds(mod, gc = FALSE)
   out2 <- mrgsim_ds(mod, gc = FALSE)
   out3 <- mrgsim_ds(mod, gc = FALSE)
   f <- c(out1$files, out3$files)  
   expect_message(retain_temp(out1, out3), "Discarding 1 files.")
 
-  suppressMessages(purge_temp())
+  purge_temp(quietly = TRUE)
   out <- lapply(1:7, \(x) mrgsim_ds(mod))
   devnull <- capture.output(x <- list_temp())
   expect_length(x, 7)
+  
+  expect_message(purge_temp())
+  
+  out1 <- mrgsim_ds(mod)
+  out2 <- mrgsim_ds(mod)
+  out3 <- mrgsim_ds(mod)
+  
+  expect_length(x <- capture.output(list_temp()), 4)
+  expect_silent(list_temp(quietly = TRUE))
+  
+  expect_message(retain_temp(out1))
+  expect_silent(retain_temp(out2, quietly = TRUE))
 })
 
 rm(mod)

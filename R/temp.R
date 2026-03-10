@@ -1,6 +1,16 @@
 #' Manage simulated outputs in the per-session temporary directory
 #' 
-#' @param ... objects whose files will not be purged.
+#' Note: `purge_temp()` should not be needed or used in routine usage when 
+#' simulation output objects are subject to the garbage collector. If you 
+#' run `purge_temp()` with active objects pointing to those files, you will 
+#' get an error when trying to access the data.
+#' 
+#' @param quietly if `TRUE`, messages will be suppressed.
+#' @param ... objects whose files will be retained.
+#' 
+#' @return 
+#' `list_temp()` returns a vector of file names. Other functions return `NULL`.
+#' All return values are invisible.
 #' 
 #' @examples
 #' mod <- house_ds()
@@ -22,8 +32,11 @@
 #' list_temp()
 #' 
 #' @export
-list_temp <- function() {
+list_temp <- function(quietly = FALSE) {
   temp <- list.files(tempdir(), pattern = .global$file.re, full.names = TRUE)
+  if(isTRUE(quietly)) {
+    return(invisible(temp))
+  }
   if(!length(temp)) {
     message("No files in tempdir.")
     return(invisible(temp))
@@ -45,7 +58,7 @@ list_temp <- function() {
 
 #' @rdname list_temp
 #' @export
-retain_temp <- function(...) {
+retain_temp <- function(..., quietly = FALSE) {
   x <- list(...)
   cl <- simlist_classes(x)
   x <- x[cl]
@@ -53,16 +66,20 @@ retain_temp <- function(...) {
   files <- unlist(files, use.names = FALSE)
   temp <- list.files(tempdir(), pattern = .global$file.re, full.names = TRUE)
   temp <- temp[!(basename(temp) %in% basename(files))]
-  message("Discarding ", length(temp), " files.")
   unlink(x = temp, recursive = TRUE)
+  if(!isTRUE(quietly)) {
+    message("Discarding ", length(temp), " files.")
+  }
   return(invisible(NULL))
 }
 
 #' @rdname list_temp
 #' @export
-purge_temp <- function() {
+purge_temp <- function(quietly = FALSE) {
   temp <- list.files(tempdir(), pattern = .global$file.re, full.names = TRUE)
-  message("Discarding ", length(temp), " files.")
   unlink(x = temp, recursive = TRUE)
+  if(!isTRUE(quietly)) {
+    message("Discarding ", length(temp), " files.")
+  }
   return(invisible(NULL))
 }
