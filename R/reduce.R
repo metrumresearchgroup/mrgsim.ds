@@ -86,7 +86,7 @@ reduce_ds.mrgsimsds <- function(x, ...) {
 #' @export
 reduce_ds.list <- function(x, ...) {
   simlist_reduce_ok(x)
-  x <- refresh_ds(x)
+  vapply(x, check_files_fatal, FALSE)
   files <- simlist_files(x)
   ans <- copy_ds(x[[1]], own = TRUE)
   run_gc <- isTRUE(ans$gc)
