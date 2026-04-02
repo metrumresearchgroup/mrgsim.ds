@@ -2,9 +2,12 @@
 % Please edit documentation in R/collect.R
 \name{as_arrow_ds}
 \alias{as_arrow_ds}
+\alias{as_arrow_ds.mrgsimsds}
 \title{Coerce an mrgsimsds object to an arrow data set}
 \usage{
 as_arrow_ds(x, ...)
+
+\method{as_arrow_ds}{mrgsimsds}(x, ...)
 }
 \arguments{
 \item{x}{an mrgsimsds object or a list of mrgsimsds objects.}

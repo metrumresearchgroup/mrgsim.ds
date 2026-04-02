@@ -2,6 +2,7 @@
 % Please edit documentation in R/AAA.R
 \docType{package}
 \name{mrgsim.ds}
+\alias{mrgsim.ds-package}
 \alias{mrgsim.ds}
 \title{mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed Simulation Outputs for 'mrgsolve'}
 \description{
@@ -107,7 +108,7 @@ mod <- house_ds(end = 32)
 
 data <- evd_expand(amt = seq(100, 300, 10))
 
-out <- mrgsim_ds(mod, data) 
+out <- mrgsim_ds(mod, data)
 
 out
 

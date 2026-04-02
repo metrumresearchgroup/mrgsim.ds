@@ -68,7 +68,7 @@ test_that("count works on mrgsimsds", {
   expect_equal(nrow(sims), 3)
   expect_true("n" %in% names(sims))
   expect_true(all(sims$n == 5))
-  expect_error(dplyr::count(out, ID, wt = DV), regexp = "wt")
+  expect_error(dplyr::count(out, ID, wt = DV), regexp = "not found")
 })
 
 test_that("pull works on mrgsimsds", {

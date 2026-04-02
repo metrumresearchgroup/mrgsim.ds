@@ -28,39 +28,40 @@ hash_files <- function(x) {
   x
 }
 
-# You can take ownership if no one owns the file 
-# or the object owns the file.
+# You can take ownership if no one owns the file
+# or the object owns the file. Partial ownership (some files owned by another
+# object, some not) is not allowed — return FALSE to be conservative.
 can_take_ownership <- function(x) {
   owned <- x$hash %in% names(hash2addr)
   if(!any(owned)) {
-    return(!owned)  
+    return(!owned)
   }
   if(all(owned)) {
-    return(check_ownership(x))  
+    return(check_ownership(x))
   }
   return(FALSE)
 }
 
 #' Ownership of simulation files
-#' 
+#'
+#' @description
 #' Functions to check ownership or disown simulation output files on disk.
-#' 
-#' @param x an mrgsimsds object.
-#' @param full.names if `TRUE`, include the directory path when listing file 
-#' ownership. 
-#' 
-#' @details
-#' One situation were you need to take over ownership is when you are simulating
-#' in parallel, and the simulation happens in another R process. `mrgsim.ds`
-#' ownership is established when the simulation returns and the `mrgsimsds` 
-#' object is created. When this happens in another R process (e.g., on a 
-#' worker node, there is no way to transfer that information back to the 
+#'
+#' One situation where you need to take over ownership is when you are
+#' simulating in parallel, and the simulation happens in another R process.
+#' `mrgsim.ds` ownership is established when the simulation returns and the
+#' `mrgsimsds` object is created. When this happens in another R process (e.g.,
+#' on a worker node), there is no way to transfer that information back to the
 #' parent process. In that case, a call to `take_ownership()` once the results
-#' are returned to the parent process would be appropriate. Typically, these 
-#' results are returned as a list and a call to [reduce_ds()] will create 
-#' a single object pointing to and owning multiple files. Therefore, it should 
-#' be rare to call `take_ownership()` directly; if doing so, please make sure 
-#' you understand what is going on.
+#' are returned to the parent process would be appropriate. Typically, these
+#' results are returned as a list and a call to [reduce_ds()] will create a
+#' single object pointing to and owning multiple files. Therefore, it should be
+#' rare to call `take_ownership()` directly; if doing so, please make sure you
+#' understand what is going on.
+#'
+#' @param x an mrgsimsds object.
+#' @param full.names if `TRUE`, include the directory path when listing file
+#'   ownership.
 #' 
 #' @return 
 #' - `check_ownership`: `TRUE` if `x` owns the underlying files; `FALSE` 
@@ -68,8 +69,8 @@ can_take_ownership <- function(x) {
 #' - `list_ownership`: a data.frame of ownership information.
 #' - `ownership`: nothing; used for side effects.
 #' - `disown`: `x` is returned invisibly; it is not modified.
-#' - `take_ownership`: `x` is returned invisibly after getting modified in 
-#'   place. 
+#' - `take_ownership`: `x` is returned invisibly after its hash and the
+#'   package-level ownership maps are updated in place.
 #' @examples
 #' mod <- house_ds()
 #' 
@@ -124,7 +125,7 @@ list_ownership <- function(full.names = FALSE) {
   clean_up_trash()
   addrs <- unname(mget(names(hash2addr), envir = hash2addr))
   if(!length(addrs)) {
-    ans <- data.frame(object = "a", file = "b")[0,]
+    ans <- data.frame(file = character(0), address = character(0))
     return(ans)
   }
   files <- unname(mget(names(hash2file), envir = hash2file))
@@ -170,8 +171,8 @@ disown <- function(x) {
 take_ownership <- function(x) {
   require_ds(x)
   clean_up_trash()
-  hash_files(x)
-  
+  x <- hash_files(x)
+
   if(!length(x$files) == length(x$hash)) {
     abort("length mismatch between files and hash.")  
   }
@@ -223,15 +224,20 @@ clean_up_trash <- function() {
 }
 
 #' Copy an mrgsimsds object
-#' 
-#' By default, the new object will own the data files. 
-#' 
+#'
+#' @description
+#' Creates a new mrgsimsds object pointing to the same parquet files as `x`.
+#' By default the new object takes ownership of those files, which means the
+#' original object loses ownership and its files will not be deleted when it
+#' is garbage collected.
+#'
 #' @param x an mrgsimsds object to copy.
-#' @param own logical; if `TRUE` the new object will own the files; otherwise
-#' there will be no change in ownership.
-#' 
+#' @param own logical; if `TRUE` the new object takes ownership of the files;
+#'   if `FALSE` ownership is left unchanged.
+#'
 #' @return
-#' An mrgsimsds object with identical fields, but updated pid. 
+#' A new mrgsimsds object with the same files and fields as `x`, a fresh
+#' memory address, and `pid` set to the current process.
 #' 
 #' @examples
 #' mod <- house_ds()

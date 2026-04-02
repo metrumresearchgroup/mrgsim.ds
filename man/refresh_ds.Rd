@@ -13,23 +13,24 @@ refresh_ds(x, ...)
 \method{refresh_ds}{list}(x, ...)
 }
 \arguments{
-\item{x}{an mrgsimsds object.}
+\item{x}{an mrgsimsds object or a list of objects.}
 
 \item{...}{for future use.}
 }
 \value{
-The mrgsimsds object is returned invisibly with pointers refreshed;
-modification is made in place.
+When \code{x} is an mrgsimsds object, it is returned invisibly with its Arrow
+pointer, \code{pid}, and \code{dim} refreshed in place.
+
+When \code{x} is a list, it is returned invisibly with \code{refresh_ds()} applied to
+every mrgsimsds element; non-mrgsimsds elements are left unchanged.
 }
 \description{
-Pointers to arrow data sets will be invalid when the simulation is run in a
-different process, for example when simulating in parallel. The pointers
-should be refreshed on the head node once the simulation is finished.
-}
-\details{
-To refresh the pointers, \code{refresh_ds()} checks that the files still exist
-and passes the file list to \code{\link[arrow:open_dataset]{arrow::open_dataset()}}. The object \code{pid} and
-the \code{dim} attributes are also refreshed, after re-opening the data set.
+Arrow dataset pointers become invalid when an object is created in a worker
+process and returned to the head node (e.g. after a parallel simulation).
+\code{refresh_ds()} rebuilds the pointer by re-opening the parquet files via
+\code{\link[arrow:open_dataset]{arrow::open_dataset()}} and updates \code{pid} and \code{dim} in place. Because
+refreshing is itself the fix for an invalid pointer, it checks that files
+exist but does not call \code{safe_ds()} first.
 }
 \examples{
 mod <- house_ds()
@@ -37,7 +38,7 @@ mod <- house_ds()
 data <- ev_expand(amt = 100, ID = 1:100)
 
 out <- lapply(1:3, function(rep) {
-  mrgsim_ds(mod, data) 
+  mrgsim_ds(mod, data)
 })
 
 refresh_ds(out)

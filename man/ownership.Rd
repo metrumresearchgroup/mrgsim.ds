@@ -31,25 +31,24 @@ otherwise.
 \item \code{list_ownership}: a data.frame of ownership information.
 \item \code{ownership}: nothing; used for side effects.
 \item \code{disown}: \code{x} is returned invisibly; it is not modified.
-\item \code{take_ownership}: \code{x} is returned invisibly after getting modified in
-place.
+\item \code{take_ownership}: \code{x} is returned invisibly after its hash and the
+package-level ownership maps are updated in place.
 }
 }
 \description{
 Functions to check ownership or disown simulation output files on disk.
-}
-\details{
-One situation were you need to take over ownership is when you are simulating
-in parallel, and the simulation happens in another R process. \code{mrgsim.ds}
-ownership is established when the simulation returns and the \code{mrgsimsds}
-object is created. When this happens in another R process (e.g., on a
-worker node, there is no way to transfer that information back to the
+
+One situation where you need to take over ownership is when you are
+simulating in parallel, and the simulation happens in another R process.
+\code{mrgsim.ds} ownership is established when the simulation returns and the
+\code{mrgsimsds} object is created. When this happens in another R process (e.g.,
+on a worker node), there is no way to transfer that information back to the
 parent process. In that case, a call to \code{take_ownership()} once the results
 are returned to the parent process would be appropriate. Typically, these
-results are returned as a list and a call to \code{\link[=reduce_ds]{reduce_ds()}} will create
-a single object pointing to and owning multiple files. Therefore, it should
-be rare to call \code{take_ownership()} directly; if doing so, please make sure
-you understand what is going on.
+results are returned as a list and a call to \code{\link[=reduce_ds]{reduce_ds()}} will create a
+single object pointing to and owning multiple files. Therefore, it should be
+rare to call \code{take_ownership()} directly; if doing so, please make sure you
+understand what is going on.
 }
 \examples{
 mod <- house_ds()

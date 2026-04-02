@@ -9,14 +9,18 @@ copy_ds(x, own = TRUE)
 \arguments{
 \item{x}{an mrgsimsds object to copy.}
 
-\item{own}{logical; if \code{TRUE} the new object will own the files; otherwise
-there will be no change in ownership.}
+\item{own}{logical; if \code{TRUE} the new object takes ownership of the files;
+if \code{FALSE} ownership is left unchanged.}
 }
 \value{
-An mrgsimsds object with identical fields, but updated pid.
+A new mrgsimsds object with the same files and fields as \code{x}, a fresh
+memory address, and \code{pid} set to the current process.
 }
 \description{
-By default, the new object will own the data files.
+Creates a new mrgsimsds object pointing to the same parquet files as \code{x}.
+By default the new object takes ownership of those files, which means the
+original object loses ownership and its files will not be deleted when it
+is garbage collected.
 }
 \examples{
 mod <- house_ds()

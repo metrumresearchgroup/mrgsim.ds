@@ -2,9 +2,15 @@
 % Please edit documentation in R/reduce.R
 \name{reduce_ds}
 \alias{reduce_ds}
+\alias{reduce_ds.mrgsimsds}
+\alias{reduce_ds.list}
 \title{Reduce a list of mrgsimsds objects into a single object}
 \usage{
 reduce_ds(x, ...)
+
+\method{reduce_ds}{mrgsimsds}(x, ...)
+
+\method{reduce_ds}{list}(x, ...)
 }
 \arguments{
 \item{x}{a list of mrgsimsds objects or a single mrgsimsds object.}
@@ -12,20 +18,16 @@ reduce_ds(x, ...)
 \item{...}{not used.}
 }
 \value{
-A single mrgsimsds object. For the list method, the returned object
-will own all underlying files.
+When \code{x} is a list, a new mrgsimsds object is returned that owns all
+underlying parquet files; the input objects are disowned.
+
+When \code{x} is an mrgsimsds object, it is validated, refreshed, and returned
+invisibly with its \code{pid} updated to the current process.
 }
 \description{
 Combines a list of mrgsimsds objects — typically the replicate outputs from
 a parallel simulation — into one object backed by all of their parquet files.
 Ownership of every file is transferred to the new object.
-}
-\details{
-When \code{x} is a list, a new object is created and returned. This new object
-will take ownership for all the files from the objects in the list.
-
-When \code{x} is an mrgsimsds object, it will be returned invisibly with no
-modification.
 }
 \examples{
 mod <- modlib_ds("popex", outvars = "IPRED")

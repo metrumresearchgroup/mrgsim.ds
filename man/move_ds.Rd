@@ -32,17 +32,16 @@ accessible via \code{x$files}.
 }
 \description{
 Use \code{move_ds()} to change the enclosing directory. \code{write_ds()} can also
-move the files, but it always condenses th simulation output into a single
+move the files, but it always condenses the simulation output into a single
 parquet file if multiple files are backing the mrgsimsds object. All
-operations are made on the object in place; see \strong{Details}.
-}
-\details{
+operations are made on the object in place.
+
 There is an important distinction between \code{write_ds()} and \code{move_ds()} or
 \code{rename_ds()} for multi-file objects. The backing files can be moved or
-written easily, without much computational effort. For multi-file simulation
-outputs, \code{write_ds()} will need to read each file and then write the data
-out to a single file. Apache Arrow can do this very efficiently, but there
-will still be an additional, potentially noticeable computational effort
+renamed with little computational effort. For multi-file simulation outputs,
+\code{write_ds()} will need to read each file and write the data out to a single
+file. Apache Arrow can do this very efficiently, but there will still be an
+additional, potentially noticeable computational effort.
 
 When dataset files are rewritten to a single file with \code{write_ds()}, those
 files will no longer be cleaned up when the containing R object is finalized
@@ -53,7 +52,7 @@ file cleanup will continue to occur as long as the files remain under
 of the containing object will happen when files are renamed.
 
 The object (\code{x}) is required to own the underlying files in order to move
-them with \code{move_ds()}; ownership is not required for \code{write_ds()}.
+or rename them; ownership is not required for \code{write_ds()}.
 
 All three functions modify \code{x} in place and file ownership stays with \code{x}.
 }

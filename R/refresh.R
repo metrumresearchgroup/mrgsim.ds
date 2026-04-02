@@ -1,31 +1,33 @@
 #' Refresh 'Arrow' dataset pointers
-#' 
-#' Pointers to arrow data sets will be invalid when the simulation is run in a 
-#' different process, for example when simulating in parallel. The pointers
-#' should be refreshed on the head node once the simulation is finished. 
-#' 
-#' @param x an mrgsimsds object. 
+#'
+#' @description
+#' Arrow dataset pointers become invalid when an object is created in a worker
+#' process and returned to the head node (e.g. after a parallel simulation).
+#' `refresh_ds()` rebuilds the pointer by re-opening the parquet files via
+#' [arrow::open_dataset()] and updates `pid` and `dim` in place. Because
+#' refreshing is itself the fix for an invalid pointer, it checks that files
+#' exist but does not call `safe_ds()` first.
+#'
+#' @param x an mrgsimsds object or a list of objects.
 #' @param ... for future use.
-#' 
+#'
 #' @examples
 #' mod <- house_ds()
-#' 
+#'
 #' data <- ev_expand(amt = 100, ID = 1:100)
-#' 
+#'
 #' out <- lapply(1:3, function(rep) {
-#'   mrgsim_ds(mod, data) 
+#'   mrgsim_ds(mod, data)
 #' })
-#' 
+#'
 #' refresh_ds(out)
-#' 
+#'
 #' @return
-#' The mrgsimsds object is returned invisibly with pointers refreshed; 
-#' modification is made in place. 
-#' 
-#' @details
-#' To refresh the pointers, `refresh_ds()` checks that the files still exist
-#' and passes the file list to [arrow::open_dataset()]. The object `pid` and 
-#' the `dim` attributes are also refreshed, after re-opening the data set.
+#' When `x` is an mrgsimsds object, it is returned invisibly with its Arrow
+#' pointer, `pid`, and `dim` refreshed in place.
+#'
+#' When `x` is a list, it is returned invisibly with `refresh_ds()` applied to
+#' every mrgsimsds element; non-mrgsimsds elements are left unchanged.
 #' 
 #' @rdname refresh_ds
 #' @export

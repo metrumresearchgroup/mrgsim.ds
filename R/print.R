@@ -14,7 +14,6 @@
 #' print(out)
 #'
 #' @export
-#' @md
 print.mrgsimsds <- function(x, n = 8, ...) { # nocov start
   check_files_fatal(x)
   dm <- x$dim
@@ -39,7 +38,7 @@ print.mrgsimsds <- function(x, n = 8, ...) { # nocov start
   rownames(chunk) <- paste0(seq(nrow(chunk)), ": ")
   print(chunk) 
   if(invalid_ds(x)) {
-    refresh_ds(x)
+    x <- refresh_ds(x)
     message("[mrgsim.ds] pointer and source pid refreshed.")
   }
   return(invisible(x))

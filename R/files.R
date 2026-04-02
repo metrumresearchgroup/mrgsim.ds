@@ -41,42 +41,42 @@ file_ds <- function(id = NULL) {
   return(file)
 }
 
-#' Move, rename, or write out data set files 
-#' 
+#' Move, rename, or write out data set files
+#'
+#' @description
 #' Use `move_ds()` to change the enclosing directory. `write_ds()` can also
-#' move the files, but it always condenses th simulation output into a single 
-#' parquet file if multiple files are backing the mrgsimsds object. All 
-#' operations are made on the object in place; see **Details**. 
-#' 
-#' @param x an mrgsimsds object. 
-#' @param path the new directory location for backing files.
-#' @param id a short name used to create data set files for the simulated 
-#' output.
-#' @param sink the complete path (including file name) for a single parquet
-#' file containing all simulated data; passed to [arrow::write_parquet()].
-#' @param ... passed to [arrow::write_parquet()]; files are always written 
-#' in parquet format.
-#' 
-#' @details
-#' There is an important distinction between `write_ds()` and `move_ds()` or 
-#' `rename_ds()` for multi-file objects. The backing files can be moved or 
-#' written easily, without much computational effort. For multi-file simulation
-#' outputs, `write_ds()` will need to read each file and then write the data 
-#' out to a single file. Apache Arrow can do this very efficiently, but there 
-#' will still be an additional, potentially noticeable computational effort  
-#' 
-#' When dataset files are rewritten to a single file with `write_ds()`, those 
-#' files will no longer be cleaned up when the containing R object is finalized 
-#' upon garbage collection. When dataset files are moved outside of `tempdir()`, 
+#' move the files, but it always condenses the simulation output into a single
+#' parquet file if multiple files are backing the mrgsimsds object. All
+#' operations are made on the object in place.
+#'
+#' There is an important distinction between `write_ds()` and `move_ds()` or
+#' `rename_ds()` for multi-file objects. The backing files can be moved or
+#' renamed with little computational effort. For multi-file simulation outputs,
+#' `write_ds()` will need to read each file and write the data out to a single
+#' file. Apache Arrow can do this very efficiently, but there will still be an
+#' additional, potentially noticeable computational effort.
+#'
+#' When dataset files are rewritten to a single file with `write_ds()`, those
+#' files will no longer be cleaned up when the containing R object is finalized
+#' upon garbage collection. When dataset files are moved outside of `tempdir()`,
 #' those files, too, will no longer be cleaned up on garbage collection; but
-#' file cleanup will continue to occur as long as the files remain under 
-#' `tempdir()`. No change in finalization behavior due to garbage collection 
-#' of the containing object will happen when files are renamed. 
-#' 
+#' file cleanup will continue to occur as long as the files remain under
+#' `tempdir()`. No change in finalization behavior due to garbage collection
+#' of the containing object will happen when files are renamed.
+#'
 #' The object (`x`) is required to own the underlying files in order to move
-#' them with `move_ds()`; ownership is not required for `write_ds()`.
-#' 
-#' All three functions modify `x` in place and file ownership stays with `x`. 
+#' or rename them; ownership is not required for `write_ds()`.
+#'
+#' All three functions modify `x` in place and file ownership stays with `x`.
+#'
+#' @param x an mrgsimsds object.
+#' @param path the new directory location for backing files.
+#' @param id a short name used to create data set files for the simulated
+#'   output.
+#' @param sink the complete path (including file name) for a single parquet
+#'   file containing all simulated data; passed to [arrow::write_parquet()].
+#' @param ... passed to [arrow::write_parquet()]; files are always written
+#'   in parquet format.
 #' 
 #' @return
 #' All three functions return `x` invisibly. The updated file list is
@@ -115,7 +115,7 @@ move_ds <- function(x, path) {
   }
   x$files <- file_move(files, path)
   if(!grepl(basename(tempdir()), path)) {
-    x$gc <- FALSE  
+    x$gc <- FALSE
   }
   x <- refresh_ds(x)
   take_ownership(x)

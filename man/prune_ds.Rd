@@ -6,7 +6,7 @@
 \alias{prune_ds.list}
 \title{Prune a list of mrgsimsds objects}
 \usage{
-prune_ds(x, ...)
+prune_ds(x, ..., inform = TRUE)
 
 \method{prune_ds}{mrgsimsds}(x, ...)
 
@@ -17,16 +17,20 @@ prune_ds(x, ...)
 
 \item{...}{not used.}
 
-\item{inform}{issue a message when objects in some list slots are dropped.}
+\item{inform}{(list method only) issue a message when objects in some list
+slots are dropped.}
 }
 \value{
 When \code{x} is a list, it will be returned with only the mrgsimsds objects
-retained.
+retained. If no mrgsimsds objects are found, an empty list is returned with
+a warning.
 
 When \code{x} is an mrgsimsds object, it will be invisibly returned.
 }
 \description{
-Prune a list of mrgsimsds objects
+Filters a mixed list down to only the elements that are \code{mrgsimsds} objects,
+dropping anything else (e.g. \code{NULL}, data frames, character vectors). When
+passed a single \code{mrgsimsds} object it is returned invisibly unchanged.
 }
 \examples{
 mod <- house_ds(end = 24)

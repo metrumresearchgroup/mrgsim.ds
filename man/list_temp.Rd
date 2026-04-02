@@ -15,17 +15,25 @@ purge_temp(quietly = FALSE)
 \arguments{
 \item{quietly}{if \code{TRUE}, messages will be suppressed.}
 
-\item{...}{objects whose files will be retained.}
+\item{...}{mrgsimsds objects whose files will be retained by \code{retain_temp()};
+non-mrgsimsds objects are ignored with a warning.}
 }
 \value{
-\code{list_temp()} returns a vector of file names. Other functions return \code{NULL}.
-All return values are invisible.
+\code{list_temp()} returns a character vector of file paths invisibly, and prints
+a summary to the console unless \code{quietly = TRUE}.
+
+\code{retain_temp()} and \code{purge_temp()} return \code{NULL} invisibly.
 }
 \description{
-Note: \code{purge_temp()} should not be needed or used in routine usage when
-simulation output objects are subject to the garbage collector. If you
-run \code{purge_temp()} with active objects pointing to those files, you will
-get an error when trying to access the data.
+Functions for inspecting and cleaning up package-managed parquet files in
+\code{tempdir()}. \code{list_temp()} shows what is present; \code{retain_temp()} removes
+everything except the files belonging to specified objects; \code{purge_temp()}
+removes all package-managed files unconditionally.
+
+Note: \code{purge_temp()} and \code{retain_temp()} should not be needed in routine
+usage when simulation output objects are subject to the garbage collector.
+Calling them while active objects still point to those files will cause
+errors on next data access.
 }
 \examples{
 mod <- house_ds()
@@ -40,9 +48,9 @@ list_temp()
 
 retain_temp(sims)
 
-list_temp() 
+list_temp()
 
-purge_temp() 
+purge_temp()
 
 list_temp()
 

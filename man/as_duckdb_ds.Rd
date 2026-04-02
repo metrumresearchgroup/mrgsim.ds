@@ -15,9 +15,6 @@ as_duckdb_ds(x, ...)
 A \code{tbl} of the simulated data in DuckDB; see \code{\link[arrow:to_duckdb]{arrow::to_duckdb()}}.
 }
 \description{
-Coerce an mrgsimsds object to a DuckDB table
-}
-\details{
 The conversion is handled by \code{\link[=as_arrow_ds]{as_arrow_ds()}}.
 }
 \examples{

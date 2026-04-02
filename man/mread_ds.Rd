@@ -6,8 +6,7 @@
 \alias{modlib_ds}
 \alias{house_ds}
 \alias{mread_cache_ds}
-\title{Read a model specification file for 'Apache' 'Arrow'-backed simulation
-outputs}
+\title{Load an mrgsolve model for Arrow-backed simulation}
 \usage{
 mread_ds(...)
 
@@ -27,8 +26,11 @@ A model object with process information saved, suitable for use with
 \code{\link[=mrgsim_ds]{mrgsim_ds()}}.
 }
 \description{
-These are very-light wrappers around mrgsolve functions used to load
-models for simulation.
+Thin wrappers around mrgsolve model-loading functions (\code{mread()},
+\code{mcode()}, \code{modlib()}, \code{house()}, \code{mread_cache()}) that additionally call
+\code{\link[=save_process_info]{save_process_info()}} to stamp the model with the current process ID. This
+stamp is required by \code{\link[=mrgsim_ds]{mrgsim_ds()}} to correctly associate simulation outputs
+with the process that created them.
 }
 \examples{
 mod <- house_ds()

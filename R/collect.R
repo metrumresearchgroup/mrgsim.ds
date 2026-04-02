@@ -92,6 +92,7 @@ as.data.frame.mrgsimsds <- function(x, row.names = NULL, optional = FALSE, ...) 
 #' 
 #' @export
 as_arrow_ds <- function(x, ... ) UseMethod("as_arrow_ds")
+#' @rdname as_arrow_ds
 #' @export
 as_arrow_ds.mrgsimsds <- function(x, ...) {
   x <- safe_ds(x)
@@ -104,9 +105,9 @@ as_arrow_ds.mrgsimsds <- function(x, ...) {
 #' @param x an mrgsimsds object or a list of mrgsimsds objects. 
 #' @param ... passed to [as_arrow_ds()]. 
 #' 
-#' @details
+#' @description
 #' The conversion is handled by [as_arrow_ds()].
-#' 
+#'
 #' @examples
 #' mod <- house_ds(end = 5)
 #' 

@@ -4,32 +4,40 @@
 \alias{gc_ds}
 \alias{gc_ds.mrgsimsds}
 \alias{gc_ds.list}
-\title{Set collection status for mrgsimsds objects}
+\title{Set garbage collection behavior for mrgsimsds objects}
 \usage{
-gc_ds(x, ...)
+gc_ds(x, ..., value = NULL, notify = NULL)
 
 \method{gc_ds}{mrgsimsds}(x, value = NULL, notify = NULL, ...)
 
 \method{gc_ds}{list}(x, value = NULL, notify = NULL, ...)
 }
 \arguments{
-\item{x}{a list of mrgsimsds objects or a single mrgsimsds object.}
+\item{x}{an mrgsimsds object or a list of objects.}
 
 \item{...}{not used.}
 
-\item{value}{logical; if \code{TRUE} the underlying files will be cleaned up.}
+\item{value}{logical; if \code{TRUE} the underlying files will be deleted on
+garbage collection.}
 
 \item{notify}{logical; if \code{TRUE} a message will be issued when files are
-cleaned up; this is intended for debugging or troubleshooting purposes.}
+deleted on garbage collection. For debugging only; see also the
+\code{mrgsim.ds.show.gc} option.}
 }
 \value{
-An mrgsimsds object or a list of those objects is returned, potentially
-with the \code{gc} status updated.
+When \code{x} is an mrgsimsds object, it is returned invisibly with \code{gc} and/or
+\code{gc_notify} updated.
+
+When \code{x} is a list, it is returned invisibly with \code{gc_ds()} applied to
+every mrgsimsds element; non-mrgsimsds elements are left unchanged.
 }
 \description{
 Controls whether the underlying parquet files are automatically deleted
-when the object is garbage collected. Set \code{value = FALSE} to protect files
-from cleanup; set back to \code{TRUE} to re-enable automatic deletion.
+when the object is garbage collected (\code{value}) and whether a message is
+issued when that deletion occurs (\code{notify}). Set \code{value = FALSE} to protect
+files from cleanup; set back to \code{TRUE} to re-enable automatic deletion.
+The \code{notify} flag is intended for debugging only; the \code{mrgsim.ds.show.gc}
+option provides the same behavior package-wide.
 }
 \examples{
 mod <- modlib_ds("popex", outvars = "IPRED")
@@ -43,7 +51,7 @@ out <- gc_ds(out, value = FALSE)
 out <- gc_ds(out, value = TRUE)
 
 out <- lapply(1:3, function(rep) {
-  out <- mrgsim_ds(mod, data) 
+  out <- mrgsim_ds(mod, data)
   out
 })
 

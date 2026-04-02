@@ -13,18 +13,17 @@ as_mrgsim_ds(x, verbose = FALSE, gc = TRUE)
 
 \item{gc}{if \code{TRUE}, a finalizer function will attempt to remove files once
 the object is out of scope; set to \code{FALSE} to protect from automatic
-cleanup. Otherwise, move the files from \code{tempdir()}}
+cleanup, or use \code{\link[=move_ds]{move_ds()}} or \code{\link[=write_ds]{write_ds()}} to relocate files outside of
+\code{tempdir()}.}
 }
 \value{
 An object with class \code{mrgsimsds}.
 }
 \description{
-All simulation data is saved to \code{tempdir()} according to the parent or head
-node that the computation is run from. See \code{\link[=move_ds]{move_ds()}} to \code{\link[=write_ds]{write_ds()}}
-change the location of the files, protecting them from the garbage collector.
-}
-\details{
-This function will only take output from \code{\link[mrgsolve:mrgsim]{mrgsolve::mrgsim()}}.
+Converts the output of \code{\link[mrgsolve:mrgsim]{mrgsolve::mrgsim()}} to an \code{mrgsimsds} object by
+writing the simulation data to a parquet file in \code{tempdir()}. See
+\code{\link[=move_ds]{move_ds()}} or \code{\link[=write_ds]{write_ds()}} to change the location of the files, protecting
+them from the garbage collector.
 }
 \examples{
 mod <- house_ds()
