@@ -49,5 +49,5 @@ gc_ds.mrgsimsds <- function(x, value = NULL, notify = NULL, ...) {
 #' @export
 gc_ds.list <- function(x, value = NULL, notify = NULL, ...) {
   x <- lapply(x, gc_ds, value = value, notify = notify, ...)
-  x
+  invisible(x)
 }

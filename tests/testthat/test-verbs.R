@@ -23,13 +23,13 @@ test_that("test verbs", {
   expect_is(sims, "tbl")
   expect_equal(names(sims), c("time", "DV"))
   
-  d <- dplyr::filter(out, time < 3, ID==1, .by = ID)
+  d <- dplyr::filter(out, time < 3, ID==1)
   sims <- dplyr::collect(d)
   expect_equal(sims$time, c(0,0,1,2))
-  
-  e <- dplyr::summarise(out, M = mean(DV), .by = ID)
+
+  e <- dplyr::group_by(out, ID) |> dplyr::summarise(M = mean(DV))
   sims <- dplyr::collect(e)
-  expect_equal(sims$ID, c(1,2,3))
+  expect_equal(sort(sims$ID), c(1,2,3))
   
   f <- dplyr::arrange(out, DV)
   sims <- dplyr::collect(f)
@@ -39,6 +39,41 @@ test_that("test verbs", {
   sims <- dplyr::collect(g)
   expect_equal(names(sims)[1], "subject")
 
+})
+
+test_that("distinct works on mrgsimsds", {
+  h <- dplyr::distinct(out, ID)
+  sims <- dplyr::collect(h)
+  expect_is(h, "arrow_dplyr_query")
+  expect_equal(nrow(sims), 3)
+  expect_equal(names(sims), "ID")
+
+  h2 <- dplyr::distinct(out, ID, .keep_all = TRUE)
+  sims2 <- dplyr::collect(h2)
+  expect_true(ncol(sims2) > 1)
+  expect_equal(nrow(sims2), 3)
+})
+
+test_that("relocate works on mrgsimsds", {
+  h <- dplyr::relocate(out, DV, .before = ID)
+  sims <- dplyr::collect(h)
+  expect_is(h, "arrow_dplyr_query")
+  expect_equal(names(sims)[1], "DV")
+})
+
+test_that("count works on mrgsimsds", {
+  h <- dplyr::count(out, ID)
+  sims <- dplyr::collect(h)
+  expect_is(h, "arrow_dplyr_query")
+  expect_equal(nrow(sims), 3)
+  expect_true("n" %in% names(sims))
+  expect_true(all(sims$n == 5))
+})
+
+test_that("pull works on mrgsimsds", {
+  ids <- dplyr::pull(out, ID)
+  expect_true(is.numeric(ids))
+  expect_equal(sort(unique(ids)), c(1, 2, 3))
 })
 
 rm(out, mod, data)

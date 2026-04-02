@@ -27,7 +27,8 @@ file containing all simulated data; passed to \code{\link[arrow:write_parquet]{a
 in parquet format.}
 }
 \value{
-All three functions return the new file list, invisibly.
+All three functions return \code{x} invisibly. The updated file list is
+accessible via \code{x$files}.
 }
 \description{
 Use \code{move_ds()} to change the enclosing directory. \code{write_ds()} can also

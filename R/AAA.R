@@ -3,7 +3,7 @@
 #' @importFrom arrow to_duckdb as_arrow_table
 #' @importFrom dplyr collect distinct pull summarise summarize rename
 #' @importFrom dplyr mutate select group_by filter bind_rows arrange
-#' @importFrom dplyr consecutive_id
+#' @importFrom dplyr consecutive_id count relocate
 #' @importFrom tibble as_tibble
 #' @importFrom utils head tail
 #' @importFrom scales label_number cut_short_scale
@@ -101,7 +101,11 @@ assign("nullptr", new("externalptr"), .global)
 #'   - [dplyr::rename()]
 #'   - [dplyr::arrange()]
 #'   - [dplyr::group_by()]
-#'  
+#'   - [dplyr::distinct()]
+#'   - [dplyr::relocate()]
+#'   - [dplyr::count()]
+#'   - [dplyr::pull()]
+#'
 #' - Coerce to R objects
 #'   - [as.data.frame()]
 #'   - [dplyr::as_tibble()]

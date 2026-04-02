@@ -5,21 +5,29 @@
 #' dplyr generic, returning a lazy Arrow query that can be materialized with
 #' [dplyr::collect()].
 #'
-#' @param .data an mrgsimsds object.
+#' @param .data,x an mrgsimsds object.
 #' @param ... passed to the corresponding dplyr generic.
 #' @param .add,.drop passed to [dplyr::group_by()].
-#' @param .by,.groups passed to [dplyr::summarise()].
+#' @param .groups passed to [dplyr::summarise()].
 #' @param .preserve passed to [dplyr::filter()].
 #' @param .by_group passed to [dplyr::arrange()].
+#' @param .keep_all passed to [dplyr::distinct()].
+#' @param .before,.after passed to [dplyr::relocate()].
+#' @param var passed to [dplyr::pull()].
+#' @param name passed to [dplyr::pull()].
+#' @param wt,sort passed to [dplyr::count()].
 #'
 #' @return
 #' A lazy Arrow query object. Use [dplyr::collect()] to materialize the result
-#' into a tibble.
+#' into a tibble. `pull()` is an exception — it collects immediately and returns
+#' a vector.
 #'
 #' @examples
+#' library(dplyr)
+#'
 #' mod <- house_ds(end = 24)
 #'
-#' data <- ev_expand(amt = c(100, 300), ID = 1:10)
+#' data <- evd_expand(amt = c(100, 300), ID = 1:10)
 #'
 #' out <- mrgsim_ds(mod, data)
 #'
@@ -27,7 +35,7 @@
 #'
 #' out |> group_by(ID) |> summarise(auc = sum(CP)) |> collect()
 #'
-#' out |> mutate(CP2 = CP^2) |> collect()
+#' out |> mutate(WEEK = TIME / 168) |> collect()
 #'
 #' @name mrgsimsds-verbs
 #' @export
@@ -55,10 +63,10 @@ mutate.mrgsimsds <- function(.data, ...) {
 
 #' @rdname mrgsimsds-verbs
 #' @export
-filter.mrgsimsds <- function(.data, ..., .by = NULL, .preserve = FALSE) {
+filter.mrgsimsds <- function(.data, ..., .preserve = FALSE) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::filter(as_arrow_ds(.data), ..., .by = {{.by}}, .preserve = .preserve)
+  dplyr::filter(as_arrow_ds(.data), ..., .preserve = .preserve)
 }
 
 #' @rdname mrgsimsds-verbs
@@ -66,7 +74,7 @@ filter.mrgsimsds <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 arrange.mrgsimsds <- function(.data, ..., .by_group = FALSE)  {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::arrange(as_arrow_ds(.data), ..., .by_group = FALSE)
+  dplyr::arrange(as_arrow_ds(.data), ..., .by_group = .by_group)
 }
 
 #' @rdname mrgsimsds-verbs
@@ -79,11 +87,43 @@ rename.mrgsimsds <- function(.data, ...) {
 
 #' @rdname mrgsimsds-verbs
 #' @export
-summarise.mrgsimsds <- function(.data, ..., .by = NULL, .groups = NULL) {
+summarise.mrgsimsds <- function(.data, ..., .groups = NULL) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::summarise(as_arrow_ds(.data), ..., .by = {{.by}}, .groups = .groups)
+  dplyr::summarise(as_arrow_ds(.data), ..., .groups = .groups)
 }
 
 #' @export
 summarize.mrgsimsds <- summarise.mrgsimsds # nocov
+
+#' @rdname mrgsimsds-verbs
+#' @export
+distinct.mrgsimsds <- function(.data, ..., .keep_all = FALSE) {
+  .data <- safe_ds(.data)
+  check_files_fatal(.data)
+  dplyr::distinct(as_arrow_ds(.data), ..., .keep_all = .keep_all)
+}
+
+#' @rdname mrgsimsds-verbs
+#' @export
+relocate.mrgsimsds <- function(.data, ..., .before = NULL, .after = NULL) {
+  .data <- safe_ds(.data)
+  check_files_fatal(.data)
+  dplyr::relocate(as_arrow_ds(.data), ..., .before = {{.before}}, .after = {{.after}})
+}
+
+#' @rdname mrgsimsds-verbs
+#' @export
+count.mrgsimsds <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
+  x <- safe_ds(x)
+  check_files_fatal(x)
+  dplyr::count(as_arrow_ds(x), ..., sort = sort, name = name)
+}
+
+#' @rdname mrgsimsds-verbs
+#' @export
+pull.mrgsimsds <- function(.data, var = -1, name = NULL, ...) {
+  .data <- safe_ds(.data)
+  check_files_fatal(.data)
+  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, ...)
+}

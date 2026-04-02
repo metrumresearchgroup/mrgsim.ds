@@ -46,5 +46,5 @@ refresh_ds.mrgsimsds <- function(x, ...) {
 refresh_ds.list <- function(x, ...) {
   classes <- simlist_classes(x)
   x[classes] <- lapply(x[classes], refresh_ds)
-  x
+  invisible(x)
 }

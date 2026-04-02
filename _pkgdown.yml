@@ -23,7 +23,17 @@ reference:
   contents:
   - mrgsimsds-methods
   - print.mrgsimsds
-  - mrgsimsds-verbs
+  - filter.mrgsimsds
+  - select.mrgsimsds
+  - mutate.mrgsimsds
+  - summarise.mrgsimsds
+  - group_by.mrgsimsds
+  - arrange.mrgsimsds
+  - rename.mrgsimsds
+  - distinct.mrgsimsds
+  - relocate.mrgsimsds
+  - count.mrgsimsds
+  - pull.mrgsimsds
 - title: Move or rename outputs
   contents:
   - move_ds

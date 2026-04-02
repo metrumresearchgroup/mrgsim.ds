@@ -79,7 +79,8 @@ file_ds <- function(id = NULL) {
 #' All three functions modify `x` in place and file ownership stays with `x`. 
 #' 
 #' @return
-#' All three functions return the new file list, invisibly.
+#' All three functions return `x` invisibly. The updated file list is
+#' accessible via `x$files`.
 #' 
 #' @examples
 #' 
@@ -118,7 +119,7 @@ move_ds <- function(x, path) {
   }
   x <- refresh_ds(x)
   take_ownership(x)
-  invisible(x$files)
+  invisible(x)
 }
 
 #' @rdname move_ds
@@ -139,7 +140,7 @@ rename_ds <- function(x, id) {
   x$files <- file_move(files, file.path(dirname(files), new_names))
   x <- refresh_ds(x)
   take_ownership(x)
-  invisible(x$files)
+  invisible(x)
 }
 
 #' @rdname move_ds
@@ -163,5 +164,5 @@ write_ds <- function(x, sink, ...) {
   x$files <- sink
   x <- refresh_ds(x)
   take_ownership(x)
-  invisible(x$files)
+  invisible(x)
 }

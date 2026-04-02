@@ -84,6 +84,10 @@ removed prior to object cleanup.
 \item \code{\link[dplyr:rename]{dplyr::rename()}}
 \item \code{\link[dplyr:arrange]{dplyr::arrange()}}
 \item \code{\link[dplyr:group_by]{dplyr::group_by()}}
+\item \code{\link[dplyr:distinct]{dplyr::distinct()}}
+\item \code{\link[dplyr:relocate]{dplyr::relocate()}}
+\item \code{\link[dplyr:count]{dplyr::count()}}
+\item \code{\link[dplyr:pull]{dplyr::pull()}}
 }
 \item Coerce to R objects
 \itemize{
