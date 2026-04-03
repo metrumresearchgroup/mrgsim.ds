@@ -56,13 +56,17 @@ file_ds <- function(id = NULL) {
 #' file. Apache Arrow can do this very efficiently, but there will still be an
 #' additional, potentially noticeable computational effort.
 #'
-#' When dataset files are rewritten to a single file with `write_ds()`, those
-#' files will no longer be cleaned up when the containing R object is finalized
-#' upon garbage collection. When dataset files are moved outside of `tempdir()`,
-#' those files, too, will no longer be cleaned up on garbage collection; but
-#' file cleanup will continue to occur as long as the files remain under
-#' `tempdir()`. No change in finalization behavior due to garbage collection
-#' of the containing object will happen when files are renamed.
+#' ## Automatic gc adjustment
+#'
+#' Both `move_ds()` and `write_ds()` automatically update the gc flag based on
+#' where the files end up: files that remain under `tempdir()` keep
+#' `gc = TRUE`; files moved outside `tempdir()` get `gc = FALSE`, protecting
+#' them from automatic deletion. `rename_ds()` never changes the gc flag
+#' because it does not change the file location.
+#'
+#' This automatic adjustment is skipped if the gc setting has been locked by a
+#' prior call to [gc_ds()]. A warning is issued if gc is locked to `TRUE` but
+#' files land outside `tempdir()`.
 #'
 #' The object (`x`) is required to own the underlying files in order to move
 #' or rename them; ownership is not required for `write_ds()`.
@@ -72,11 +76,11 @@ file_ds <- function(id = NULL) {
 #' @param x an mrgsimsds object.
 #' @param path the new directory location for backing files.
 #' @param id a short name used to create data set files for the simulated
-#'   output.
+#' output.
 #' @param sink the complete path (including file name) for a single parquet
-#'   file containing all simulated data; passed to [arrow::write_parquet()].
+#' file containing all simulated data; passed to [arrow::write_parquet()].
 #' @param ... passed to [arrow::write_parquet()]; files are always written
-#'   in parquet format.
+#' in parquet format.
 #' 
 #' @return
 #' All three functions return `x` invisibly. The updated file list is

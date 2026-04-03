@@ -42,19 +42,23 @@ renamed with little computational effort. For multi-file simulation outputs,
 \code{write_ds()} will need to read each file and write the data out to a single
 file. Apache Arrow can do this very efficiently, but there will still be an
 additional, potentially noticeable computational effort.
+\subsection{Automatic gc adjustment}{
 
-When dataset files are rewritten to a single file with \code{write_ds()}, those
-files will no longer be cleaned up when the containing R object is finalized
-upon garbage collection. When dataset files are moved outside of \code{tempdir()},
-those files, too, will no longer be cleaned up on garbage collection; but
-file cleanup will continue to occur as long as the files remain under
-\code{tempdir()}. No change in finalization behavior due to garbage collection
-of the containing object will happen when files are renamed.
+Both \code{move_ds()} and \code{write_ds()} automatically update the gc flag based on
+where the files end up: files that remain under \code{tempdir()} keep
+\code{gc = TRUE}; files moved outside \code{tempdir()} get \code{gc = FALSE}, protecting
+them from automatic deletion. \code{rename_ds()} never changes the gc flag
+because it does not change the file location.
+
+This automatic adjustment is skipped if the gc setting has been locked by a
+prior call to \code{\link[=gc_ds]{gc_ds()}}. A warning is issued if gc is locked to \code{TRUE} but
+files land outside \code{tempdir()}.
 
 The object (\code{x}) is required to own the underlying files in order to move
 or rename them; ownership is not required for \code{write_ds()}.
 
 All three functions modify \code{x} in place and file ownership stays with \code{x}.
+}
 }
 \examples{
 

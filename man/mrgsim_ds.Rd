@@ -17,19 +17,22 @@ output.}
 
 \item{verbose}{if \code{TRUE}, print progress information to the console.}
 
-\item{gc}{if \code{TRUE}, a finalizer function will attempt to remove files once
-the object is out of scope; set to \code{FALSE} to protect from automatic
-cleanup, or use \code{\link[=move_ds]{move_ds()}} or \code{\link[=write_ds]{write_ds()}} to relocate files outside of
-\code{tempdir()}.}
+\item{gc}{initial gc setting; if \code{TRUE}, a finalizer function will attempt
+to remove files once the object is out of scope. This value is not locked:
+\code{\link[=move_ds]{move_ds()}} and \code{\link[=write_ds]{write_ds()}} will automatically adjust gc based on whether
+the files remain under \code{tempdir()}. To lock the gc setting and prevent
+automatic adjustment, call \code{\link[=gc_ds]{gc_ds()}} after creation.}
 }
 \value{
 An object with class \code{mrgsimsds}.
 }
 \description{
 Runs \code{\link[mrgsolve:mrgsim]{mrgsolve::mrgsim()}} and writes simulation output to a parquet file in
-\code{tempdir()}, returning an \code{mrgsimsds} object. See \code{\link[=move_ds]{move_ds()}} or \code{\link[=write_ds]{write_ds()}}
-to change the location of the files, protecting them from the garbage
-collector. Note that full argument names must be used for all arguments.
+\code{tempdir()}, returning an \code{mrgsimsds} object. Files in \code{tempdir()} are
+auto-deleted on garbage collection by default. Use \code{\link[=move_ds]{move_ds()}} or
+\code{\link[=write_ds]{write_ds()}} to relocate files outside \code{tempdir()}, which automatically
+disables gc, or call \code{\link[=gc_ds]{gc_ds()}} to control gc directly. Note that full
+argument names must be used for all arguments.
 }
 \examples{
 mod <- house_ds()

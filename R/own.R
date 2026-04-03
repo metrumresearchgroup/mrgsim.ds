@@ -68,7 +68,7 @@ can_take_ownership <- function(x) {
 #'
 #' @param x an mrgsimsds object.
 #' @param full.names if `TRUE`, include the directory path when listing file
-#'   ownership.
+#' ownership.
 #' 
 #' @return 
 #' - `check_ownership`: `TRUE` if `x` owns the underlying files; `FALSE` 
@@ -240,7 +240,7 @@ clean_up_trash <- function() {
 #'
 #' @param x an mrgsimsds object to copy.
 #' @param own logical; if `TRUE` the new object takes ownership of the files;
-#'   if `FALSE` ownership is left unchanged.
+#' if `FALSE` ownership is left unchanged.
 #'
 #' @return
 #' A new mrgsimsds object with the same files and fields as `x`, a fresh

@@ -27,12 +27,20 @@ set_gc_auto <- function(x) {
 #' The `notify` flag is intended for debugging only; the `mrgsim.ds.show.gc`
 #' option provides the same behavior package-wide.
 #'
+#' Calling `gc_ds()` with `value` locks the gc setting: once a value is
+#' explicitly set, the package will never automatically change it when files are
+#' moved or written. A warning is issued if gc is locked to `TRUE` but files
+#' are moved outside of `tempdir()`, since those files would then be
+#' auto-deleted on garbage collection.
+#'
 #' @param x an mrgsimsds object or a list of objects.
 #' @param value logical; if `TRUE` the underlying files will be deleted on
-#'   garbage collection.
+#' garbage collection. Passing any value also locks the gc setting so that
+#' subsequent file operations (see [move_ds()], [write_ds()]) do not
+#' automatically adjust it.
 #' @param notify logical; if `TRUE` a message will be issued when files are
-#'   deleted on garbage collection. For debugging only; see also the
-#'   `mrgsim.ds.show.gc` option.
+#' deleted on garbage collection. For debugging only; see also the
+#' `mrgsim.ds.show.gc` option.
 #' @param ... not used.
 #'
 #' @examples

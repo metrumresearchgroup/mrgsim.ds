@@ -7,7 +7,7 @@
 #'
 #' @param x a list of R objects or a single mrgsimsds object.
 #' @param inform (list method only) issue a message when objects in some list
-#'   slots are dropped.
+#' slots are dropped.
 #' @param ... not used.
 #' 
 #' @examples

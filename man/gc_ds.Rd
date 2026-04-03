@@ -18,7 +18,9 @@ gc_ds(x, ..., value = NULL, notify = NULL)
 \item{...}{not used.}
 
 \item{value}{logical; if \code{TRUE} the underlying files will be deleted on
-garbage collection.}
+garbage collection. Passing any value also locks the gc setting so that
+subsequent file operations (see \code{\link[=move_ds]{move_ds()}}, \code{\link[=write_ds]{write_ds()}}) do not
+automatically adjust it.}
 
 \item{notify}{logical; if \code{TRUE} a message will be issued when files are
 deleted on garbage collection. For debugging only; see also the
@@ -38,6 +40,12 @@ issued when that deletion occurs (\code{notify}). Set \code{value = FALSE} to pr
 files from cleanup; set back to \code{TRUE} to re-enable automatic deletion.
 The \code{notify} flag is intended for debugging only; the \code{mrgsim.ds.show.gc}
 option provides the same behavior package-wide.
+
+Calling \code{gc_ds()} with \code{value} locks the gc setting: once a value is
+explicitly set, the package will never automatically change it when files are
+moved or written. A warning is issued if gc is locked to \code{TRUE} but files
+are moved outside of \code{tempdir()}, since those files would then be
+auto-deleted on garbage collection.
 }
 \examples{
 mod <- modlib_ds("popex", outvars = "IPRED")

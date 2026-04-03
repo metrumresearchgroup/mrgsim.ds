@@ -13,7 +13,7 @@
 #'
 #' @param quietly if `TRUE`, messages will be suppressed.
 #' @param ... mrgsimsds objects whose files will be retained by `retain_temp()`;
-#'   non-mrgsimsds objects are ignored with a warning.
+#' non-mrgsimsds objects are ignored with a warning.
 #'
 #' @return
 #' `list_temp()` returns a character vector of file paths invisibly, and prints
