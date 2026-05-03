@@ -30,18 +30,18 @@ keeps the files in place, but changes the file names. \code{combine_ds()}
 brings simulated data from multiple backing file into a single file.
 \subsection{Automatic gc adjustment}{
 
-Both \code{move_ds()} automatically updates the gc flag based on
-where the files end up: files that remain under \code{tempdir()} keep
-\code{gc = TRUE}; files moved outside \code{tempdir()} get \code{gc = FALSE}, protecting
-them from automatic deletion. Neither \code{rename_ds()} nor \code{collect_ds()} never
-changes the gc flag because they do not change the file location.
+Only \code{move_ds()} automatically updates the gc flag based on where the files
+end up: files that remain under \code{tempdir()} keep \code{gc = TRUE}; files moved
+outside \code{tempdir()} get \code{gc = FALSE}, protecting them from automatic
+deletion. Neither \code{rename_ds()} nor \code{combine_ds()} changes the gc flag
+because neither changes the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to \code{\link[=gc_ds]{gc_ds()}}. A warning is issued if gc is locked to \code{TRUE} but
 files land outside \code{tempdir()}.
 
-The object (\code{x}) is required to own the underlying files in order to move
-or rename them.
+The object (\code{x}) is required to own the underlying files in order to move,
+rename, or combine them.
 
 All three functions modify \code{x} in place and file ownership stays with \code{x}.
 }

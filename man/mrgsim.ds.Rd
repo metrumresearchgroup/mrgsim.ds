@@ -48,11 +48,16 @@ removed prior to object cleanup.
 \item \code{\link[=dim.mrgsimsds]{dim.mrgsimsds()}}
 \item \code{\link[=names.mrgsimsds]{names.mrgsimsds()}}
 }
-\item Move or rename files
+\item Move, rename, or combine files
 \itemize{
-\item \code{\link[=rename_ds]{rename_ds()}}
 \item \code{\link[=move_ds]{move_ds()}}
-\item \code{\link[=collect_ds]{collect_ds()}}
+\item \code{\link[=rename_ds]{rename_ds()}}
+\item \code{\link[=combine_ds]{combine_ds()}}
+}
+\item Save and restore
+\itemize{
+\item \code{\link[=save_ds]{save_ds()}}
+\item \code{\link[=read_ds]{read_ds()}}
 }
 \item Ownership
 \itemize{

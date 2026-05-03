@@ -66,10 +66,14 @@ assign("nullptr", new("externalptr"), .global)
 #'   - [dim.mrgsimsds()]
 #'   - [names.mrgsimsds()]
 #'
-#' - Move or rename files
-#'   - [rename_ds()]
+#' - Move, rename, or combine files
 #'   - [move_ds()]
-#'   - [collect_ds()]
+#'   - [rename_ds()]
+#'   - [combine_ds()]
+#'
+#' - Save and restore
+#'   - [save_ds()]
+#'   - [read_ds()]
 #'
 #' - Ownership
 #'   - [ownership()]
