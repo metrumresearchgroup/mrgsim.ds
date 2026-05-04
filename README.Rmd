@@ -351,7 +351,41 @@ plot(out, IPRED ~ time, nid = 5)
 ```
 
 
-### Details
+
+## Save outputs
+
+You can save the simulation output object for use later
+
+```{r}
+save_ds(out, "inst/readme_temp/sims.rds")
+```
+
+This saves the object in an `.rds` file located in the `inst` directory. 
+Importantly, the backing files are also relocated to the `.rds` location so 
+they can be found later on. 
+
+On read, the object is fully functional again with ownership transferred to the 
+new object.
+
+```{r}
+out2 <- read_ds("inst/readme_temp/sims.rds")
+
+out2
+```
+
+```{r}
+check_ownership(out)
+check_ownership(out2)
+```
+
+
+```{r, echo = FALSE}
+unlink("inst/readme_temp", recursive = TRUE)
+```
+
+
+
+## Details
 
 `mrgsim.ds` tracks the `tempdir()` location and the process ID (via 
 `Sys.getpid()`) of the R process where the model was loaded. When simulation 
