@@ -79,6 +79,7 @@ files_ds <- function(x) {
 #' Dataset pointer, and transfers full ownership of the backing files to the
 #' returned object.
 #'
+#' @inheritParams move_ds
 #' @param x an mrgsimsds object.
 #' @param file for `save_ds()`, the path to the output `.rds` file; the
 #' directory component determines where backing parquet files are moved.
@@ -102,12 +103,12 @@ files_ds <- function(x) {
 #'
 #' @seealso [move_ds()], [gc_ds()]
 #' @export
-save_ds <- function(x, file) {
+save_ds <- function(x, file, quietly = FALSE) {
   path <- dirname(file)
   move <- path != current_location(x)
   stem <- tools::file_path_sans_ext(file)
   if(move) {
-    x <- move_ds(x, path)
+    x <- move_ds(x, path, quietly = quietly)
   } 
   path <- current_location(x)
   if(grepl(basename(tempdir()), path)) {
@@ -177,6 +178,8 @@ read_ds <- function(file) {
 #' @param path the new directory location for backing files.
 #' @param id a short name used to create data set files for the simulated
 #' output.
+#' @param quietly if `FALSE`, a message is printed about the potentially new
+#' location of the backing files on move.
 #' 
 #' @return
 #' All three functions return `x` invisibly. The updated file list is

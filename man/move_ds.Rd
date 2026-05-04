@@ -17,6 +17,9 @@ combine_ds(x)
 
 \item{path}{the new directory location for backing files.}
 
+\item{quietly}{if \code{FALSE}, a message is printed about the potentially new
+location of the backing files on move.}
+
 \item{id}{a short name used to create data set files for the simulated
 output.}
 }

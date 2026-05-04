@@ -5,7 +5,7 @@
 \alias{read_ds}
 \title{Save and restore an mrgsimsds object}
 \usage{
-save_ds(x, file)
+save_ds(x, file, quietly = FALSE)
 
 read_ds(file)
 }
@@ -15,6 +15,9 @@ read_ds(file)
 \item{file}{for \code{save_ds()}, the path to the output \code{.rds} file; the
 directory component determines where backing parquet files are moved.
 For \code{read_ds()}, the path to an \code{.rds} file written by \code{save_ds()}.}
+
+\item{quietly}{if \code{FALSE}, a message is printed about the potentially new
+location of the backing files on move.}
 }
 \value{
 \code{save_ds()} returns the path to the written \code{.rds} file, invisibly.
