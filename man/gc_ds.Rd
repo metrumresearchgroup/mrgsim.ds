@@ -19,8 +19,8 @@ gc_ds(x, ..., value = NULL, notify = NULL)
 
 \item{value}{logical; if \code{TRUE} the underlying files will be deleted on
 garbage collection. Passing any value also locks the gc setting so that
-subsequent file operations (see \code{\link[=move_ds]{move_ds()}}, \code{\link[=write_ds]{write_ds()}}) do not
-automatically adjust it.}
+subsequent file operations (see \code{\link[=move_ds]{move_ds()}}) do not automatically adjust
+it.}
 
 \item{notify}{logical; if \code{TRUE} a message will be issued when files are
 deleted on garbage collection. For debugging only; see also the

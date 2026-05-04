@@ -36,8 +36,8 @@ set_gc_auto <- function(x) {
 #' @param x an mrgsimsds object or a list of objects.
 #' @param value logical; if `TRUE` the underlying files will be deleted on
 #' garbage collection. Passing any value also locks the gc setting so that
-#' subsequent file operations (see [move_ds()], [write_ds()]) do not
-#' automatically adjust it.
+#' subsequent file operations (see [move_ds()]) do not automatically adjust 
+#' it.
 #' @param notify logical; if `TRUE` a message will be issued when files are
 #' deleted on garbage collection. For debugging only; see also the
 #' `mrgsim.ds.show.gc` option.

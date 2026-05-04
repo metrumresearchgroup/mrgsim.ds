@@ -5,7 +5,7 @@
 #' Converts the output of [mrgsolve::mrgsim()] to an `mrgsimsds` object by
 #' writing the simulation data to a parquet file in `tempdir()`. Files in
 #' `tempdir()` are auto-deleted on garbage collection by default. Use
-#' [move_ds()] or [write_ds()] to relocate files outside `tempdir()`, which
+#' [move_ds()] or [save_ds()] to relocate files outside `tempdir()`, which
 #' automatically disables gc, or call [gc_ds()] to control gc directly.
 #'
 #' @inheritParams mrgsim_ds
@@ -85,7 +85,7 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' Runs [mrgsolve::mrgsim()] and writes simulation output to a parquet file in
 #' `tempdir()`, returning an `mrgsimsds` object. Files in `tempdir()` are
 #' auto-deleted on garbage collection by default. Use [move_ds()] or
-#' [write_ds()] to relocate files outside `tempdir()`, which automatically
+#' [save_ds()] to relocate files outside `tempdir()`, which automatically
 #' disables gc, or call [gc_ds()] to control gc directly. Note that full
 #' argument names must be used for all arguments.
 #'
@@ -97,7 +97,7 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' @param verbose if `TRUE`, print progress information to the console.
 #' @param gc initial gc setting; if `TRUE`, a finalizer function will attempt
 #' to remove files once the object is out of scope. This value is not locked:
-#' [move_ds()] and [write_ds()] will automatically adjust gc based on whether
+#' [move_ds()] and [save_ds()] will automatically adjust gc based on whether
 #' the files remain under `tempdir()`. To lock the gc setting and prevent
 #' automatic adjustment, call [gc_ds()] after creation.
 #' 
@@ -152,7 +152,7 @@ mrgsim_ds <- function(x,  ..., tags = list(), verbose = FALSE,
 #' @param ... arguments to be passed to or from other methods.
 #' 
 #' @details
-#' `head()` and `tail()` only look at the first and last `file` in the data 
+#' `head()`  and `tail()` only look at the first and last `file` in the data 
 #' set, respectively, when simulations are stored across multiple files. It is 
 #' possible this won't correspond to the first and last chunks rows of data
 #' you will see when collecting the data via [dplyr::collect()].
@@ -192,7 +192,12 @@ dim.mrgsimsds <- function(x) {
 head.mrgsimsds <-  function(x, n = 6L, ...) {
   check_files_fatal(x)
   x <- safe_ds(x)
-  as_tibble(get_nrow_from_ds(x, n = n))
+  if(length(x$files) > 1) {
+    ds <- open_dataset(x$files[1])
+    collect(head(x$ds, n = n))
+  } else {
+    collect(head(x$ds, n = n))  
+  }
 }
 
 #' @name mrgsimsds-methods

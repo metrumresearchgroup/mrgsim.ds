@@ -37,8 +37,10 @@ reference:
 - title: Move or rename outputs
   contents:
   - move_ds
-  - write_ds
+  - read_ds
+  - save_ds
   - rename_ds
+  - files_ds
 - title: Manage or query ownership
   desc: |
     This applies to ownership parquet files holding simulation outputs for the

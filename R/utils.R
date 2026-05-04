@@ -104,13 +104,6 @@ mread_with_ds <- function(x) {
   is.character(x@envir$mrgsim.ds.mread_tempdir)  
 }
 
-get_nrow_from_ds <- function(x, n = 6, batch_size = 10000) {
-  x <- safe_ds(x)
-  scanner <- Scanner$create(x$ds, batch_size = batch_size)
-  reader <- scanner$ToRecordBatchReader()  
-  head(as.data.frame(reader$read_next_batch()), n = n)
-}
-
 get_nid_from_ds <- function(x, nid = 10, batch_size = 10000) {
   x <- safe_ds(x)
   ds <- x$ds

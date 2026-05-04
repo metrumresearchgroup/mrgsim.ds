@@ -59,7 +59,7 @@ Basic S3 methods for inspecting and plotting mrgsimsds objects: \code{dim()},
 \code{head()}, \code{tail()}, \code{names()}, and \code{plot()}.
 }
 \details{
-\code{head()} and \code{tail()} only look at the first and last \code{file} in the data
+\code{head()}  and \code{tail()} only look at the first and last \code{file} in the data
 set, respectively, when simulations are stored across multiple files. It is
 possible this won't correspond to the first and last chunks rows of data
 you will see when collecting the data via \code{\link[dplyr:compute]{dplyr::collect()}}.

@@ -51,38 +51,26 @@ test_that("rename_ds", {
   a <- basename(out$files)
   rename_ds(out, "zip")
   b <- basename(out$files)
-  expect_equal(b, "mrgsims-ds-zip-0001.parquet")
+  expect_equal(b, "mrgsims-ds-zip-1.parquet")
 })
 
-test_that("write_ds", {
+test_that("move_ds issues a message when quietly = FALSE", {
   out <- mrgsim_ds(mod)
-  write_ds(out, file.path(tempdir(), "test-write-single"))
-  expect_true(out$gc)
-  expect_equal(basename(out$files), "test-write-single")
-  tmp <- basename(tempdir())
-  tst <- basename(dirname(out$files))
-  expect_equal(tst, tmp)
-  
-  out <- list(mrgsim_ds(mod), mrgsim_ds(mod))
-  out <- reduce_ds(out)
-  write_ds(out, file.path(tempdir(), "test-write-multi"))
-  expect_equal(unique(basename(out$files)), "test-write-multi")
-  tmp <- basename(tempdir())
-  tst <- unique(basename(dirname(out$files)))
-  expect_equal(tst, tmp)
+  nw <- file.path(tempdir(), "newdir")
+  expect_message(move_ds(out, path = nw), "files are now located in")
 })
 
 test_that("move_ds", {
   out <- mrgsim_ds(mod)
   nw <- file.path(tempdir(), "newdir")
-  move_ds(out, path = nw)
+  move_ds(out, path = nw, quietly = TRUE)
   tst <- basename(dirname(out$files))
   expect_equal(tst, "newdir")
   expect_true(out$gc)
 
   tmp_path <- withr::local_tempdir(tmpdir = getwd())
   test_dir <- file.path(tmp_path, "simulated-output")
-  move_ds(out, test_dir)
+  move_ds(out, test_dir, quietly = TRUE)
   expect_false(out$gc)  
 })
 
