@@ -169,8 +169,6 @@ This workflow is particularly useful when running replicate simulations in
 parallel, with large outputs
 
 ```{r}
-rm(out)
-
 library(future.apply, quietly = TRUE)
 
 plan(multisession, workers = 5L)
@@ -179,6 +177,7 @@ out2 <- future_lapply(1:10, \(x) { mrgsim_ds(mod, data) }, future.seed = TRUE)
 
 out2 <- reduce_ds(out2)
 
+plan(sequential)
 ```
 
 Now there are 10x the number of rows (14.5M), but little change in object size.
@@ -221,9 +220,10 @@ purge_temp()
 ```
 
 ```{r, message = FALSE}
-plan(multisession, workers = 5L)
-
 rm(out2)
+rm(out)
+
+plan(multisession, workers = 5L)
 
 out1 <- mrgsim_ds(mod, data)
 rename_ds(out1, "out1")
@@ -235,6 +235,8 @@ rename_ds(out2, "out2")
 
 out3 <- mrgsim_ds(mod, data) 
 rename_ds(out3, "out3")
+
+plan(sequential)
 ```
 
 There are 12 files holding simulation outputs. 
@@ -388,7 +390,6 @@ check_ownership(out2)
 ```{r, echo = FALSE}
 unlink("inst/readme_temp", recursive = TRUE)
 ```
-
 
 
 ## Details
