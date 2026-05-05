@@ -10,7 +10,7 @@ test_that("save_ds returns the rds file path invisibly", {
   dir <- withr::local_tempdir(tmpdir = getwd())
   file <- file.path(dir, "out.rds")
   result <- save_ds(out, file, quietly = TRUE)
-  expect_equal(result, file)
+  expect_equal(normalizePath(result), normalizePath(file))
 })
 
 test_that("save_ds writes the rds file", {
@@ -25,7 +25,7 @@ test_that("save_ds moves parquet files to rds directory", {
   out <- mrgsim_ds(mod, gc = FALSE)
   dir <- withr::local_tempdir(tmpdir = getwd())
   save_ds(out, file.path(dir, "out.rds"), quietly = TRUE)
-  expect_equal(dirname(out$files[[1]]), dir)
+  expect_equal(normalizePath(dirname(out$files[[1]])), normalizePath(dir))
   expect_true(all(file.exists(out$files)))
 })
 
