@@ -263,3 +263,20 @@ combine_ds <- function(x) {
   take_ownership(x)
   invisible(x)
 }
+
+#' Write simulations to a single parquet file
+#' 
+#' Use this function to escape the `mrgsim.ds` universe, writing all simulated
+#' data to a single `.parquet` file of your choosing.
+#' 
+#' 
+#' @param x an mrgsimsds object.
+#' @param sink passed to [arrow::write_parquet()].
+#' @param ... passed to [arrow::write_parquet()].
+#'
+#'@export
+write_parquet_ds <- function(x, sink, ...) {
+  require_ds(x)
+  write_parquet(x$ds, sink, ...)
+  invisible(x)
+}
