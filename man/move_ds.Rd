@@ -66,3 +66,6 @@ out <- combine_ds(out)
 out$files
 
 }
+\seealso{
+\code{\link[=save_ds]{save_ds()}}, \code{\link[=files_ds]{files_ds()}}, \code{\link[=gc_ds]{gc_ds()}}
+}

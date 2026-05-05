@@ -62,6 +62,8 @@ current_location <- function(x) {
 #'
 #' @return A character vector of absolute paths to the parquet files backing `x`.
 #'
+#' @seealso [move_ds()], [save_ds()]
+#'
 #' @export
 files_ds <- function(x) {
   require_ds(x)
@@ -186,9 +188,11 @@ read_ds <- function(file) {
 #' @return
 #' All three functions return `x` invisibly. The updated file list is
 #' accessible via `x$files`.
-#' 
+#'
+#' @seealso [save_ds()], [files_ds()], [gc_ds()]
+#'
 #' @examples
-#' 
+#'
 #' mod <- house_ds()
 #' 
 #' out <- lapply(1:3, \(x) { mrgsim_ds(mod, events = ev(amt = 100)) })
@@ -259,7 +263,6 @@ combine_ds <- function(x) {
     write_parquet(x$ds, output)
     unlink(x$files, recursive = TRUE)
     x$files <- output
-    x <- hash_files(x)
   }
   x <- refresh_ds(x)
   take_ownership(x)
@@ -282,6 +285,9 @@ combine_ds <- function(x) {
 #' `write_parquet_ds()` returns `x` invisibly.
 #'
 #' `write_dataset_ds()` returns `path` invisibly.
+#'
+#' @seealso [save_ds()] to persist an object while staying within the
+#' `mrgsim.ds` universe.
 #'
 #' @export
 write_parquet_ds <- function(x, sink, ...) {

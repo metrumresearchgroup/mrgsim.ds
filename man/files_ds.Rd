@@ -9,6 +9,12 @@ files_ds(x)
 \arguments{
 \item{x}{an mrgsimsds object.}
 }
+\value{
+A character vector of absolute paths to the parquet files backing \code{x}.
+}
 \description{
 Get names of backing files
+}
+\seealso{
+\code{\link[=move_ds]{move_ds()}}, \code{\link[=save_ds]{save_ds()}}
 }

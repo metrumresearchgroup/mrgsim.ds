@@ -29,6 +29,16 @@ Combines a list of mrgsimsds objects — typically the replicate outputs from
 a parallel simulation — into one object backed by all of their parquet files.
 Ownership of every file is transferred to the new object.
 }
+\details{
+\subsection{gc behavior}{
+
+The returned object always gets a fresh, unlocked gc state: \code{gc_locked} is
+set to \code{FALSE} and gc is determined by file location via the same rule used
+at creation time — \code{TRUE} if files are under \code{tempdir()}, \code{FALSE} otherwise.
+Any gc lock set on the input objects is not carried over. To lock the gc
+setting on the result, call \code{\link[=gc_ds]{gc_ds()}} after reducing.
+}
+}
 \examples{
 mod <- modlib_ds("popex", outvars = "IPRED")
 
