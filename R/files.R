@@ -224,7 +224,10 @@ move_ds <- function(x, path, quietly = FALSE) {
   take_ownership(x)
   if(isFALSE(quietly)) {
     gcstatus <- ifelse(isTRUE(x$gc), "on", "off")
-    msg <- glue("files are now located in {path}; gc is {gcstatus}.")
+    n <- length(x$files)
+    path <- ifelse(path == ".", basename(getwd()), path)
+    files <- ifelse(n > 1, "files are", "file is")
+    msg <- glue("{n} {files} now located in {path}; gc is {gcstatus}.")
     names(msg) <- "i"
     inform(msg)  
   }

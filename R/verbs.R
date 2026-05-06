@@ -129,5 +129,5 @@ count.mrgsimsds <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
 pull.mrgsimsds <- function(.data, var = -1, name = NULL, as_vector = TRUE, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, ...)
+  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, as_vector = as_vector, ...)
 }

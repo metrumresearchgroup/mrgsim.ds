@@ -32,7 +32,7 @@ test_that("save_ds moves parquet files to rds directory", {
 test_that("save_ds issues a message when quietly = FALSE", {
   out <- mrgsim_ds(mod, gc = FALSE)
   dir <- withr::local_tempdir(tmpdir = getwd())
-  expect_message(save_ds(out, file.path(dir, "out.rds")), "files are now located in")
+  expect_message(save_ds(out, file.path(dir, "out.rds")), "file is now located in")
 })
 
 test_that("save_ds warns when files end up in tempdir", {

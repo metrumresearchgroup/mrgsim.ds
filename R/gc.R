@@ -69,7 +69,7 @@ set_gc_auto <- function(x) {
 #' every mrgsimsds element; non-mrgsimsds elements are left unchanged.
 #' 
 #' @export
-gc_ds <- function(x, ..., value = NULL, notify = NULL) UseMethod("gc_ds")
+gc_ds <- function(x, value = NULL, notify = NULL, ...) UseMethod("gc_ds")
 #' @rdname gc_ds
 #' @export
 gc_ds.mrgsimsds <- function(x, value = NULL, notify = NULL, ...) {

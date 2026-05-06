@@ -6,7 +6,7 @@
 \alias{gc_ds.list}
 \title{Set garbage collection behavior for mrgsimsds objects}
 \usage{
-gc_ds(x, ..., value = NULL, notify = NULL)
+gc_ds(x, value = NULL, notify = NULL, ...)
 
 \method{gc_ds}{mrgsimsds}(x, value = NULL, notify = NULL, ...)
 
@@ -14,8 +14,6 @@ gc_ds(x, ..., value = NULL, notify = NULL)
 }
 \arguments{
 \item{x}{an mrgsimsds object or a list of objects.}
-
-\item{...}{not used.}
 
 \item{value}{logical; if \code{TRUE} the underlying files will be deleted on
 garbage collection. Passing any value also locks the gc setting so that
@@ -25,6 +23,8 @@ it.}
 \item{notify}{logical; if \code{TRUE} a message will be issued when files are
 deleted on garbage collection. For debugging only; see also the
 \code{mrgsim.ds.show.gc} option.}
+
+\item{...}{not used.}
 }
 \value{
 When \code{x} is an mrgsimsds object, it is returned invisibly with \code{gc} and/or

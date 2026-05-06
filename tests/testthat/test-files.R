@@ -57,7 +57,7 @@ test_that("rename_ds", {
 test_that("move_ds issues a message when quietly = FALSE", {
   out <- mrgsim_ds(mod)
   nw <- file.path(tempdir(), "newdir")
-  expect_message(move_ds(out, path = nw), "files are now located in")
+  expect_message(move_ds(out, path = nw), "1 file is now located in")
 })
 
 test_that("move_ds", {
