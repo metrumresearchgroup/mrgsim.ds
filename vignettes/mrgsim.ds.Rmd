@@ -19,7 +19,21 @@ library(dplyr)
 ```
 
 
-# Load the model
+# Overview 
+
+`mrgsim.ds` provides an [Apache Arrow](https://arrow.apache.org/docs/r/)-backed 
+simulation output object for [mrgsolve](https://mrgsolve.org), greatly reducing 
+the memory footprint of large simulations and providing a high-performance 
+pipeline for summarizing huge simulation outputs. The arrow-based simulation 
+output objects in R claim ownership of their files on disk. 
+Those files are automatically removed when the owning object goes out of scope 
+and becomes subject to the R garbage collector. While "anonymous", 
+parquet-formatted files hold the data in `tempdir()` as you are working in 
+R, functions are provided to move this data to more permanent locations for 
+later use. 
+
+
+# Load a model
 
 Load a model using `mread_ds()` or other friends. 
 
@@ -42,7 +56,7 @@ These all mimic the corresponding functions in mrgsolve.
 
 # Simulate
 
-To simulate, call `mrgsim_ds()`; any arguments get passed to `mrgsim()`. 
+To simulate, call `mrgsim_ds()`; all arguments get passed to `mrgsim()`. 
 
 ```{r}
 data <- evd_expand(amt = c(100, 300, 700), ii = 24, addl = 4, ID = 1:10)
