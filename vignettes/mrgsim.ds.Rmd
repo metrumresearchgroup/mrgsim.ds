@@ -27,50 +27,177 @@ Load a model using `mread_ds()` or other friends.
 mod <- mread_ds("popex-2.mod", outvars = "IPRED, DV, ECL")
 ```
 
-
 This model is almost identical to the same model loaded with `mread()`; there 
-is just some extra information included to make sure it works well with the 
-`mrgsim.ds` approach. 
+is just some extra information included in the model object to make sure it works
+ well with the `mrgsim.ds` approach. 
+
+Other functions you can use to load a model include 
+
+- `mcode_ds()`
+- `modlib_ds()`
+- `house_ds()`
+- `mread_cache_ds()`
+
+These all mimic the corresponding functions in mrgsolve.
 
 # Simulate
 
-To simulate, call `mrgsim_ds()`
+To simulate, call `mrgsim_ds()`; any arguments get passed to `mrgsim()`. 
 
 ```{r}
 data <- evd_expand(amt = c(100, 300, 700), ii = 24, addl = 4, ID = 1:10)
 
+data <- mutate(data, dose = AMT)
+
 set.seed(98)
-out <- mrgsim_ds(mod, data = data)
+out <- mrgsim_ds(mod, data = data, end = 5*24, recover = "dose")
 ```
 
-The output handles very similar to regular `mrgsim()` output
+The output behaves very similarly to regular `mrgsim()` output.
 
 ```{r, fig.width = 7, fig.height = 4}
 out
 
 head(out)
 
+tail(out)
+
 dim(out)
+
+names(out)
 
 plot(out, nid = 10)
 ```
 
-# Simulation files
+`out` owns the file that contains the simulated data.
 
-Simulation files are always initially stored in `tempdir()` 
+```{r}
+ownership()
+check_ownership(out)
+```
+
+
+This object is an environment and therefore is modified by reference. If you 
+want to make a copy of this object, use `copy_ds()`.
+
+```{r, eval = FALSE}
+out2 <- copy_ds(out, own = TRUE)
+```
+
+You can specify which object will own the files on copy.
+
+# Summarizing outputs with arrow
+
+mrgsim.ds provides access points to dplyr / arrow data wrangling pipelines.
+
+```{r}
+out %>% 
+  filter(TIME == 5*24) %>% 
+  select(TIME, dose, IPRED) %>% 
+  group_by(dose) %>% 
+  summarise( 
+    Min = min(IPRED), 
+    Mean = mean(IPRED), 
+    Max = max(IPRED), 
+    .groups = "drop"
+  ) %>% collect()
+```
+
+Note that we must call `collect()` or `as_tibble()` here in order to realize 
+the summarized results. 
+
+See the Arrow documentation for more details on these Arrow pipelines. For now, 
+note that if you want exact quantile summaries (including median), you have to 
+convert to a duckdb object. This is cheap and easy to do with the `as_duckdb_ds()`
+function.
+
+
+```{r}
+
+out %>% 
+  as_duckdb_ds() %>% 
+  filter(TIME == 5*24) %>% 
+  select(TIME, dose, IPRED) %>% 
+  group_by(dose) %>% 
+  summarise( 
+    P5 = quantile(IPRED, 0.05, na.rm = TRUE), 
+    Mean = mean(IPRED), 
+    Median = median(IPRED),
+    P95 = quantile(IPRED, 0.95, na.rm = TRUE), 
+    .groups = "drop"
+  ) %>% collect()
+```
+
+
+If you only want to get your simulated data as an R data frame, 
+simply coerce to `tibble`.
+
+```{r}
+as_tibble(out)
+```
+
+If you want the arrow data set object:
+
+```{r}
+as_arrow_ds(out)
+```
+
+If you want an arrow table object:
+
+```{r}
+arrow::as_arrow_table(out)
+```
+
+# Working with lists of objects
 
 ```{r, echo = FALSE, message = FALSE}
 purge_temp()
 ```
 
+mrgsim.ds provides utilities for working with lists of output objects 
+that are typically realized when simulating replicates in parallel. 
+
+Here are 10 simulation replicates.
 
 ```{r}
-out <- lapply(1:10, \(x) mrgsim_ds(mod, data)) %>% reduce_ds()
+out <- lapply(1:10, \(x) mrgsim_ds(mod, data)) 
+```
 
+Because we used `lapply()`, the result is a list of simulation output 
+objects
+
+```{r}
+class(out)
+```
+
+We'd like to work with these simulations as a single object. 
+To do that, use `reduce_ds()`
+
+```{r}
+out <- reduce_ds(out)
+```
+
+This leaves the backing files where they are, but creates
+a single object that now holds a single pointer to all 
+10 files. 
+
+# Working with simulation files
+
+In the last simulation, we created a list of output objects and then reduced
+that list to a single object with the outputs held in 10 parquet files. You 
+can see these files when they are in `tempdir()`.
+
+```{r}
 list_temp()
 ```
 
-To save outputs to a persistent location, use `write_ds()`.
+Or get a list of the files as an R character vector:
+
+```{r}
+files_ds(out)
+```
+
+To save outputs to a persistent location, use `save_ds()`.
 
 ```{r, echo = FALSE}
 save_dir <- tempdir()
@@ -81,10 +208,10 @@ save_dir <- tempdir()
 save_ds(out, file = file.path(save_dir, "sims.rds"))
 ```
 
-This creates an `.rds` file holding the (very lightweight) simulation output object _and_ it 
-relocates all the backing files to `save_dir`. 
+This creates an `.rds` file holding the (very lightweight) simulation output 
+object _and_ it relocates all the backing files to `save_dir`. 
 
-To read the simulations back into R
+To read the simulations back into R:
 
 ```{r}
 bah <- read_ds(file.path(save_dir, "sims.rds"))
@@ -98,3 +225,78 @@ An alternative is to rename and move.
 rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
+
+If you want all the simulated data output in a single parquet file that you
+name and locate.
+
+```{r, eval = FALSE}
+#| eval: false
+write_parquet_ds(x = bah, sink = "new/path/file.parquet")
+```
+
+# Garbage collection
+
+```{r, echo = FALSE}
+purge_temp()
+```
+
+When a new simulation output object is created, that object owns the files
+and, by default, the files will be deleted as soon as the object goes out of 
+scope. The files are deleted when the R garbage collector is called. 
+
+
+```{r}
+out <- mrgsim_ds(mod, data)
+
+out
+```
+
+You can see that `out` owns the files and they are marked for garbage collection
+when appropriate.
+
+```{r}
+output_files <- files_ds(out)
+
+file.exists(output_files)
+```
+
+Let's blow away `out` and check the files.
+```{r}
+rm(out)
+
+gc()
+
+file.exists(output_files)
+```
+
+You can ask mrgsim.ds to notify you when the file gc is called. We won't see
+the message output in this vignette, but you can confirm it in your R session.
+```{r}
+out <- mrgsim_ds(mod, data)
+
+out <- gc_ds(out, notify = TRUE)
+
+rm(out)
+
+gc()
+```
+
+```{r, code = "[mrgsim.ds] cleaning up 1 file(s) ...", eval = FALSE}
+
+```
+
+You can prevent the file gc from removing the files.
+
+```{r}
+out <- mrgsim_ds(mod, data)
+
+out <- gc_ds(out, value = FALSE)
+
+out
+```
+
+Now, your files will remain after the object goes out of scope. But remember 
+that, in this example, the files are still in `tempdir()` and they will be 
+blown away when R restarts. So if you really want to keep the output files
+safe, it's best to use `save_ds()`, `move_ds()`, or `write_parquet_ds()` to
+relocate files out of `tempdir()`, while also disabling file garbage collection.
