@@ -17,9 +17,9 @@ using.parallel <- requireNamespace("mirai", quietly = TRUE)
 # mrgsim.ds
 
 <!-- badges: start -->
-[![R-universe version](https://p-emex.r-universe.dev/mrgsim.ds/badges/version)](https://p-emex.r-universe.dev/mrgsim.ds)
-[![r-universe status](https://p-emex.r-universe.dev/mrgsim.ds/badges/checks)](https://p-emex.r-universe.dev/mrgsim.ds)
-[![R-CMD-check](https://github.com/p-emex/mrgsim.ds/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/p-emex/mrgsim.ds/actions/workflows/R-CMD-check.yaml)
+[![R-universe version](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/version)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
+[![r-universe status](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/checks)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
+[![R-CMD-check](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
@@ -38,11 +38,11 @@ later use.
 ## Installation
 
 You can install the development version of `mrgsim.ds` from 
-[r-universe](https://p-emex.r-universe.dev/mrgsim.ds) with:
+[r-universe](https://metrumresearchgroup.r-universe.dev/mrgsim.ds) with:
 
 ``` r
 # Install 'mrgsim.ds' in R:
-install.packages('mrgsim.ds', repos = c('https://p-emex.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages('mrgsim.ds', repos = c('https://metrumresearchgroup.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## Example 
