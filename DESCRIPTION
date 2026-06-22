@@ -17,9 +17,8 @@ Depends:
 Imports: arrow, rlang, dplyr, scales, glue, methods, fs, tibble, lobstr, digest
 Suggests: testthat, knitr, rmarkdown, withr, duckdb, dbplyr, DBI, lattice
 Encoding: UTF-8
-URL: https://github.com/metrumresearchgroup/mrgsim.ds, https://metrumresearchgroup.github.io/mrgsim.ds/, 
-  https://metrumresearchgroup.r-universe.dev/mrgsim.ds
-BugReports: https://github.com/metrumresearchgroup/mrgsim.ds/issues
+URL: https://github.com/p-emex/mrgsim.ds, https://p-emex.github.io/mrgsim.ds/
+BugReports: https://github.com/p-emex/mrgsim.ds/issues
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
