@@ -173,7 +173,7 @@ library(future.apply, quietly = TRUE)
 
 plan(multisession, workers = 5L)
 
-out2 <- future_lapply(1:10, \(x) { mrgsim_ds(mod, data) }, future.seed = TRUE)
+out2 <- future_lapply(1:500, \(x) { mrgsim_ds(mod, data) }, future.seed = TRUE)
 
 out2 <- reduce_ds(out2)
 
