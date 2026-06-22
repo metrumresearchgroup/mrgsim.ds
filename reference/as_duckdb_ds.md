@@ -1,7 +1,7 @@
 # Coerce an mrgsimsds object to a DuckDB table
 
 The conversion is handled by
-[`as_arrow_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_arrow_ds.md).
+[`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md).
 
 ## Usage
 
@@ -18,7 +18,7 @@ as_duckdb_ds(x, ...)
 - ...:
 
   passed to
-  [`as_arrow_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_arrow_ds.md).
+  [`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md).
 
 ## Value
 
@@ -27,7 +27,7 @@ A `tbl` of the simulated data in DuckDB; see
 
 ## See also
 
-[`as_arrow_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_arrow_ds.md)
+[`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md)
 
 ## Examples
 

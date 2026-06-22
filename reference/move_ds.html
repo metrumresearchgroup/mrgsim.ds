@@ -59,7 +59,7 @@ All three functions modify x in place and file ownership stays with x.
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/metrumresearchgroup/mrgsim.ds/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/p-emex/mrgsim.ds/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -69,7 +69,7 @@ All three functions modify x in place and file ownership stays with x.
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Move, rename, combine files in mrgsimsds objects</h1>
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/R/files.R" class="external-link"><code>R/files.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/p-emex/mrgsim.ds/blob/main/R/files.R" class="external-link"><code>R/files.R</code></a></small>
       <div class="d-none name"><code>move_ds.Rd</code></div>
     </div>
 
@@ -148,14 +148,14 @@ accessible via <code>x$files</code>.</p>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">rename_ds</span><span class="op">(</span><span class="va">out</span>, <span class="st">"new-name"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span><span class="op">$</span><span class="va">files</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmprRxwQQ/mrgsims-ds-new-name-1.parquet"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "/tmp/RtmprRxwQQ/mrgsims-ds-new-name-2.parquet"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "/tmp/RtmprRxwQQ/mrgsims-ds-new-name-3.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpoOQQVk/mrgsims-ds-new-name-1.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "/tmp/RtmpoOQQVk/mrgsims-ds-new-name-2.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "/tmp/RtmpoOQQVk/mrgsims-ds-new-name-3.parquet"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">combine_ds</span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span><span class="op">$</span><span class="va">files</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmprRxwQQ/mrgsims-ds-1a7df9deb28.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpoOQQVk/mrgsims-ds-19ef76bac0d.parquet"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

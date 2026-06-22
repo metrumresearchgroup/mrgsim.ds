@@ -39,9 +39,9 @@ plot(
 - x:
 
   an mrgsimsds object, output from
-  [`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md)
+  [`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md)
   or
-  [`as_mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_mrgsim_ds.md).
+  [`as_mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_mrgsim_ds.md).
 
 - n:
 

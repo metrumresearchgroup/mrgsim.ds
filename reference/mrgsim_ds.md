@@ -7,13 +7,13 @@ and writes simulation output to a parquet file in
 `mrgsimsds` object. Files in
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html) are auto-deleted on
 garbage collection by default. Use
-[`move_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md)
+[`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md)
 or
-[`save_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md)
+[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md)
 to relocate files outside
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html), which automatically
 disables gc, or call
-[`gc_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/gc_ds.md) to
+[`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md) to
 control gc directly. Note that full argument names must be used for all
 arguments.
 
@@ -28,12 +28,12 @@ mrgsim_ds(x, ..., tags = list(), verbose = FALSE, gc = TRUE)
 - x:
 
   a model object loaded through
-  [`mread_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md),
-  [`mcode_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md),
-  [`modlib_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md),
-  [`mread_cache_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md),
+  [`mread_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md),
+  [`mcode_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md),
+  [`modlib_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md),
+  [`mread_cache_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md),
   or
-  [`house_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md).
+  [`house_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md).
 
 - ...:
 
@@ -53,13 +53,13 @@ mrgsim_ds(x, ..., tags = list(), verbose = FALSE, gc = TRUE)
   initial gc setting; if `TRUE`, a finalizer function will attempt to
   remove files once the object is out of scope. This value is not
   locked:
-  [`move_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md)
+  [`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md)
   and
-  [`save_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md)
+  [`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md)
   will automatically adjust gc based on whether the files remain under
   [`tempdir()`](https://rdrr.io/r/base/tempfile.html). To lock the gc
   setting and prevent automatic adjustment, call
-  [`gc_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/gc_ds.md)
+  [`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md)
   after creation.
 
 ## Value
@@ -68,8 +68,8 @@ An object with class `mrgsimsds`.
 
 ## See also
 
-[`as_mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_mrgsim_ds.md),
-[mrgsimsds-methods](https://kylebaron.github.io/mrgsim.ds/reference/mrgsimsds-methods.md).
+[`as_mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_mrgsim_ds.md),
+[mrgsimsds-methods](https://p-emex.github.io/mrgsim.ds/reference/mrgsimsds-methods.md).
 
 ## Examples
 

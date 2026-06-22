@@ -37,7 +37,7 @@ gc_ds(x, value = NULL, notify = NULL, ...)
   logical; if `TRUE` the underlying files will be deleted on garbage
   collection. Passing any value also locks the gc setting so that
   subsequent file operations (see
-  [`move_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md))
+  [`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md))
   do not automatically adjust it.
 
 - notify:

@@ -49,9 +49,9 @@ simulation
 Two package-level hash environments (`hash2addr`, `hash2file`) map file
 hashes to object memory addresses. Only the “owner” of a file can move
 or delete it. Ownership transfers via
-[`take_ownership()`](https://kylebaron.github.io/mrgsim.ds/reference/ownership.md)
+[`take_ownership()`](https://p-emex.github.io/mrgsim.ds/reference/ownership.md)
 /
-[`disown()`](https://kylebaron.github.io/mrgsim.ds/reference/ownership.md).
+[`disown()`](https://p-emex.github.io/mrgsim.ds/reference/ownership.md).
 Files auto-delete on GC only if owned. This prevents accidental deletion
 when objects are copied or passed between contexts.
 
@@ -59,7 +59,7 @@ when objects are copied or passed between contexts.
 
 Objects track `$pid` (creation process). Arrow Dataset pointers become
 invalid across forked processes.
-[`refresh_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/refresh_ds.md)
+[`refresh_ds()`](https://p-emex.github.io/mrgsim.ds/reference/refresh_ds.md)
 rebuilds the pointer from the file paths. The GC finalizer only runs in
 the original process to avoid double-deletes during parallel
 simulations.
@@ -68,17 +68,17 @@ simulations.
 
 | File | Responsibility |
 |----|----|
-| `R/mrgsim-ds.R` | [`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md), [`as_mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_mrgsim_ds.md), core S3 methods |
+| `R/mrgsim-ds.R` | [`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md), [`as_mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_mrgsim_ds.md), core S3 methods |
 | `R/own.R` | Ownership system: claim, transfer, disown |
-| `R/files.R` | [`move_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md), [`rename_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md), [`combine_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md), [`save_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md), [`read_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md), [`write_parquet_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/write_parquet_ds.md), [`write_dataset_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/write_parquet_ds.md) |
-| `R/wrapper.R` | [`mread_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md) and friends — mrgsolve model loading (stamps model with [`save_process_info()`](https://kylebaron.github.io/mrgsim.ds/reference/save_process_info.md), required before [`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md)) |
+| `R/files.R` | [`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md), [`rename_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md), [`combine_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md), [`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md), [`read_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md), [`write_parquet_ds()`](https://p-emex.github.io/mrgsim.ds/reference/write_parquet_ds.md), [`write_dataset_ds()`](https://p-emex.github.io/mrgsim.ds/reference/write_parquet_ds.md) |
+| `R/wrapper.R` | [`mread_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md) and friends — mrgsolve model loading (stamps model with [`save_process_info()`](https://p-emex.github.io/mrgsim.ds/reference/save_process_info.md), required before [`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md)) |
 | `R/collect.R` | Coercion to tibble, Arrow table, DuckDB |
 | `R/verbs.R` | dplyr S3 methods (filter, mutate, summarise, etc.) |
-| `R/reduce.R` | [`reduce_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/reduce_ds.md) — combines a list of outputs |
-| `R/refresh.R` | [`refresh_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/refresh_ds.md) — rebuild Arrow pointer post-fork |
-| `R/temp.R` | [`list_temp()`](https://kylebaron.github.io/mrgsim.ds/reference/list_temp.md), [`purge_temp()`](https://kylebaron.github.io/mrgsim.ds/reference/list_temp.md) |
-| `R/gc.R` | [`gc_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/gc_ds.md) — toggle GC/auto-delete and notify flags |
-| `R/prune.R` | [`prune_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/prune_ds.md) — filter a list to only mrgsimsds objects |
+| `R/reduce.R` | [`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md) — combines a list of outputs |
+| `R/refresh.R` | [`refresh_ds()`](https://p-emex.github.io/mrgsim.ds/reference/refresh_ds.md) — rebuild Arrow pointer post-fork |
+| `R/temp.R` | [`list_temp()`](https://p-emex.github.io/mrgsim.ds/reference/list_temp.md), [`purge_temp()`](https://p-emex.github.io/mrgsim.ds/reference/list_temp.md) |
+| `R/gc.R` | [`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md) — toggle GC/auto-delete and notify flags |
+| `R/prune.R` | [`prune_ds()`](https://p-emex.github.io/mrgsim.ds/reference/prune_ds.md) — filter a list to only mrgsimsds objects |
 | `R/simlist.R` | Internal helpers for working with lists of mrgsimsds objects |
 
 ### Package-level State (`R/AAA.R`)

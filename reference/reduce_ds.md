@@ -44,8 +44,8 @@ rule used at creation time — `TRUE` if files are under
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html), `FALSE` otherwise.
 Any gc lock set on the input objects is not carried over. To lock the gc
 setting on the result, call
-[`gc_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/gc_ds.md)
-after reducing.
+[`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md) after
+reducing.
 
 ## Examples
 

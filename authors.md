@@ -8,16 +8,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/p-emex/mrgsim.ds/blob/main/DESCRIPTION)
 
 Baron K (2026). *mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed Simulation
 Outputs for 'mrgsolve'*. R package version 0.0.1.9000,
-<https://github.com/metrumresearchgroup/mrgsim.ds>.
+<https://github.com/p-emex/mrgsim.ds>.
 
     @Manual{,
       title = {mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed Simulation Outputs for 'mrgsolve'},
       author = {Kyle T Baron},
       year = {2026},
       note = {R package version 0.0.1.9000},
-      url = {https://github.com/metrumresearchgroup/mrgsim.ds},
+      url = {https://github.com/p-emex/mrgsim.ds},
     }

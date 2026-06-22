@@ -40,7 +40,7 @@ data <- expand.ev(amt = 100, ii = 24, total = 6, ID = 1:3000)
 
 `mrgsim.ds` provides a new
 [`mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html) variant -
-[`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md).
+[`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md).
 The name implies we are tapping into Apache Arrow
 [Dataset](https://arrow.apache.org/docs/r/reference/Dataset.html)
 functionality. The simulation below carries `1,446,000` rows.
@@ -434,7 +434,7 @@ daemons(0)
 ```
 
 First, notice that we used
-[`modlib_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
+[`modlib_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
 rather than
 [`mrgsolve::modlib()`](https://mrgsolve.org/docs/reference/modlib.html).
 The resulting object has the important information tucked away to safely
@@ -475,7 +475,7 @@ out <- refresh_ds(out)
 
 This will get you relocated back on the parent R process. Better yet,
 you should call
-[`reduce_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/reduce_ds.md)
+[`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md)
 
 ``` r
 
@@ -579,7 +579,7 @@ determined by [`Sys.getpid()`](https://rdrr.io/r/base/Sys.getpid.html).
 
 There is a cost to all of this. For small to mid-size simulations, you
 might see a small slowdown with
-[`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md);
+[`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md);
 it definitely won’t be faster than
 [`mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html) … even
 with the super-quick arrow ecosystem. This workflow is really for large

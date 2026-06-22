@@ -24,7 +24,7 @@ locations for later use.
 ## Load a model
 
 Load a model using
-[`mread_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
+[`mread_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
 or other friends.
 
 ``` r
@@ -39,17 +39,17 @@ works well with the `mrgsim.ds` approach.
 
 Other functions you can use to load a model include
 
-- [`mcode_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`modlib_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`house_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`mread_cache_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`mcode_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`modlib_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`house_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`mread_cache_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
 
 These all mimic the corresponding functions in mrgsolve.
 
 ## Simulate
 
 To simulate, call
-[`mrgsim_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/mrgsim_ds.md);
+[`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md);
 all arguments get passed to
 [`mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html).
 
@@ -154,7 +154,7 @@ check_ownership(out)
 
 This object is an environment and therefore is modified by reference. If
 you want to make a copy of this object, use
-[`copy_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/copy_ds.md).
+[`copy_ds()`](https://p-emex.github.io/mrgsim.ds/reference/copy_ds.md).
 
 ``` r
 
@@ -198,7 +198,7 @@ See the Arrow documentation for more details on these Arrow pipelines.
 For now, note that if you want exact quantile summaries (including
 median), you have to convert to a duckdb object. This is cheap and easy
 to do with the
-[`as_duckdb_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/as_duckdb_ds.md)
+[`as_duckdb_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_duckdb_ds.md)
 function.
 
 ``` r
@@ -311,7 +311,7 @@ class(out)
 
 We’d like to work with these simulations as a single object. To do that,
 use
-[`reduce_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/reduce_ds.md)
+[`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md)
 
 ``` r
 
@@ -334,11 +334,11 @@ list_temp()
 ```
 
     ## 10 files [2.9 Mb]
-    ## - mrgsims-ds-1d221e498a16.parquet
-    ## - mrgsims-ds-1d22372760fe.parquet
+    ## - mrgsims-ds-1c9512340f01.parquet
+    ## - mrgsims-ds-1c95130415a2.parquet
     ##    ...
-    ## - mrgsims-ds-1d22628c37e8.parquet
-    ## - mrgsims-ds-1d22870c6aa.parquet
+    ## - mrgsims-ds-1c9572aa8c3d.parquet
+    ## - mrgsims-ds-1c957da80a4a.parquet
 
 Or get a list of the files as an R character vector:
 
@@ -347,19 +347,19 @@ Or get a list of the files as an R character vector:
 files_ds(out)
 ```
 
-    ##  [1] "/tmp/RtmpJqiP2f/mrgsims-ds-1d221e498a16.parquet"
-    ##  [2] "/tmp/RtmpJqiP2f/mrgsims-ds-1d22628c37e8.parquet"
-    ##  [3] "/tmp/RtmpJqiP2f/mrgsims-ds-1d22870c6aa.parquet" 
-    ##  [4] "/tmp/RtmpJqiP2f/mrgsims-ds-1d22413f0dd.parquet" 
-    ##  [5] "/tmp/RtmpJqiP2f/mrgsims-ds-1d22372760fe.parquet"
-    ##  [6] "/tmp/RtmpJqiP2f/mrgsims-ds-1d224971b4d5.parquet"
-    ##  [7] "/tmp/RtmpJqiP2f/mrgsims-ds-1d224f3d902c.parquet"
-    ##  [8] "/tmp/RtmpJqiP2f/mrgsims-ds-1d225559fb00.parquet"
-    ##  [9] "/tmp/RtmpJqiP2f/mrgsims-ds-1d22549f7993.parquet"
-    ## [10] "/tmp/RtmpJqiP2f/mrgsims-ds-1d225e55dfbd.parquet"
+    ##  [1] "/tmp/RtmpUZ9098/mrgsims-ds-1c95130415a2.parquet"
+    ##  [2] "/tmp/RtmpUZ9098/mrgsims-ds-1c957da80a4a.parquet"
+    ##  [3] "/tmp/RtmpUZ9098/mrgsims-ds-1c9512340f01.parquet"
+    ##  [4] "/tmp/RtmpUZ9098/mrgsims-ds-1c956ea57612.parquet"
+    ##  [5] "/tmp/RtmpUZ9098/mrgsims-ds-1c95514f4c96.parquet"
+    ##  [6] "/tmp/RtmpUZ9098/mrgsims-ds-1c951c7bb9fc.parquet"
+    ##  [7] "/tmp/RtmpUZ9098/mrgsims-ds-1c952a090631.parquet"
+    ##  [8] "/tmp/RtmpUZ9098/mrgsims-ds-1c9526ca06c8.parquet"
+    ##  [9] "/tmp/RtmpUZ9098/mrgsims-ds-1c9572aa8c3d.parquet"
+    ## [10] "/tmp/RtmpUZ9098/mrgsims-ds-1c9554ab59a3.parquet"
 
 To save outputs to a persistent location, use
-[`save_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md).
+[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md).
 
 ``` r
 
@@ -400,7 +400,7 @@ rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
 
-    ## ℹ 10 files are now located in /tmp/RtmpJqiP2f; gc is off.
+    ## ℹ 10 files are now located in /tmp/RtmpUZ9098; gc is off.
 
 If you want all the simulated data output in a single parquet file that
 you name and locate.
@@ -462,8 +462,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2030220 108.5    4081108 218.0  3484452 186.1
-    ## Vcells 4464698  34.1   10146329  77.5  6455217  49.3
+    ## Ncells 2030219 108.5    4081180 218.0  3484517 186.1
+    ## Vcells 4464685  34.1   10146329  77.5  6455221  49.3
 
 ``` r
 
@@ -488,8 +488,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2026950 108.3    4081108 218.0  3484452 186.1
-    ## Vcells 3732849  28.5   10146329  77.5  6455217  49.3
+    ## Ncells 2026949 108.3    4081180 218.0  3484517 186.1
+    ## Vcells 3732840  28.5   10146329  77.5  6455221  49.3
 
 ``` r
 [mrgsim.ds] cleaning up 1 file(s) ...
@@ -525,10 +525,10 @@ remember that, in this example, the files are still in
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html) and they will be
 blown away when R restarts. So if you really want to keep the output
 files safe, it’s best to use
-[`save_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/save_ds.md),
-[`move_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/move_ds.md),
+[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md),
+[`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md),
 or
-[`write_parquet_ds()`](https://kylebaron.github.io/mrgsim.ds/reference/write_parquet_ds.md)
+[`write_parquet_ds()`](https://p-emex.github.io/mrgsim.ds/reference/write_parquet_ds.md)
 to relocate files out of
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html), while also
 disabling file garbage collection.
