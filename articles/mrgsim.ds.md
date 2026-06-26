@@ -334,11 +334,11 @@ list_temp()
 ```
 
     ## 10 files [2.9 Mb]
-    ## - mrgsims-ds-1c9512340f01.parquet
-    ## - mrgsims-ds-1c95130415a2.parquet
+    ## - mrgsims-ds-1cf31a1dfd0b.parquet
+    ## - mrgsims-ds-1cf31a98af96.parquet
     ##    ...
-    ## - mrgsims-ds-1c9572aa8c3d.parquet
-    ## - mrgsims-ds-1c957da80a4a.parquet
+    ## - mrgsims-ds-1cf369391d05.parquet
+    ## - mrgsims-ds-1cf394749e5.parquet
 
 Or get a list of the files as an R character vector:
 
@@ -347,16 +347,16 @@ Or get a list of the files as an R character vector:
 files_ds(out)
 ```
 
-    ##  [1] "/tmp/RtmpUZ9098/mrgsims-ds-1c95130415a2.parquet"
-    ##  [2] "/tmp/RtmpUZ9098/mrgsims-ds-1c957da80a4a.parquet"
-    ##  [3] "/tmp/RtmpUZ9098/mrgsims-ds-1c9512340f01.parquet"
-    ##  [4] "/tmp/RtmpUZ9098/mrgsims-ds-1c956ea57612.parquet"
-    ##  [5] "/tmp/RtmpUZ9098/mrgsims-ds-1c95514f4c96.parquet"
-    ##  [6] "/tmp/RtmpUZ9098/mrgsims-ds-1c951c7bb9fc.parquet"
-    ##  [7] "/tmp/RtmpUZ9098/mrgsims-ds-1c952a090631.parquet"
-    ##  [8] "/tmp/RtmpUZ9098/mrgsims-ds-1c9526ca06c8.parquet"
-    ##  [9] "/tmp/RtmpUZ9098/mrgsims-ds-1c9572aa8c3d.parquet"
-    ## [10] "/tmp/RtmpUZ9098/mrgsims-ds-1c9554ab59a3.parquet"
+    ##  [1] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf31a1dfd0b.parquet"
+    ##  [2] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3257feb89.parquet"
+    ##  [3] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf31a98af96.parquet"
+    ##  [4] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3389be2eb.parquet"
+    ##  [5] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf351e15d61.parquet"
+    ##  [6] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf354a8eff5.parquet"
+    ##  [7] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf369391d05.parquet"
+    ##  [8] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf394749e5.parquet" 
+    ##  [9] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf357e7a848.parquet"
+    ## [10] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3615cd2f7.parquet"
 
 To save outputs to a persistent location, use
 [`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md).
@@ -400,7 +400,7 @@ rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
 
-    ## ℹ 10 files are now located in /tmp/RtmpUZ9098; gc is off.
+    ## ℹ 10 files are now located in /tmp/RtmpPgPSLh; gc is off.
 
 If you want all the simulated data output in a single parquet file that
 you name and locate.
@@ -462,8 +462,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2030219 108.5    4081180 218.0  3484517 186.1
-    ## Vcells 4464685  34.1   10146329  77.5  6455221  49.3
+    ## Ncells 2030225 108.5    4081122 218.0  3484683 186.2
+    ## Vcells 4464731  34.1   10146329  77.5  6455349  49.3
 
 ``` r
 
@@ -488,8 +488,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2026949 108.3    4081180 218.0  3484517 186.1
-    ## Vcells 3732840  28.5   10146329  77.5  6455221  49.3
+    ## Ncells 2026955 108.3    4081122 218.0  3484683 186.2
+    ## Vcells 3732882  28.5   10146329  77.5  6455349  49.3
 
 ``` r
 [mrgsim.ds] cleaning up 1 file(s) ...

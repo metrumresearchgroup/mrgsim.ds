@@ -142,13 +142,11 @@ Useful links:
 
 - <https://p-emex.github.io/mrgsim.ds/>
 
-- <https://p-emex.r-universe.dev/mrgsim.ds>
-
 - Report bugs at <https://github.com/p-emex/mrgsim.ds/issues>
 
 ## Author
 
-**Maintainer**: Kyle T Baron <kylebtwin@imap.cc>
+**Maintainer**: Kyle T Baron <kyleb@metrumrg.com>
 ([ORCID](https://orcid.org/0000-0001-7252-5656)) \[copyright holder\]
 
 ## Examples
@@ -203,7 +201,7 @@ plot(out, nid = 10)
 
 list_temp()
 #> 1 files [129 Kb]
-#> - mrgsims-ds-19ef2346b694.parquet
+#> - mrgsims-ds-1a4e60c8511c.parquet
 
 ownership()
 #> > Objects: 1 | Files: 1 | Size: 129 Kb
