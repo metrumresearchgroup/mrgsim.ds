@@ -54,6 +54,12 @@ test_that("rename_ds", {
   expect_equal(b, "mrgsims-ds-zip-1.parquet")
 })
 
+test_that("files_ds", {
+  out <- mrgsim_ds(mod)
+  expect_identical(files_ds(out), out$files)
+  expect_true(file.exists(files_ds(out)))
+})
+
 test_that("move_ds issues a message when quietly = FALSE", {
   out <- mrgsim_ds(mod)
   nw <- file.path(tempdir(), "newdir")
