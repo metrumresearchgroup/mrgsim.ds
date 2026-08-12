@@ -25,6 +25,13 @@ test_that("is_mrgsimsds", {
   expect_true(is_mrgsimsds(out))
 })
 
+test_that("save_process_info", {
+  mod <- mrgsolve::house()
+  expect_null(mod@envir$mrgsim.ds.mread_pid)
+  mod <- save_process_info(mod)
+  expect_identical(mod@envir$mrgsim.ds.mread_pid, Sys.getpid())
+})
+
 test_that("check if pid changed", {
   mod <- house_ds(end = 1)
   expect_false(mrgsim.ds:::pid_changed(mod))
