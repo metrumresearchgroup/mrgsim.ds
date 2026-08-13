@@ -68,11 +68,11 @@ test_that("count works on mrgsimsds", {
   expect_equal(nrow(sims), 3)
   expect_true("n" %in% names(sims))
   expect_true(all(sims$n == 5))
-  expect_error(dplyr::count(out, ID, wt = DV), regexp = "not found")
+  expect_error(dplyr::count(out, ID, wt = DV), regexp = "wt")
 })
 
 test_that("pull works on mrgsimsds", {
-  ids <- dplyr::pull(out, ID)
+  ids <- dplyr::pull(out, ID, as_vector = TRUE)
   expect_true(is.numeric(ids))
   expect_equal(sort(unique(ids)), c(1, 2, 3))
 })
