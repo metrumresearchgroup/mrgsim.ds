@@ -11,7 +11,7 @@ back to the parent process. In that case, a call to `take_ownership()`
 once the results are returned to the parent process would be
 appropriate. Typically, these results are returned as a list and a call
 to
-[`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md)
+[`reduce_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/reduce_ds.md)
 will create a single object pointing to and owning multiple files.
 Therefore, it should be rare to call `take_ownership()` directly; if
 doing so, please make sure you understand what is going on.
@@ -56,8 +56,8 @@ take_ownership(x)
 
 ## See also
 
-[`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md),
-[`copy_ds()`](https://p-emex.github.io/mrgsim.ds/reference/copy_ds.md).
+[`reduce_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/reduce_ds.md),
+[`copy_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/copy_ds.md).
 
 ## Examples
 
@@ -74,11 +74,11 @@ ownership()
 
 list_ownership()
 #>                              file        address
-#> 1 mrgsims-ds-1a4e534eb673.parquet 0x55b3c02c9be0
-#> 2 mrgsims-ds-1a4e5d64b66b.parquet 0x55b3c0b29118
-#> 3 mrgsims-ds-1a4e60c8511c.parquet 0x55b3c4aee8a0
-#> 4 mrgsims-ds-1a4e760f5168.parquet 0x55b3c3abdea8
-#> 5 mrgsims-ds-1a4e58bcdc7a.parquet 0x55b3c2c34408
+#> 1 mrgsims-ds-1aba1ce2217f.parquet 0x55bb75652f90
+#> 2 mrgsims-ds-1aba658c2e8c.parquet 0x55bb6fed68c0
+#> 3 mrgsims-ds-1aba542b07b9.parquet 0x55bb75f0d268
+#> 4 mrgsims-ds-1aba1ae88a0f.parquet 0x55bb74b615c0
+#> 5 mrgsims-ds-1aba5dec9e41.parquet 0x55bb673bbe10
 
 e1 <- ev(amt = 100)
 e2 <- ev(amt = 200)

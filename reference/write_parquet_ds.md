@@ -43,5 +43,5 @@ write_dataset_ds(x, path, ...)
 
 ## See also
 
-[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md)
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
 to persist an object while staying within the `mrgsim.ds` universe.

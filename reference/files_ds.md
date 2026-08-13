@@ -20,5 +20,5 @@ A character vector of absolute paths to the parquet files backing `x`.
 
 ## See also
 
-[`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md),
-[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md)
+[`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md),
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)

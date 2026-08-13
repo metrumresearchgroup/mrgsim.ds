@@ -24,7 +24,7 @@ locations for later use.
 ## Load a model
 
 Load a model using
-[`mread_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
+[`mread_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md)
 or other friends.
 
 ``` r
@@ -39,17 +39,17 @@ works well with the `mrgsim.ds` approach.
 
 Other functions you can use to load a model include
 
-- [`mcode_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`modlib_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`house_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
-- [`mread_cache_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`mcode_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`modlib_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`house_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md)
+- [`mread_cache_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md)
 
 These all mimic the corresponding functions in mrgsolve.
 
 ## Simulate
 
 To simulate, call
-[`mrgsim_ds()`](https://p-emex.github.io/mrgsim.ds/reference/mrgsim_ds.md);
+[`mrgsim_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsim_ds.md);
 all arguments get passed to
 [`mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html).
 
@@ -154,7 +154,7 @@ check_ownership(out)
 
 This object is an environment and therefore is modified by reference. If
 you want to make a copy of this object, use
-[`copy_ds()`](https://p-emex.github.io/mrgsim.ds/reference/copy_ds.md).
+[`copy_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/copy_ds.md).
 
 ``` r
 
@@ -198,7 +198,7 @@ See the Arrow documentation for more details on these Arrow pipelines.
 For now, note that if you want exact quantile summaries (including
 median), you have to convert to a duckdb object. This is cheap and easy
 to do with the
-[`as_duckdb_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_duckdb_ds.md)
+[`as_duckdb_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/as_duckdb_ds.md)
 function.
 
 ``` r
@@ -216,6 +216,15 @@ out %>%
     .groups = "drop"
   ) %>% collect()
 ```
+
+    ## duckdb keeps downloaded extensions and secrets in a temporary directory:
+    ## ℹ /tmp/RtmpF8c3XF/duckdb
+    ## This is removed when the R session ends.
+    ## • Extensions are re-downloaded each session.
+    ## • Secrets are lost.
+    ## ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+    ## ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+    ## ℹ See ?duckdb_storage for details and alternatives.
 
     ## Warning: Missing values are always removed in SQL aggregation functions.
     ## Use `na.rm = TRUE` to silence this warning
@@ -311,7 +320,7 @@ class(out)
 
 We’d like to work with these simulations as a single object. To do that,
 use
-[`reduce_ds()`](https://p-emex.github.io/mrgsim.ds/reference/reduce_ds.md)
+[`reduce_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/reduce_ds.md)
 
 ``` r
 
@@ -334,11 +343,11 @@ list_temp()
 ```
 
     ## 10 files [2.9 Mb]
-    ## - mrgsims-ds-1cf31a1dfd0b.parquet
-    ## - mrgsims-ds-1cf31a98af96.parquet
+    ## - mrgsims-ds-1d6212a592e.parquet
+    ## - mrgsims-ds-1d6217186287.parquet
     ##    ...
-    ## - mrgsims-ds-1cf369391d05.parquet
-    ## - mrgsims-ds-1cf394749e5.parquet
+    ## - mrgsims-ds-1d627254b1b0.parquet
+    ## - mrgsims-ds-1d627c984368.parquet
 
 Or get a list of the files as an R character vector:
 
@@ -347,19 +356,19 @@ Or get a list of the files as an R character vector:
 files_ds(out)
 ```
 
-    ##  [1] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf31a1dfd0b.parquet"
-    ##  [2] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3257feb89.parquet"
-    ##  [3] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf31a98af96.parquet"
-    ##  [4] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3389be2eb.parquet"
-    ##  [5] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf351e15d61.parquet"
-    ##  [6] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf354a8eff5.parquet"
-    ##  [7] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf369391d05.parquet"
-    ##  [8] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf394749e5.parquet" 
-    ##  [9] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf357e7a848.parquet"
-    ## [10] "/tmp/RtmpPgPSLh/mrgsims-ds-1cf3615cd2f7.parquet"
+    ##  [1] "/tmp/RtmpF8c3XF/mrgsims-ds-1d626fbefaa7.parquet"
+    ##  [2] "/tmp/RtmpF8c3XF/mrgsims-ds-1d62316c2fc5.parquet"
+    ##  [3] "/tmp/RtmpF8c3XF/mrgsims-ds-1d6212a592e.parquet" 
+    ##  [4] "/tmp/RtmpF8c3XF/mrgsims-ds-1d62708613ed.parquet"
+    ##  [5] "/tmp/RtmpF8c3XF/mrgsims-ds-1d627254b1b0.parquet"
+    ##  [6] "/tmp/RtmpF8c3XF/mrgsims-ds-1d6245c1b3a4.parquet"
+    ##  [7] "/tmp/RtmpF8c3XF/mrgsims-ds-1d626ce8df42.parquet"
+    ##  [8] "/tmp/RtmpF8c3XF/mrgsims-ds-1d6258602d70.parquet"
+    ##  [9] "/tmp/RtmpF8c3XF/mrgsims-ds-1d627c984368.parquet"
+    ## [10] "/tmp/RtmpF8c3XF/mrgsims-ds-1d6217186287.parquet"
 
 To save outputs to a persistent location, use
-[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md).
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md).
 
 ``` r
 
@@ -400,7 +409,7 @@ rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
 
-    ## ℹ 10 files are now located in /tmp/RtmpPgPSLh; gc is off.
+    ## ℹ 10 files are now located in /tmp/RtmpF8c3XF; gc is off.
 
 If you want all the simulated data output in a single parquet file that
 you name and locate.
@@ -462,8 +471,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2030225 108.5    4081122 218.0  3484683 186.2
-    ## Vcells 4464731  34.1   10146329  77.5  6455349  49.3
+    ## Ncells 2033072 108.6    4091592 218.6  3498929 186.9
+    ## Vcells 4470299  34.2   10146329  77.5  6453260  49.3
 
 ``` r
 
@@ -488,8 +497,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2026955 108.3    4081122 218.0  3484683 186.2
-    ## Vcells 3732882  28.5   10146329  77.5  6455349  49.3
+    ## Ncells 2029784 108.5    4091592 218.6  3498929 186.9
+    ## Vcells 3738424  28.6   10146329  77.5  6453260  49.3
 
 ``` r
 [mrgsim.ds] cleaning up 1 file(s) ...
@@ -525,10 +534,10 @@ remember that, in this example, the files are still in
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html) and they will be
 blown away when R restarts. So if you really want to keep the output
 files safe, it’s best to use
-[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md),
-[`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md),
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md),
+[`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md),
 or
-[`write_parquet_ds()`](https://p-emex.github.io/mrgsim.ds/reference/write_parquet_ds.md)
+[`write_parquet_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/write_parquet_ds.md)
 to relocate files out of
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html), while also
 disabling file garbage collection.

@@ -1,7 +1,7 @@
 # Coerce an mrgsimsds object to a DuckDB table
 
 The conversion is handled by
-[`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md).
+[`as_arrow_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/as_arrow_ds.md).
 
 ## Usage
 
@@ -18,7 +18,7 @@ as_duckdb_ds(x, ...)
 - ...:
 
   passed to
-  [`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md).
+  [`as_arrow_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/as_arrow_ds.md).
 
 ## Value
 
@@ -27,7 +27,7 @@ A `tbl` of the simulated data in DuckDB; see
 
 ## See also
 
-[`as_arrow_ds()`](https://p-emex.github.io/mrgsim.ds/reference/as_arrow_ds.md)
+[`as_arrow_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/as_arrow_ds.md)
 
 ## Examples
 
@@ -40,8 +40,16 @@ if(requireNamespace("duckdb")) {
   as_duckdb_ds(out)
 }
 #> Loading required namespace: duckdb
+#> duckdb keeps downloaded extensions and secrets in a temporary directory:
+#> ℹ /tmp/RtmplMl6ED/duckdb
+#> This is removed when the R session ends.
+#> • Extensions are re-downloaded each session.
+#> • Secrets are lost.
+#> ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+#> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+#> ℹ See ?duckdb_storage for details and alternatives.
 #> # A query:  ?? x 7
-#> # Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
 #>       ID  time    GUT  CENT  RESP    DV    CP
 #>    <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1     1  0      0      0    50    0     0   

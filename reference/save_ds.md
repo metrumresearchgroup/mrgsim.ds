@@ -47,8 +47,8 @@ ownership of the backing files.
 
 ## See also
 
-[`move_ds()`](https://p-emex.github.io/mrgsim.ds/reference/move_ds.md),
-[`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md)
+[`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md),
+[`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
 
 ## Examples
 

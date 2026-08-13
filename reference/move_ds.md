@@ -16,8 +16,8 @@ changes the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked
 by a prior call to
-[`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md). A
-warning is issued if gc is locked to `TRUE` but files land outside
+[`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md).
+A warning is issued if gc is locked to `TRUE` but files land outside
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html).
 
 The object (`x`) is required to own the underlying files in order to
@@ -62,9 +62,9 @@ accessible via `x$files`.
 
 ## See also
 
-[`save_ds()`](https://p-emex.github.io/mrgsim.ds/reference/save_ds.md),
-[`files_ds()`](https://p-emex.github.io/mrgsim.ds/reference/files_ds.md),
-[`gc_ds()`](https://p-emex.github.io/mrgsim.ds/reference/gc_ds.md)
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md),
+[`files_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/files_ds.md),
+[`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
 
 ## Examples
 
@@ -79,12 +79,12 @@ out <- reduce_ds(out)
 out <- rename_ds(out, "new-name")
 
 out$files
-#> [1] "/tmp/RtmpG0e73x/mrgsims-ds-new-name-1.parquet"
-#> [2] "/tmp/RtmpG0e73x/mrgsims-ds-new-name-2.parquet"
-#> [3] "/tmp/RtmpG0e73x/mrgsims-ds-new-name-3.parquet"
+#> [1] "/tmp/RtmplMl6ED/mrgsims-ds-new-name-1.parquet"
+#> [2] "/tmp/RtmplMl6ED/mrgsims-ds-new-name-2.parquet"
+#> [3] "/tmp/RtmplMl6ED/mrgsims-ds-new-name-3.parquet"
 
 out <- combine_ds(out)
 
 out$files
-#> [1] "/tmp/RtmpG0e73x/mrgsims-ds-1a4e33d03567.parquet"
+#> [1] "/tmp/RtmplMl6ED/mrgsims-ds-1abae0e53d7.parquet"
 ```
