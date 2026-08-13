@@ -150,4 +150,14 @@ Useful links:
 \author{
 \strong{Maintainer}: Kyle T Baron \email{kyleb@metrumrg.com} (\href{https://orcid.org/0000-0001-7252-5656}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Kyle Meyer
+}
+
+Other contributors:
+\itemize{
+  \item Metrum Research Group [copyright holder, funder]
+}
+
 }
