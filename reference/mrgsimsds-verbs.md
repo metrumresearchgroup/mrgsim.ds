@@ -10,7 +10,7 @@ materialized with
 
 ``` r
 # S3 method for class 'mrgsimsds'
-group_by(.data, ..., .add = FALSE, .drop = TRUE)
+group_by(.data, ...)
 
 # S3 method for class 'mrgsimsds'
 select(.data, ...)
@@ -19,28 +19,28 @@ select(.data, ...)
 mutate(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-filter(.data, ..., .preserve = FALSE)
+filter(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-arrange(.data, ..., .by_group = FALSE)
+arrange(.data, ...)
 
 # S3 method for class 'mrgsimsds'
 rename(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-summarise(.data, ..., .groups = NULL)
+summarise(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-distinct(.data, ..., .keep_all = FALSE)
+distinct(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-relocate(.data, ..., .before = NULL, .after = NULL)
+relocate(.data, ...)
 
 # S3 method for class 'mrgsimsds'
-count(x, ..., wt = NULL, sort = FALSE, name = NULL)
+count(x, ..., wt = NULL)
 
 # S3 method for class 'mrgsimsds'
-pull(.data, var = -1, name = NULL, as_vector = TRUE, ...)
+pull(.data, ...)
 ```
 
 ## Arguments
@@ -53,55 +53,11 @@ pull(.data, var = -1, name = NULL, as_vector = TRUE, ...)
 
   passed to the corresponding dplyr generic.
 
-- .add, .drop:
+- wt:
 
-  passed to
-  [`dplyr::group_by()`](https://dplyr.tidyverse.org/reference/group_by.html).
-
-- .preserve:
-
-  passed to
-  [`dplyr::filter()`](https://dplyr.tidyverse.org/reference/filter.html).
-
-- .by_group:
-
-  passed to
-  [`dplyr::arrange()`](https://dplyr.tidyverse.org/reference/arrange.html).
-
-- .groups:
-
-  passed to
-  [`dplyr::summarise()`](https://dplyr.tidyverse.org/reference/summarise.html).
-
-- .keep_all:
-
-  passed to
-  [`dplyr::distinct()`](https://dplyr.tidyverse.org/reference/distinct.html).
-
-- .before, .after:
-
-  passed to
-  [`dplyr::relocate()`](https://dplyr.tidyverse.org/reference/relocate.html).
-
-- wt, sort:
-
-  passed to
-  [`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html).
-
-- name:
-
-  passed to
-  [`dplyr::pull()`](https://dplyr.tidyverse.org/reference/pull.html).
-
-- var:
-
-  passed to
-  [`dplyr::pull()`](https://dplyr.tidyverse.org/reference/pull.html).
-
-- as_vector:
-
-  passed to
-  [`dplyr::pull()`](https://dplyr.tidyverse.org/reference/pull.html).
+  unsupported
+  [`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html)
+  argument.
 
 ## Value
 

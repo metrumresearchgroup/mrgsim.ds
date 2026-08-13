@@ -53,7 +53,7 @@ dplyr generic, returning a lazy Arrow query that can be materialized with
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .add <span class="op">=</span> <span class="cn">FALSE</span>, .drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -62,28 +62,28 @@ dplyr generic, returning a lazy Arrow query that can be materialized with
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .preserve <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .by_group <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .groups <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .keep_all <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .before <span class="op">=</span> <span class="cn">NULL</span>, .after <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, wt <span class="op">=</span> <span class="cn">NULL</span>, sort <span class="op">=</span> <span class="cn">FALSE</span>, name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, wt <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'mrgsimsds'</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span>, var <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, name <span class="op">=</span> <span class="cn">NULL</span>, as_vector <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -98,44 +98,8 @@ dplyr generic, returning a lazy Arrow query that can be materialized with
 <dd><p>passed to the corresponding dplyr generic.</p></dd>
 
 
-<dt id="arg--add-drop">.add, .drop<a class="anchor" aria-label="anchor" href="#arg--add-drop"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">dplyr::group_by()</a></code>.</p></dd>
-
-
-<dt id="arg--preserve">.preserve<a class="anchor" aria-label="anchor" href="#arg--preserve"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>.</p></dd>
-
-
-<dt id="arg--by-group">.by_group<a class="anchor" aria-label="anchor" href="#arg--by-group"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">dplyr::arrange()</a></code>.</p></dd>
-
-
-<dt id="arg--groups">.groups<a class="anchor" aria-label="anchor" href="#arg--groups"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarise()</a></code>.</p></dd>
-
-
-<dt id="arg--keep-all">.keep_all<a class="anchor" aria-label="anchor" href="#arg--keep-all"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">dplyr::distinct()</a></code>.</p></dd>
-
-
-<dt id="arg--before-after">.before, .after<a class="anchor" aria-label="anchor" href="#arg--before-after"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">dplyr::relocate()</a></code>.</p></dd>
-
-
-<dt id="arg-wt-sort">wt, sort<a class="anchor" aria-label="anchor" href="#arg-wt-sort"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">dplyr::count()</a></code>.</p></dd>
-
-
-<dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code>.</p></dd>
-
-
-<dt id="arg-var">var<a class="anchor" aria-label="anchor" href="#arg-var"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code>.</p></dd>
-
-
-<dt id="arg-as-vector">as_vector<a class="anchor" aria-label="anchor" href="#arg-as-vector"></a></dt>
-<dd><p>passed to <code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code>.</p></dd>
+<dt id="arg-wt">wt<a class="anchor" aria-label="anchor" href="#arg-wt"></a></dt>
+<dd><p>unsupported <code><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">dplyr::count()</a></code> argument.</p></dd>
 
 </dl></div>
     <div class="section level2">
