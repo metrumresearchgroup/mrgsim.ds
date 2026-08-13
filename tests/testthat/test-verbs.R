@@ -72,7 +72,7 @@ test_that("count works on mrgsimsds", {
 })
 
 test_that("pull works on mrgsimsds", {
-  ids <- dplyr::pull(out, ID)
+  ids <- dplyr::pull(out, ID, as_vector = TRUE)
   expect_true(is.numeric(ids))
   expect_equal(sort(unique(ids)), c(1, 2, 3))
 })

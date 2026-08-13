@@ -35,7 +35,7 @@
 
 \method{count}{mrgsimsds}(x, ..., wt = NULL, sort = FALSE, name = NULL)
 
-\method{pull}{mrgsimsds}(.data, var = -1, name = NULL, as_vector = TRUE, ...)
+\method{pull}{mrgsimsds}(.data, var = -1, name = NULL, ...)
 }
 \arguments{
 \item{.data, x}{an mrgsimsds object.}
@@ -61,8 +61,6 @@
 \item{name}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
 
 \item{var}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
-
-\item{as_vector}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
 }
 \value{
 A lazy Arrow query object. Use \code{\link[dplyr:compute]{dplyr::collect()}} to materialize the result

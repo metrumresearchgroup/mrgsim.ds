@@ -13,7 +13,6 @@
 #' @param .by_group passed to [dplyr::arrange()].
 #' @param .keep_all passed to [dplyr::distinct()].
 #' @param .before,.after passed to [dplyr::relocate()].
-#' @param as_vector passed to [dplyr::pull()].
 #' @param var passed to [dplyr::pull()].
 #' @param name passed to [dplyr::pull()].
 #' @param wt unsupported [dplyr::count()] argument.
@@ -127,8 +126,8 @@ count.mrgsimsds <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
 
 #' @rdname mrgsimsds-verbs
 #' @export
-pull.mrgsimsds <- function(.data, var = -1, name = NULL, as_vector = TRUE, ...) {
+pull.mrgsimsds <- function(.data, var = -1, name = NULL, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, as_vector = as_vector, ...)
+  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, ...)
 }
