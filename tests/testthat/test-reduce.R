@@ -18,6 +18,8 @@ test_that("reduce lists of simulations", {
 })
 
 test_that("ok to reduce", {
+  expect_error(reduce_ds(list()), "must not be empty")
+
   a <- mrgsim_ds(mod, gc = FALSE)
   b <- mrgsim_ds(mod, gc = FALSE)
   c <- mrgsim_ds(mod, gc = FALSE)
