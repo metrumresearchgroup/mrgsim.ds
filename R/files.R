@@ -32,7 +32,7 @@ check_files_fatal <- function(x) {
 
 file_ds <- function(id = NULL) {
   ext <- ".parquet"
-  if(is.atomic(id)) {
+  if(!is.null(id) && is.atomic(id)) {
     id <- as.character(id)
     file <- paste0(.global$file.prefix, id, ext)
   } else {
