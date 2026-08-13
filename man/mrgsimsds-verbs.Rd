@@ -54,7 +54,9 @@
 
 \item{.before, .after}{passed to \code{\link[dplyr:relocate]{dplyr::relocate()}}.}
 
-\item{wt, sort}{passed to \code{\link[dplyr:count]{dplyr::count()}}.}
+\item{wt}{unsupported \code{\link[dplyr:count]{dplyr::count()}} argument.}
+
+\item{sort}{passed to \code{\link[dplyr:count]{dplyr::count()}}.}
 
 \item{name}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
 

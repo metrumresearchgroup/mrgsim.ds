@@ -16,7 +16,8 @@
 #' @param as_vector passed to [dplyr::pull()].
 #' @param var passed to [dplyr::pull()].
 #' @param name passed to [dplyr::pull()].
-#' @param wt,sort passed to [dplyr::count()].
+#' @param wt unsupported [dplyr::count()] argument.
+#' @param sort passed to [dplyr::count()].
 #'
 #' @return
 #' A lazy Arrow query object. Use [dplyr::collect()] to materialize the result
