@@ -20,3 +20,5 @@ docs
 ^pkgdown$
 ^\.positai$
 ^\.claude$
+^\CLAUDE\.md$
+^vignettes/\.here$

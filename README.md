@@ -9,7 +9,8 @@
 version](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/version)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
 [![r-universe
 status](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/checks)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
-[![R-CMD-check](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/R-CMD-check.yaml)
+[![Build
+Status](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml/badge.svg)](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml)
 <!-- badges: end -->
 
 `mrgsim.ds` provides an [Apache

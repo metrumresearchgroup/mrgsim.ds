@@ -141,9 +141,9 @@ move_ds(out, "data/sim/regimens")
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/p-emex/mrgsim.ds}
-  \item \url{https://p-emex.github.io/mrgsim.ds/}
-  \item Report bugs at \url{https://github.com/p-emex/mrgsim.ds/issues}
+  \item \url{https://metrumresearchgroup.github.io/mrgsim.ds/}
+  \item \url{https://github.com/metrumresearchgroup/mrgsim.ds}
+  \item Report bugs at \url{https://github.com/metrumresearchgroup/mrgsim.ds/issues}
 }
 
 }

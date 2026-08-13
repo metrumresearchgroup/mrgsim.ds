@@ -1,4 +1,11 @@
 simlist_reduce_ok <- function(x) {
+  if (!length(x)) {
+    abort(
+      "list must not be empty.",
+      call = caller_env()
+    )
+  }
+
   classes <- simlist_classes(x)
   if(!all(classes)) {
     abort(
