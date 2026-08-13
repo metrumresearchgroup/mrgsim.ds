@@ -150,6 +150,14 @@ Useful links:
 **Maintainer**: Kyle T Baron <kyleb@metrumrg.com>
 ([ORCID](https://orcid.org/0000-0001-7252-5656)) \[copyright holder\]
 
+Authors:
+
+- Kyle Meyer
+
+Other contributors:
+
+- Metrum Research Group \[copyright holder, funder\]
+
 ## Examples
 
 ``` r
@@ -202,7 +210,7 @@ plot(out, nid = 10)
 
 list_temp()
 #> 1 files [129 Kb]
-#> - mrgsims-ds-1a0b60007c26.parquet
+#> - mrgsims-ds-1943e75570c.parquet
 
 ownership()
 #> > Objects: 1 | Files: 1 | Size: 129 Kb
