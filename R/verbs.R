@@ -7,16 +7,7 @@
 #'
 #' @param .data,x an mrgsimsds object.
 #' @param ... passed to the corresponding dplyr generic.
-#' @param .add,.drop passed to [dplyr::group_by()].
-#' @param .groups passed to [dplyr::summarise()].
-#' @param .preserve passed to [dplyr::filter()].
-#' @param .by_group passed to [dplyr::arrange()].
-#' @param .keep_all passed to [dplyr::distinct()].
-#' @param .before,.after passed to [dplyr::relocate()].
-#' @param var passed to [dplyr::pull()].
-#' @param name passed to [dplyr::pull()].
 #' @param wt unsupported [dplyr::count()] argument.
-#' @param sort passed to [dplyr::count()].
 #'
 #' @return
 #' A lazy Arrow query object. Use [dplyr::collect()] to materialize the result
@@ -40,10 +31,10 @@
 #'
 #' @name mrgsimsds-verbs
 #' @export
-group_by.mrgsimsds <- function(.data, ..., .add = FALSE, .drop = TRUE) {
+group_by.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::group_by(as_arrow_ds(.data), ..., .add = .add, .drop = .drop)
+  dplyr::group_by(as_arrow_ds(.data), ...)
 }
 
 #' @rdname mrgsimsds-verbs
@@ -64,18 +55,18 @@ mutate.mrgsimsds <- function(.data, ...) {
 
 #' @rdname mrgsimsds-verbs
 #' @export
-filter.mrgsimsds <- function(.data, ..., .preserve = FALSE) {
+filter.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::filter(as_arrow_ds(.data), ..., .preserve = .preserve)
+  dplyr::filter(as_arrow_ds(.data), ...)
 }
 
 #' @rdname mrgsimsds-verbs
 #' @export
-arrange.mrgsimsds <- function(.data, ..., .by_group = FALSE)  {
+arrange.mrgsimsds <- function(.data, ...)  {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::arrange(as_arrow_ds(.data), ..., .by_group = .by_group)
+  dplyr::arrange(as_arrow_ds(.data), ...)
 }
 
 #' @rdname mrgsimsds-verbs
@@ -88,10 +79,10 @@ rename.mrgsimsds <- function(.data, ...) {
 
 #' @rdname mrgsimsds-verbs
 #' @export
-summarise.mrgsimsds <- function(.data, ..., .groups = NULL) {
+summarise.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::summarise(as_arrow_ds(.data), ..., .groups = .groups)
+  dplyr::summarise(as_arrow_ds(.data), ...)
 }
 
 #' @export
@@ -99,35 +90,35 @@ summarize.mrgsimsds <- summarise.mrgsimsds # nocov
 
 #' @rdname mrgsimsds-verbs
 #' @export
-distinct.mrgsimsds <- function(.data, ..., .keep_all = FALSE) {
+distinct.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::distinct(as_arrow_ds(.data), ..., .keep_all = .keep_all)
+  dplyr::distinct(as_arrow_ds(.data), ...)
 }
 
 #' @rdname mrgsimsds-verbs
 #' @export
-relocate.mrgsimsds <- function(.data, ..., .before = NULL, .after = NULL) {
+relocate.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::relocate(as_arrow_ds(.data), ..., .before = {{.before}}, .after = {{.after}})
+  dplyr::relocate(as_arrow_ds(.data), ...)
 }
 
 #' @rdname mrgsimsds-verbs
 #' @export
-count.mrgsimsds <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
+count.mrgsimsds <- function(x, ..., wt = NULL) {
   x <- safe_ds(x)
   check_files_fatal(x)
   if (!rlang::quo_is_null(rlang::enquo(wt))) {
     abort("the `wt` argument is not supported for mrgsimsds objects; call `as_arrow_ds()` first, then `count()`.")
   }
-  dplyr::count(as_arrow_ds(x), ..., sort = sort, name = name)
+  dplyr::count(as_arrow_ds(x), ...)
 }
 
 #' @rdname mrgsimsds-verbs
 #' @export
-pull.mrgsimsds <- function(.data, var = -1, name = NULL, ...) {
+pull.mrgsimsds <- function(.data, ...) {
   .data <- safe_ds(.data)
   check_files_fatal(.data)
-  dplyr::pull(as_arrow_ds(.data), var = {{var}}, name = {{name}}, ...)
+  dplyr::pull(as_arrow_ds(.data), ...)
 }

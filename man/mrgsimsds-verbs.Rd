@@ -15,52 +15,34 @@
 \alias{pull.mrgsimsds}
 \title{dplyr verbs for mrgsimsds objects}
 \usage{
-\method{group_by}{mrgsimsds}(.data, ..., .add = FALSE, .drop = TRUE)
+\method{group_by}{mrgsimsds}(.data, ...)
 
 \method{select}{mrgsimsds}(.data, ...)
 
 \method{mutate}{mrgsimsds}(.data, ...)
 
-\method{filter}{mrgsimsds}(.data, ..., .preserve = FALSE)
+\method{filter}{mrgsimsds}(.data, ...)
 
-\method{arrange}{mrgsimsds}(.data, ..., .by_group = FALSE)
+\method{arrange}{mrgsimsds}(.data, ...)
 
 \method{rename}{mrgsimsds}(.data, ...)
 
-\method{summarise}{mrgsimsds}(.data, ..., .groups = NULL)
+\method{summarise}{mrgsimsds}(.data, ...)
 
-\method{distinct}{mrgsimsds}(.data, ..., .keep_all = FALSE)
+\method{distinct}{mrgsimsds}(.data, ...)
 
-\method{relocate}{mrgsimsds}(.data, ..., .before = NULL, .after = NULL)
+\method{relocate}{mrgsimsds}(.data, ...)
 
-\method{count}{mrgsimsds}(x, ..., wt = NULL, sort = FALSE, name = NULL)
+\method{count}{mrgsimsds}(x, ..., wt = NULL)
 
-\method{pull}{mrgsimsds}(.data, var = -1, name = NULL, ...)
+\method{pull}{mrgsimsds}(.data, ...)
 }
 \arguments{
 \item{.data, x}{an mrgsimsds object.}
 
 \item{...}{passed to the corresponding dplyr generic.}
 
-\item{.add, .drop}{passed to \code{\link[dplyr:group_by]{dplyr::group_by()}}.}
-
-\item{.preserve}{passed to \code{\link[dplyr:filter]{dplyr::filter()}}.}
-
-\item{.by_group}{passed to \code{\link[dplyr:arrange]{dplyr::arrange()}}.}
-
-\item{.groups}{passed to \code{\link[dplyr:summarise]{dplyr::summarise()}}.}
-
-\item{.keep_all}{passed to \code{\link[dplyr:distinct]{dplyr::distinct()}}.}
-
-\item{.before, .after}{passed to \code{\link[dplyr:relocate]{dplyr::relocate()}}.}
-
 \item{wt}{unsupported \code{\link[dplyr:count]{dplyr::count()}} argument.}
-
-\item{sort}{passed to \code{\link[dplyr:count]{dplyr::count()}}.}
-
-\item{name}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
-
-\item{var}{passed to \code{\link[dplyr:pull]{dplyr::pull()}}.}
 }
 \value{
 A lazy Arrow query object. Use \code{\link[dplyr:compute]{dplyr::collect()}} to materialize the result
