@@ -119,7 +119,7 @@ relocate.mrgsimsds <- function(.data, ..., .before = NULL, .after = NULL) {
 count.mrgsimsds <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
   x <- safe_ds(x)
   check_files_fatal(x)
-  if(!is.null(wt)) {
+  if (!rlang::quo_is_null(rlang::enquo(wt))) {
     abort("the `wt` argument is not supported for mrgsimsds objects; call `as_arrow_ds()` first, then `count()`.")
   }
   dplyr::count(as_arrow_ds(x), ..., sort = sort, name = name)
