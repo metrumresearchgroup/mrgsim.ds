@@ -12,6 +12,8 @@ test_that("set gc status - single object", {
   
   out <- gc_ds(out, TRUE)
   expect_true(out$gc)
+
+  mrgsim.ds:::teardown_ds()
 })
 
 test_that("set gc status - list", {
@@ -25,6 +27,7 @@ test_that("set gc status - list", {
   expect_false(out[[1]]$gc)
   expect_false(out[[2]]$gc)   
   
+  mrgsim.ds:::teardown_ds()
 })
 
 test_that("set gc notify status", {
@@ -32,6 +35,8 @@ test_that("set gc notify status", {
   expect_false(out$gc_notify)
   out <- gc_ds(out, notify = TRUE)
   expect_true(out$gc_notify)
+
+  mrgsim.ds:::teardown_ds()
 })
 
 test_that("send to trash", {
@@ -57,6 +62,8 @@ test_that("send to trash", {
     mrgsim.ds:::clean_up_ds(out), 
     "cleaning up 1 file"
   )
+
+  mrgsim.ds:::teardown_ds()
 })
 
 

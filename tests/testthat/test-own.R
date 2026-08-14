@@ -47,4 +47,19 @@ test_that("copy ds", {
   expect_false(check_ownership(out))
 })
 
+test_that("can_take_ownership", {
+  clear_ownership()
+
+  mod <- house_ds()
+  x <- list(mrgsim_ds(mod), mrgsim_ds(mod), mrgsim_ds(mod))
+  y <- reduce_ds(x)
+
+  expect_false(can_take_ownership(x[[1]]))
+  expect_true(can_take_ownership(y))
+
+  disown(y)
+
+  expect_true(can_take_ownership(y))
+})
+
 mrgsim.ds:::teardown_ds()

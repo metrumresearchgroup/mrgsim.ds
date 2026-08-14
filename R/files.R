@@ -114,7 +114,7 @@ save_ds <- function(x, file, quietly = FALSE) {
     x <- move_ds(x, path, quietly = quietly)
   } 
   path <- current_location(x)
-  if(grepl(basename(tempdir()), path)) {
+  if (in_tempdir(path)) {
     warn("object and backing files will be saved to tempdir().")
   }
   file <- file.path(path, basename(file))
@@ -131,11 +131,6 @@ save_ds <- function(x, file, quietly = FALSE) {
 #' @export
 read_ds <- function(file) {
   if(!file.exists(file)) abort("`file` does not exist.")
-  cwd <- getwd()
-  on.exit(setwd(cwd), add = TRUE)
-  path <- dirname(file)
-  file <- basename(file)
-  setwd(path)
   x <- readRDS(file)
   if(!inherits(x, "mrgsimsds_save_ds")) {
     abort("[read_ds] unrecognized object in rds file.")
@@ -143,10 +138,12 @@ read_ds <- function(file) {
   reclass <- attr(x, "reclass")
   x <- list2env(x)
   class(x) <- reclass
-  if(!all(file.exists(x$files))) {
+
+  absfiles <- file.path(dirname(file), x$files)
+  if (!all(file.exists(absfiles))) {
     abort("[read_ds] one or more files could not be located.")
   }
-  x$files <- normalizePath(x$files, mustWork = TRUE)
+  x$files <- normalizePath(absfiles, mustWork = TRUE)
   x <- refresh_ds(x)
   x <- copy_ds(x, own = TRUE)
   x <- gc_ds(x, value = FALSE)

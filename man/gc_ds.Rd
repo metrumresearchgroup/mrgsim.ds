@@ -21,8 +21,7 @@ subsequent file operations (see \code{\link[=move_ds]{move_ds()}}) do not automa
 it.}
 
 \item{notify}{logical; if \code{TRUE} a message will be issued when files are
-deleted on garbage collection. For debugging only; see also the
-\code{mrgsim.ds.show.gc} option.}
+deleted on garbage collection.}
 
 \item{...}{not used.}
 }
@@ -38,8 +37,7 @@ Controls whether the underlying parquet files are automatically deleted
 when the object is garbage collected (\code{value}) and whether a message is
 issued when that deletion occurs (\code{notify}). Set \code{value = FALSE} to protect
 files from cleanup; set back to \code{TRUE} to re-enable automatic deletion.
-The \code{notify} flag is intended for debugging only; the \code{mrgsim.ds.show.gc}
-option provides the same behavior package-wide.
+The \code{notify} flag is intended for debugging only.
 
 Calling \code{gc_ds()} with \code{value} locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when files are

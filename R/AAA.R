@@ -29,12 +29,6 @@ assign("nullptr", new("externalptr"), .global)
   dir.create(.global$trashcan)
 } # nocov end
 
-#' @section Package-wide options:
-#'
-#' - `mrgsim.ds.show.gc`: print messages to the console when object files are
-#'   removed prior to object cleanup.
-#'
-#'
 #' @description
 #' `mrgsim.ds` provides an [Apache Arrow](https://arrow.apache.org/docs/r/)-backed
 #' simulation output object for [mrgsolve](https://mrgsolve.org), greatly reducing
