@@ -110,7 +110,6 @@ files_ds <- function(x) {
 save_ds <- function(x, file, quietly = FALSE) {
   path <- dirname(file)
   move <- path != current_location(x)
-  stem <- tools::file_path_sans_ext(file)
   if(move) {
     x <- move_ds(x, path, quietly = quietly)
   } 
