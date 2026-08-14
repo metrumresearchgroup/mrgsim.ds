@@ -1,5 +1,8 @@
 in_tempdir <- function(files) {
-  all(grepl(basename(tempdir()), files, fixed = TRUE))
+  tdir <- normalizePath(tempdir(), mustWork = TRUE)
+  files <- normalizePath(files, mustWork = TRUE)
+
+  return(all(fs::path_has_parent(files, tdir)))
 }
 
 set_gc_auto <- function(x) {
