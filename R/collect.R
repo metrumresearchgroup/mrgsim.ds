@@ -23,8 +23,6 @@ as_arrow_table.mrgsimsds <- function(x, ...) {
 #' Coerce an mrgsimsds object to a tbl
 #' 
 #' @param x an mrgsimsds object. 
-#' @param row.names passed to [base::as.data.frame()]. 
-#' @param optional passed to [base::as.data.frame()].
 #' @param ... passed to [dplyr::as_tibble()] or [dplyr::collect()]. 
 #' 
 #' @examples
@@ -58,15 +56,10 @@ collect.mrgsimsds <- function(x, ...) {
 
 #' @rdname as_tibble.mrgsimsds
 #' @export
-as.data.frame.mrgsimsds <- function(x, row.names = NULL, optional = FALSE, ...) {
+as.data.frame.mrgsimsds <- function(x, ...) {
   x <- safe_ds(x)
   check_files_fatal(x)
-  as.data.frame(
-    dplyr::collect(x$ds), 
-    row.names = row.names, 
-    optional = optional, 
-    ...
-  )
+  as.data.frame(dplyr::collect(x$ds), ...)
 }
 
 #' Coerce an mrgsimsds object to an arrow data set
