@@ -69,8 +69,6 @@ A `.global` environment holds package-wide constants and state:
 - `nullptr` — sentinel `externalptr` used to detect invalidated Arrow pointers
 - `trashcan` — a subdirectory of `tempdir()` used as staging area before file deletion
 
-Option `mrgsim.ds.show.gc` (set via `options()`) prints messages when GC removes files — useful for debugging ownership/cleanup issues.
-
 ### File Naming Convention
 
 Parquet files are written to `tempdir()` with the pattern:

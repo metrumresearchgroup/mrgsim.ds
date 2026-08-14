@@ -17,14 +17,6 @@ parquet-formatted files hold the data in \code{tempdir()} as you are working in
 R, functions are provided to move this data to more permanent locations for
 later use.
 }
-\section{Package-wide options}{
-
-\itemize{
-\item \code{mrgsim.ds.show.gc}: print messages to the console when object files are
-removed prior to object cleanup.
-}
-}
-
 \section{Function listing}{
 
 \itemize{
