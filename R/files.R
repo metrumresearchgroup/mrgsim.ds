@@ -110,7 +110,6 @@ files_ds <- function(x) {
 save_ds <- function(x, file, quietly = FALSE) {
   path <- dirname(file)
   move <- path != current_location(x)
-  stem <- tools::file_path_sans_ext(file)
   if(move) {
     x <- move_ds(x, path, quietly = quietly)
   } 
@@ -159,7 +158,7 @@ read_ds <- function(file) {
 #' @description
 #' Use `move_ds()` to change the enclosing directory. `rename_ds()`
 #' keeps the files in place, but changes the file names. `combine_ds()`
-#' brings simulated data from multiple backing file into a single file.
+#' brings simulated data from multiple backing files into a single file.
 #'
 #' ## Automatic gc adjustment
 #'

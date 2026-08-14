@@ -30,7 +30,7 @@ accessible via \code{x$files}.
 \description{
 Use \code{move_ds()} to change the enclosing directory. \code{rename_ds()}
 keeps the files in place, but changes the file names. \code{combine_ds()}
-brings simulated data from multiple backing file into a single file.
+brings simulated data from multiple backing files into a single file.
 \subsection{Automatic gc adjustment}{
 
 Only \code{move_ds()} automatically updates the gc flag based on where the files
