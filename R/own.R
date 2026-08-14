@@ -38,8 +38,8 @@ hash_files <- function(x) {
 # object, some not) is not allowed — return FALSE to be conservative.
 can_take_ownership <- function(x) {
   owned <- x$hash %in% names(hash2addr)
-  if(!any(owned)) {
-    return(!owned)
+  if (!any(owned)) {
+    return(TRUE)
   }
   if(all(owned)) {
     return(check_ownership(x))
