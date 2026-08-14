@@ -4,8 +4,7 @@ Controls whether the underlying parquet files are automatically deleted
 when the object is garbage collected (`value`) and whether a message is
 issued when that deletion occurs (`notify`). Set `value = FALSE` to
 protect files from cleanup; set back to `TRUE` to re-enable automatic
-deletion. The `notify` flag is intended for debugging only; the
-`mrgsim.ds.show.gc` option provides the same behavior package-wide.
+deletion. The `notify` flag is intended for debugging only.
 
 Calling `gc_ds()` with `value` locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when
@@ -43,8 +42,7 @@ gc_ds(x, value = NULL, notify = NULL, ...)
 - notify:
 
   logical; if `TRUE` a message will be issued when files are deleted on
-  garbage collection. For debugging only; see also the
-  `mrgsim.ds.show.gc` option.
+  garbage collection.
 
 - ...:
 

@@ -13,11 +13,6 @@ parquet-formatted files hold the data in
 in R, functions are provided to move this data to more permanent
 locations for later use.
 
-## Package-wide options
-
-- `mrgsim.ds.show.gc`: print messages to the console when object files
-  are removed prior to object cleanup.
-
 ## Function listing
 
 - Load models
@@ -210,7 +205,7 @@ plot(out, nid = 10)
 
 list_temp()
 #> 1 files [129 Kb]
-#> - mrgsims-ds-18d12cbec283.parquet
+#> - mrgsims-ds-1923814c1f6.parquet
 
 ownership()
 #> > Objects: 1 | Files: 1 | Size: 129 Kb

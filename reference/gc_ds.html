@@ -3,8 +3,7 @@
 when the object is garbage collected (value) and whether a message is
 issued when that deletion occurs (notify). Set value = FALSE to protect
 files from cleanup; set back to TRUE to re-enable automatic deletion.
-The notify flag is intended for debugging only; the mrgsim.ds.show.gc
-option provides the same behavior package-wide.
+The notify flag is intended for debugging only.
 Calling gc_ds() with value locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when files are
 moved or written. A warning is issued if gc is locked to TRUE but files
@@ -13,8 +12,7 @@ auto-deleted on garbage collection."><meta property="og:description" content="Co
 when the object is garbage collected (value) and whether a message is
 issued when that deletion occurs (notify). Set value = FALSE to protect
 files from cleanup; set back to TRUE to re-enable automatic deletion.
-The notify flag is intended for debugging only; the mrgsim.ds.show.gc
-option provides the same behavior package-wide.
+The notify flag is intended for debugging only.
 Calling gc_ds() with value locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when files are
 moved or written. A warning is issued if gc is locked to TRUE but files
@@ -62,8 +60,7 @@ auto-deleted on garbage collection."></head><body>
 when the object is garbage collected (<code>value</code>) and whether a message is
 issued when that deletion occurs (<code>notify</code>). Set <code>value = FALSE</code> to protect
 files from cleanup; set back to <code>TRUE</code> to re-enable automatic deletion.
-The <code>notify</code> flag is intended for debugging only; the <code>mrgsim.ds.show.gc</code>
-option provides the same behavior package-wide.</p>
+The <code>notify</code> flag is intended for debugging only.</p>
 <p>Calling <code>gc_ds()</code> with <code>value</code> locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when files are
 moved or written. A warning is issued if gc is locked to <code>TRUE</code> but files
@@ -99,8 +96,7 @@ it.</p></dd>
 
 <dt id="arg-notify">notify<a class="anchor" aria-label="anchor" href="#arg-notify"></a></dt>
 <dd><p>logical; if <code>TRUE</code> a message will be issued when files are
-deleted on garbage collection. For debugging only; see also the
-<code>mrgsim.ds.show.gc</code> option.</p></dd>
+deleted on garbage collection.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

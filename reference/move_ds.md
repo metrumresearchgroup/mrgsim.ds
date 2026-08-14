@@ -79,12 +79,12 @@ out <- reduce_ds(out)
 out <- rename_ds(out, "new-name")
 
 out$files
-#> [1] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-1.parquet"
-#> [2] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-2.parquet"
-#> [3] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-3.parquet"
+#> [1] "/tmp/RtmpZPMS1d/mrgsims-ds-new-name-1.parquet"
+#> [2] "/tmp/RtmpZPMS1d/mrgsims-ds-new-name-2.parquet"
+#> [3] "/tmp/RtmpZPMS1d/mrgsims-ds-new-name-3.parquet"
 
 out <- combine_ds(out)
 
 out$files
-#> [1] "/tmp/RtmpGvpj5V/mrgsims-ds-18d1644dd051.parquet"
+#> [1] "/tmp/RtmpZPMS1d/mrgsims-ds-192333460e01.parquet"
 ```

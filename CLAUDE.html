@@ -112,7 +112,6 @@
 <div class="section level3">
 <h3 id="package-level-state-raaar">Package-level State (<code>R/AAA.R</code>)<a class="anchor" aria-label="anchor" href="#package-level-state-raaar"></a></h3>
 <p>A <code>.global</code> environment holds package-wide constants and state: - <code>file.prefix</code> — <code>"mrgsims-ds-"</code> (prefix for all parquet files) - <code>file.re</code> — regex to identify package-managed files - <code>nullptr</code> — sentinel <code>externalptr</code> used to detect invalidated Arrow pointers - <code>trashcan</code> — a subdirectory of <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> used as staging area before file deletion</p>
-<p>Option <code>mrgsim.ds.show.gc</code> (set via <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code>) prints messages when GC removes files — useful for debugging ownership/cleanup issues.</p>
 </div>
 <div class="section level3">
 <h3 id="file-naming-convention">File Naming Convention<a class="anchor" aria-label="anchor" href="#file-naming-convention"></a></h3>

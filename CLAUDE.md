@@ -91,10 +91,6 @@ sentinel `externalptr` used to detect invalidated Arrow pointers -
 [`tempdir()`](https://rdrr.io/r/base/tempfile.html) used as staging area
 before file deletion
 
-Option `mrgsim.ds.show.gc` (set via
-[`options()`](https://rdrr.io/r/base/options.html)) prints messages when
-GC removes files — useful for debugging ownership/cleanup issues.
-
 ### File Naming Convention
 
 Parquet files are written to
