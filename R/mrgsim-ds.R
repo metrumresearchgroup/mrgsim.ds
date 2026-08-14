@@ -149,7 +149,7 @@ mrgsim_ds <- function(x,  ..., tags = list(), verbose = FALSE,
 #' @param batch_size size of batch when reading data for plot method.
 #' @param logy if `TRUE`, plot data with log y-axis.
 #' @param .dots a list of items to pass to [mrgsolve::plot_sims()].
-#' @param ... arguments to be passed to or from other methods.
+#' @param ... unused.
 #' 
 #' @details
 #' `head()`  and `tail()` only look at the first and last `file` in the data 
