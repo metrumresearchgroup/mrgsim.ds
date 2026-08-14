@@ -4,14 +4,12 @@
 \alias{as_arrow_table.mrgsimsds}
 \title{Coerce an mrgsimsds object to an arrow table}
 \usage{
-\method{as_arrow_table}{mrgsimsds}(x, ..., schema = NULL)
+\method{as_arrow_table}{mrgsimsds}(x, ...)
 }
 \arguments{
 \item{x}{an mrgsimsds object.}
 
 \item{...}{passed to \code{\link[arrow:as_arrow_table]{arrow::as_arrow_table()}}.}
-
-\item{schema}{passed to \code{\link[arrow:as_arrow_table]{arrow::as_arrow_table()}}.}
 }
 \value{
 An 'Apache' 'Arrow' \link[arrow:Table-class]{arrow::Table} of simulated data.

@@ -2,7 +2,6 @@
 #' 
 #' @param x an mrgsimsds object. 
 #' @param ... passed to [arrow::as_arrow_table()]. 
-#' @param schema passed to [arrow::as_arrow_table()].
 #' 
 #' @examples
 #' mod <- house_ds(end = 5)
@@ -15,7 +14,7 @@
 #' An 'Apache' 'Arrow' [arrow::Table] of simulated data.
 #'
 #' @export
-as_arrow_table.mrgsimsds <- function(x, ..., schema = NULL) {
+as_arrow_table.mrgsimsds <- function(x, ...) {
   x <- safe_ds(x)
   check_files_fatal(x)
   as_arrow_table(x$ds, ...)
