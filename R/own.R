@@ -1,11 +1,8 @@
-hash2addr <- new.env(parent = emptyenv(), hash = TRUE, size = 5000L)
-hash2file <- new.env(parent = emptyenv(), hash = TRUE, size = 5000L)
-
-digest_algo <- "xxh3_64"
+# Map from the file name to the address of the mrgsimsds object that "owns" it
+addresses <- new.env(parent = emptyenv(), hash = TRUE, size = 5000L)
 
 clear_ownership <- function() {
-  rm(list = names(hash2addr), envir = hash2addr)
-  rm(list = names(hash2file), envir = hash2file)
+  rm(list = names(addresses), envir = addresses)
 }
 
 teardown_ds <- function() {
@@ -25,17 +22,11 @@ clean_up_ds <- function(x) {
   }
 }
 
-hash_files <- function(x) {
-  h <- getVDigest(algo = digest_algo)
-  x$hash <- h(x$files)
-  x
-}
-
 # You can take ownership if no one owns the file
 # or the object owns the file. Partial ownership (some files owned by another
 # object, some not) is not allowed — return FALSE to be conservative.
 can_take_ownership <- function(x) {
-  owned <- x$hash %in% names(hash2addr)
+  owned <- x$files %in% names(addresses)
   if (!any(owned)) {
     return(TRUE)
   }
@@ -107,12 +98,12 @@ can_take_ownership <- function(x) {
 #' @name ownership
 #' @export
 ownership <- function() {
-  addrs <- mget(names(hash2addr), envir = hash2addr)
+  files <- names(addresses)
+  addrs <- mget(files, envir = addresses)
   if(!length(addrs)) {
     message("No ownership information yet.")
     return(invisible(NULL))
   }
-  files <- mget(names(hash2file), envir = hash2file)
   size <- total_size(files)
   nfile <- length(unique(files))
   nadd <- length(unique(addrs))
@@ -124,12 +115,12 @@ ownership <- function() {
 #' @rdname ownership
 #' @export
 list_ownership <- function(full.names = FALSE) {
-  addrs <- unname(mget(names(hash2addr), envir = hash2addr))
+  files <- names(addresses)
+  addrs <- unname(mget(files, envir = addresses))
   if(!length(addrs)) {
     ans <- data.frame(file = character(0), address = character(0))
     return(ans)
   }
-  files <- unname(mget(names(hash2file), envir = hash2file))
   ans <- data.frame(
     file = unlist(files), 
     address = unlist(addrs), 
@@ -146,11 +137,11 @@ list_ownership <- function(full.names = FALSE) {
 #' @export
 check_ownership <- function(x) {
   require_ds(x)
-  keys <- x$hash[x$hash %in% names(hash2addr)]
-  if(length(keys) != length(x$hash)) {
+  keys <- x$files[x$files %in% names(addresses)]
+  if(length(keys) != length(x$files)) {
     return(FALSE)  
   }
-  addrs <- mget(keys, envir = hash2addr)
+  addrs <- mget(keys, envir = addresses)
   return(all(addrs==x$address))
 }
 
@@ -158,11 +149,8 @@ check_ownership <- function(x) {
 #' @export
 disown <- function(x) {
   require_ds(x)
-  if(is.null(x$hash)) abort("files are not hashed.")
-  to_rm <- x$hash[x$hash %in% names(hash2addr)]
-  rm(list = to_rm, envir = hash2addr)
-  to_rm <- x$hash[x$hash %in% names(hash2file)]
-  rm(list = to_rm, envir = hash2file)
+  to_rm <- x$files[x$files %in% names(addresses)]
+  rm(list = to_rm, envir = addresses)
   invisible(x)
 }
 
@@ -170,28 +158,19 @@ disown <- function(x) {
 #' @export
 take_ownership <- function(x) {
   require_ds(x)
-  x <- hash_files(x)
 
-  if(!length(x$files) == length(x$hash)) {
-    abort("length mismatch between files and hash.")  
-  }
-  
-  l1 <- as.list(rep(x$address, length(x$hash)))
-  names(l1) <- x$hash
-  list2env(l1, envir = hash2addr)
-  
-  l2 <- as.list(x$files)
-  names(l2) <- x$hash
-  list2env(l2, envir = hash2file)
-  
+  l <- as.list(rep(x$address, length(x$files)))
+  names(l) <- x$files
+  list2env(l, envir = addresses)
+
   return(invisible(x))
 }
 
 # For testing only
 transfer_ownership <- function(x, address) {
   l <- as.list(rep(address, length(x$files)))
-  names(l) <- x$hash
-  list2env(l, envir = hash2addr)
+  names(l) <- x$files
+  list2env(l, envir = addresses)
 }
 
 #' Copy an mrgsimsds object
@@ -242,8 +221,6 @@ copy_ds <- function(x, own = TRUE) {
   class(ans) <- c("mrgsimsds", "environment")
   if(own) {
     take_ownership(ans)
-  } else {
-    hash_files(ans)
   }
   ls_out <- ls(ans)
   stopifnot("bad copy" = identical(ls_in, ls_out))

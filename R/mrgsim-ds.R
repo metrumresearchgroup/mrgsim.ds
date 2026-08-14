@@ -55,7 +55,6 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   ans <- new.env(parent = emptyenv())
   ans$ds <- open_dataset(file)
   ans$files <- ans$ds$files
-  ans$hash <- character(0)
   ans$mod <- x@mod
   ans$dim <- dim(ans$ds)
   n <- min(10, ans$dim[1L])

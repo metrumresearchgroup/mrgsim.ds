@@ -15,7 +15,6 @@
 #' @importFrom fs file_move file_copy dir_exists dir_create file_delete path_norm
 #' @importFrom stats as.formula
 #' @importFrom lobstr obj_addr
-#' @importFrom digest getVDigest
 NULL
 
 # nocov start

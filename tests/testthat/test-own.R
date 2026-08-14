@@ -1,15 +1,6 @@
 library(testthat)
 library(mrgsim.ds)
 
-test_that("hash files", {
-  mod <- house_ds()
-  out <- mrgsim_ds(mod)
-  
-  expect_is(out$hash, "character")
-  h <- digest::getVDigest(algo = mrgsim.ds:::digest_algo)
-  expect_equal(out$hash, h(out$files))
-})
-
 test_that("ownership", {
   mrgsim.ds:::clear_ownership()
   mod <- house_ds()
