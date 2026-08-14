@@ -159,7 +159,7 @@ read_ds <- function(file) {
 #' @description
 #' Use `move_ds()` to change the enclosing directory. `rename_ds()`
 #' keeps the files in place, but changes the file names. `combine_ds()`
-#' brings simulated data from multiple backing file into a single file.
+#' brings simulated data from multiple backing files into a single file.
 #'
 #' ## Automatic gc adjustment
 #'
