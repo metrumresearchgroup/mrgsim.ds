@@ -114,7 +114,7 @@ save_ds <- function(x, file, quietly = FALSE) {
     x <- move_ds(x, path, quietly = quietly)
   } 
   path <- current_location(x)
-  if(grepl(basename(tempdir()), path)) {
+  if (in_tempdir(path)) {
     warn("object and backing files will be saved to tempdir().")
   }
   file <- file.path(path, basename(file))
