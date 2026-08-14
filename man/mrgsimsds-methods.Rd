@@ -33,7 +33,7 @@
 
 \item{n}{number of rows to return.}
 
-\item{...}{arguments to be passed to or from other methods.}
+\item{...}{unused.}
 
 \item{y}{a formula for plotting simulated data; if not provided, all
 columns will be plotted.}
