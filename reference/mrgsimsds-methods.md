@@ -49,7 +49,7 @@ plot(
 
 - ...:
 
-  arguments to be passed to or from other methods.
+  unused.
 
 - y:
 

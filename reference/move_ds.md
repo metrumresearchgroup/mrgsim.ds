@@ -2,7 +2,7 @@
 
 Use `move_ds()` to change the enclosing directory. `rename_ds()` keeps
 the files in place, but changes the file names. `combine_ds()` brings
-simulated data from multiple backing file into a single file.
+simulated data from multiple backing files into a single file.
 
 ### Automatic gc adjustment
 
@@ -79,12 +79,12 @@ out <- reduce_ds(out)
 out <- rename_ds(out, "new-name")
 
 out$files
-#> [1] "/tmp/RtmpLaYV2q/mrgsims-ds-new-name-1.parquet"
-#> [2] "/tmp/RtmpLaYV2q/mrgsims-ds-new-name-2.parquet"
-#> [3] "/tmp/RtmpLaYV2q/mrgsims-ds-new-name-3.parquet"
+#> [1] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-1.parquet"
+#> [2] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-2.parquet"
+#> [3] "/tmp/RtmpGvpj5V/mrgsims-ds-new-name-3.parquet"
 
 out <- combine_ds(out)
 
 out$files
-#> [1] "/tmp/RtmpLaYV2q/mrgsims-ds-19431a8abde6.parquet"
+#> [1] "/tmp/RtmpGvpj5V/mrgsims-ds-18d1644dd051.parquet"
 ```

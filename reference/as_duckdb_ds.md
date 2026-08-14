@@ -41,7 +41,7 @@ if(requireNamespace("duckdb")) {
 }
 #> Loading required namespace: duckdb
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpLaYV2q/duckdb
+#> ℹ /tmp/RtmpGvpj5V/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
@@ -49,7 +49,7 @@ if(requireNamespace("duckdb")) {
 #> ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
 #> ℹ See ?duckdb_storage for details and alternatives.
 #> # A query:  ?? x 7
-#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1020-azure:R 4.6.1/:memory:]
+#> # Database: DuckDB 1.5.5 [unknown@Linux 6.17.0-1022-azure:R 4.6.1/:memory:]
 #>       ID  time    GUT  CENT  RESP    DV    CP
 #>    <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1     1  0      0      0    50    0     0   

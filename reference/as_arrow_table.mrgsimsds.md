@@ -6,7 +6,7 @@ Coerce an mrgsimsds object to an arrow table
 
 ``` r
 # S3 method for class 'mrgsimsds'
-as_arrow_table(x, ..., schema = NULL)
+as_arrow_table(x, ...)
 ```
 
 ## Arguments
@@ -16,11 +16,6 @@ as_arrow_table(x, ..., schema = NULL)
   an mrgsimsds object.
 
 - ...:
-
-  passed to
-  [`arrow::as_arrow_table()`](https://arrow.apache.org/docs/r/reference/as_arrow_table.html).
-
-- schema:
 
   passed to
   [`arrow::as_arrow_table()`](https://arrow.apache.org/docs/r/reference/as_arrow_table.html).

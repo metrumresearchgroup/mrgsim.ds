@@ -12,7 +12,7 @@ as_tibble(x, ...)
 collect(x, ...)
 
 # S3 method for class 'mrgsimsds'
-as.data.frame(x, row.names = NULL, optional = FALSE, ...)
+as.data.frame(x, ...)
 ```
 
 ## Arguments
@@ -27,16 +27,6 @@ as.data.frame(x, row.names = NULL, optional = FALSE, ...)
   [`dplyr::as_tibble()`](https://dplyr.tidyverse.org/reference/reexports.html)
   or
   [`dplyr::collect()`](https://dplyr.tidyverse.org/reference/compute.html).
-
-- row.names:
-
-  passed to
-  [`base::as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html).
-
-- optional:
-
-  passed to
-  [`base::as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html).
 
 ## Value
 
