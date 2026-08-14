@@ -10,7 +10,6 @@ clear_ownership <- function() {
 
 teardown_ds <- function() {
   purge_temp(quietly = TRUE)
-  unlink(list.files(.global$trashcan, full.names = TRUE))
 }
 
 # This code needs to check pid_changed on the model object, 
@@ -22,7 +21,6 @@ clean_up_ds <- function(x) {
       msg <- paste0("[mrgsim.ds] cleaning up ", n, " file(s) ...")
       message(msg)
     }
-    send_to_trash(x)
     unlink(x$files, recursive = TRUE)
   }
 }
@@ -109,7 +107,6 @@ can_take_ownership <- function(x) {
 #' @name ownership
 #' @export
 ownership <- function() {
-  clean_up_trash()
   addrs <- mget(names(hash2addr), envir = hash2addr)
   if(!length(addrs)) {
     message("No ownership information yet.")
@@ -127,7 +124,6 @@ ownership <- function() {
 #' @rdname ownership
 #' @export
 list_ownership <- function(full.names = FALSE) {
-  clean_up_trash()
   addrs <- unname(mget(names(hash2addr), envir = hash2addr))
   if(!length(addrs)) {
     ans <- data.frame(file = character(0), address = character(0))
@@ -150,7 +146,6 @@ list_ownership <- function(full.names = FALSE) {
 #' @export
 check_ownership <- function(x) {
   require_ds(x)
-  clean_up_trash()
   keys <- x$hash[x$hash %in% names(hash2addr)]
   if(length(keys) != length(x$hash)) {
     return(FALSE)  
@@ -175,7 +170,6 @@ disown <- function(x) {
 #' @export
 take_ownership <- function(x) {
   require_ds(x)
-  clean_up_trash()
   x <- hash_files(x)
 
   if(!length(x$files) == length(x$hash)) {
@@ -198,34 +192,6 @@ transfer_ownership <- function(x, address) {
   l <- as.list(rep(address, length(x$files)))
   names(l) <- x$hash
   list2env(l, envir = hash2addr)
-}
-
-send_to_trash <- function(x) {
-  for(i in seq_along(x$hash)) {
-    writeLines(
-      con = file.path(.global$trashcan, x$hash[i]), 
-      text = x$files[i]
-    )
-  }
-}
-
-clean_up_trash <- function() {
-  f <- list.files(.global$trashcan, full.names = TRUE)
-  if(!length(f)) return(NULL)
-  trashed <- sapply(f, readLines)
-  f <- f[!file.exists(trashed)]
-  if(!length(f)) return(NULL)
-  hash <- basename(f)
-  to_rm <- hash[hash %in% names(hash2addr)]
-  if(length(to_rm)) {
-    rm(list = to_rm, envir = hash2addr)
-  }
-  to_rm <- hash[hash %in% names(hash2file)]
-  if(length(to_rm)) {
-    rm(list = to_rm, envir = hash2file)
-  }
-  unlink(f, recursive = TRUE)
-  return(NULL)
 }
 
 #' Copy an mrgsimsds object

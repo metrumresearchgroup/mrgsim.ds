@@ -67,7 +67,6 @@ A `.global` environment holds package-wide constants and state:
 - `file.prefix` — `"mrgsims-ds-"` (prefix for all parquet files)
 - `file.re` — regex to identify package-managed files
 - `nullptr` — sentinel `externalptr` used to detect invalidated Arrow pointers
-- `trashcan` — a subdirectory of `tempdir()` used as staging area before file deletion
 
 ### File Naming Convention
 
