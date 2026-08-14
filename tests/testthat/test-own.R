@@ -1,9 +1,6 @@
 library(testthat)
 library(mrgsim.ds)
 
-mod <- house_ds()
-out <- mrgsim_ds(mod)
-
 test_that("hash files", {
   mod <- house_ds()
   out <- mrgsim_ds(mod)
@@ -50,5 +47,4 @@ test_that("copy ds", {
   expect_false(check_ownership(out))
 })
 
-rm(mod, out)
 mrgsim.ds:::teardown_ds()
