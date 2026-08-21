@@ -38,17 +38,16 @@ testthat::test_file("tests/testthat/test-own.R")
 
 The central object is not a data frame — it’s a lightweight environment
 with fields: - `$ds` — Arrow Dataset (lazy pointer to parquet files on
-disk) - `$files` — paths to parquet files - `$hash` — xxh3_64 hashes of
-those files (used by the ownership system) - `$pid` — process ID where
+disk) - `$files` — paths to parquet files - `$pid` — process ID where
 the object was created - `$gc` — whether files are auto-deleted on GC
 finalization - `$mod` — the mrgsolve model object that produced the
 simulation
 
 ### Ownership System (`R/own.R`)
 
-Two package-level hash environments (`hash2addr`, `hash2file`) map file
-hashes to object memory addresses. Only the “owner” of a file can move
-or delete it. Ownership transfers via
+A package-level hash environment (`addresses`) maps file names to object
+memory addresses. Only the “owner” of a file can move or delete it.
+Ownership transfers via
 [`take_ownership()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/ownership.md)
 /
 [`disown()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/ownership.md).
@@ -86,10 +85,7 @@ simulations.
 A `.global` environment holds package-wide constants and state: -
 `file.prefix` — `"mrgsims-ds-"` (prefix for all parquet files) -
 `file.re` — regex to identify package-managed files - `nullptr` —
-sentinel `externalptr` used to detect invalidated Arrow pointers -
-`trashcan` — a subdirectory of
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) used as staging area
-before file deletion
+sentinel `externalptr` used to detect invalidated Arrow pointers
 
 ### File Naming Convention
 

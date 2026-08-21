@@ -60,11 +60,11 @@
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
 <h3 id="core-object-mrgsimsds-an-r-environment">Core Object: <code>mrgsimsds</code> (an R environment)<a class="anchor" aria-label="anchor" href="#core-object-mrgsimsds-an-r-environment"></a></h3>
-<p>The central object is not a data frame — it’s a lightweight environment with fields: - <code>$ds</code> — Arrow Dataset (lazy pointer to parquet files on disk) - <code>$files</code> — paths to parquet files - <code>$hash</code> — xxh3_64 hashes of those files (used by the ownership system) - <code>$pid</code> — process ID where the object was created - <code>$gc</code> — whether files are auto-deleted on GC finalization - <code>$mod</code> — the mrgsolve model object that produced the simulation</p>
+<p>The central object is not a data frame — it’s a lightweight environment with fields: - <code>$ds</code> — Arrow Dataset (lazy pointer to parquet files on disk) - <code>$files</code> — paths to parquet files - <code>$pid</code> — process ID where the object was created - <code>$gc</code> — whether files are auto-deleted on GC finalization - <code>$mod</code> — the mrgsolve model object that produced the simulation</p>
 </div>
 <div class="section level3">
 <h3 id="ownership-system-rownr">Ownership System (<code>R/own.R</code>)<a class="anchor" aria-label="anchor" href="#ownership-system-rownr"></a></h3>
-<p>Two package-level hash environments (<code>hash2addr</code>, <code>hash2file</code>) map file hashes to object memory addresses. Only the “owner” of a file can move or delete it. Ownership transfers via <code><a href="reference/ownership.html">take_ownership()</a></code> / <code><a href="reference/ownership.html">disown()</a></code>. Files auto-delete on GC only if owned. This prevents accidental deletion when objects are copied or passed between contexts.</p>
+<p>A package-level hash environment (<code>addresses</code>) maps file names to object memory addresses. Only the “owner” of a file can move or delete it. Ownership transfers via <code><a href="reference/ownership.html">take_ownership()</a></code> / <code><a href="reference/ownership.html">disown()</a></code>. Files auto-delete on GC only if owned. This prevents accidental deletion when objects are copied or passed between contexts.</p>
 </div>
 <div class="section level3">
 <h3 id="process-safety-rrefreshr-rutilsr">Process Safety (<code>R/refresh.R</code>, <code>R/utils.R</code>)<a class="anchor" aria-label="anchor" href="#process-safety-rrefreshr-rutilsr"></a></h3>
@@ -111,7 +111,7 @@
 </tr></tbody></table></div>
 <div class="section level3">
 <h3 id="package-level-state-raaar">Package-level State (<code>R/AAA.R</code>)<a class="anchor" aria-label="anchor" href="#package-level-state-raaar"></a></h3>
-<p>A <code>.global</code> environment holds package-wide constants and state: - <code>file.prefix</code> — <code>"mrgsims-ds-"</code> (prefix for all parquet files) - <code>file.re</code> — regex to identify package-managed files - <code>nullptr</code> — sentinel <code>externalptr</code> used to detect invalidated Arrow pointers - <code>trashcan</code> — a subdirectory of <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> used as staging area before file deletion</p>
+<p>A <code>.global</code> environment holds package-wide constants and state: - <code>file.prefix</code> — <code>"mrgsims-ds-"</code> (prefix for all parquet files) - <code>file.re</code> — regex to identify package-managed files - <code>nullptr</code> — sentinel <code>externalptr</code> used to detect invalidated Arrow pointers</p>
 </div>
 <div class="section level3">
 <h3 id="file-naming-convention">File Naming Convention<a class="anchor" aria-label="anchor" href="#file-naming-convention"></a></h3>
