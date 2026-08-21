@@ -132,6 +132,6 @@ get_nid_from_ds <- function(x, nid = 10, batch_size = 10000) {
 }
 
 set_finalizer_ds <- function(x) {
-  reg.finalizer(x, clean_up_ds, onexit = TRUE)
+  reg.finalizer(x, clean_up_ds)
   x
 }
