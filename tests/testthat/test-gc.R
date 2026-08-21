@@ -39,33 +39,5 @@ test_that("set gc notify status", {
   mrgsim.ds:::teardown_ds()
 })
 
-test_that("send to trash", {
-  glo <- mrgsim.ds:::.global
-  out <- list(mrgsim_ds(mod), mrgsim_ds(mod))
-  out <- reduce_ds(out)
-  
-  gc()
-  before_hashes <- list.files(glo$trashcan)
-  mrgsim.ds:::clean_up_ds(out)
-  new_hashes <- setdiff(list.files(glo$trashcan), before_hashes)
-
-  expect_setequal(out$hash, new_hashes)
-
-  l <- file.path(glo$trashcan, new_hashes)
-  f <- unname(sapply(l, readLines))
-
-  expect_setequal(basename(f), basename(out$files))
-  
-  out <- mrgsim_ds(mod)
-  out <- gc_ds(out, notify = TRUE)
-  expect_message(
-    mrgsim.ds:::clean_up_ds(out), 
-    "cleaning up 1 file"
-  )
-
-  mrgsim.ds:::teardown_ds()
-})
-
-
 rm(mod)
 mrgsim.ds:::teardown_ds()

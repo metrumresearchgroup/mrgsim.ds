@@ -15,7 +15,6 @@
 #' @importFrom fs file_move file_copy dir_exists dir_create file_delete path_norm
 #' @importFrom stats as.formula
 #' @importFrom lobstr obj_addr
-#' @importFrom digest getVDigest
 NULL
 
 # nocov start
@@ -23,11 +22,7 @@ NULL
 assign("file.prefix", "mrgsims-ds-", .global)
 assign("file.re", "^mrgsims-ds-.*\\.parquet$", .global)
 assign("nullptr", new("externalptr"), .global)
-
-.onLoad <- function(libname, pkgname) {
-  assign("trashcan", file.path(tempdir(), "mrgsim-ds-trash-can_"), .global)
-  dir.create(.global$trashcan)
-} # nocov end
+# nocov end
 
 #' @description
 #' `mrgsim.ds` provides an [Apache Arrow](https://arrow.apache.org/docs/r/)-backed
