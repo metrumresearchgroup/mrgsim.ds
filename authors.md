@@ -15,13 +15,13 @@ Source:
 [`DESCRIPTION`](https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/DESCRIPTION)
 
 Baron K, Meyer K (2026). *mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed
-Simulation Outputs for 'mrgsolve'*. R package version 0.0.1.9000,
+Simulation Outputs for 'mrgsolve'*. R package version 0.1.0,
 <https://metrumresearchgroup.github.io/mrgsim.ds/>.
 
     @Manual{,
       title = {mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed Simulation Outputs for 'mrgsolve'},
       author = {Kyle T Baron and Kyle Meyer},
       year = {2026},
-      note = {R package version 0.0.1.9000},
+      note = {R package version 0.1.0},
       url = {https://metrumresearchgroup.github.io/mrgsim.ds/},
     }
