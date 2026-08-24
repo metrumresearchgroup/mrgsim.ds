@@ -1,2 +1,5 @@
-# mrgsim.ds (development version)
+# mrgsim.ds 0.1.0
+
+- Initial release
+
 
