@@ -18,6 +18,8 @@ clean_up_ds <- function(x) {
       msg <- paste0("[mrgsim.ds] cleaning up ", n, " file(s) ...")
       message(msg)
     }
+
+    disown(x)
     unlink(x$files, recursive = TRUE)
   }
 }
