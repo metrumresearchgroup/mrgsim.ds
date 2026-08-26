@@ -13,8 +13,8 @@ Authors@R:
              role = c("cph", "fnd"))
       )
 Maintainer: Kyle T Baron <kyleb@metrumrg.com>
-Description: Provides tools for creating and managing file streams in support
-  of large simulation or other outputs.
+Description: Provides an 'Apache' 'Arrow'-backed simulation output
+  object for 'mrgsolve'.
 License: GPL (>=2)
 Depends: 
   R (>= 4.1), 
