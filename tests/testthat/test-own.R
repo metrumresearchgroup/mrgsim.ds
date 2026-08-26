@@ -7,9 +7,7 @@ test_that("ownership", {
   out <- mrgsim_ds(mod)
   
   expect_true(check_ownership(out))
-  
-  x <- capture.output(ownership())
-  expect_match(x, "Objects: 1")
+  expect_output(ownership(), "Objects: 1")
   
   df <- list_ownership()
   expect_is(df, "data.frame")
