@@ -7,17 +7,24 @@ test_that("ownership", {
   out <- mrgsim_ds(mod)
   
   expect_true(check_ownership(out))
-  
-  x <- capture.output(ownership())
-  expect_match(x, "Objects: 1")
+  expect_output(ownership(), "Objects: 1")
   
   df <- list_ownership()
   expect_is(df, "data.frame")
   
   out <- mrgsim_ds(mod)
   expect_true(check_ownership(out))
+  expect_output(ownership(), "Objects: 2")
+
   disown(out)
+
   expect_false(check_ownership(out))
+  expect_output(ownership(), "Objects: 1")
+
+  gc()
+
+  expect_false(check_ownership(out))
+  expect_message(ownership(), "No ownership information")
 })
 
 test_that("copy ds", {
