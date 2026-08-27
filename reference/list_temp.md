@@ -40,11 +40,11 @@ out <- lapply(1:10, \(x) mrgsim_ds(mod))
 
 list_temp()
 #> 15 files [143.7 Kb]
-#> - mrgsims-ds-195314647fef.parquet
-#> - mrgsims-ds-195323f77c7a.parquet
+#> - mrgsims-ds-1a8111c031ae.parquet
+#> - mrgsims-ds-1a81153827be.parquet
 #>    ...
-#> - mrgsims-ds-1953603af41b.parquet
-#> - mrgsims-ds-1953764af641.parquet
+#> - mrgsims-ds-1a817e5fdabf.parquet
+#> - mrgsims-ds-1a81a64c487.parquet
 
 purge_temp()
 #> Discarding 15 files.

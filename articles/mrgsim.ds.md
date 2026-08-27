@@ -218,7 +218,7 @@ out %>%
 ```
 
     ## duckdb keeps downloaded extensions and secrets in a temporary directory:
-    ## ℹ /tmp/RtmpYFFp2B/duckdb
+    ## ℹ /tmp/Rtmpn3dxmM/duckdb
     ## This is removed when the R session ends.
     ## • Extensions are re-downloaded each session.
     ## • Secrets are lost.
@@ -343,11 +343,11 @@ list_temp()
 ```
 
     ## 10 files [2.9 Mb]
-    ## - mrgsims-ds-1bfb1b8737e3.parquet
-    ## - mrgsims-ds-1bfb26edad24.parquet
+    ## - mrgsims-ds-1d291f1ce287.parquet
+    ## - mrgsims-ds-1d291f9032e7.parquet
     ##    ...
-    ## - mrgsims-ds-1bfb770ce3b8.parquet
-    ## - mrgsims-ds-1bfb7c0f79ff.parquet
+    ## - mrgsims-ds-1d296af09c53.parquet
+    ## - mrgsims-ds-1d29724dbb34.parquet
 
 Or get a list of the files as an R character vector:
 
@@ -356,16 +356,16 @@ Or get a list of the files as an R character vector:
 files_ds(out)
 ```
 
-    ##  [1] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb26edad24.parquet"
-    ##  [2] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb6b68254f.parquet"
-    ##  [3] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb5e4ba247.parquet"
-    ##  [4] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb7c0f79ff.parquet"
-    ##  [5] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb770ce3b8.parquet"
-    ##  [6] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb393fe16f.parquet"
-    ##  [7] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb6c650c71.parquet"
-    ##  [8] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb1b8737e3.parquet"
-    ##  [9] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb761151aa.parquet"
-    ## [10] "/tmp/RtmpYFFp2B/mrgsims-ds-1bfb5afb13c0.parquet"
+    ##  [1] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d2952844542.parquet"
+    ##  [2] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d291f9032e7.parquet"
+    ##  [3] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d293fd9d5fd.parquet"
+    ##  [4] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d296af09c53.parquet"
+    ##  [5] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d2925296aa5.parquet"
+    ##  [6] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d29724dbb34.parquet"
+    ##  [7] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d29470edf71.parquet"
+    ##  [8] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d291f1ce287.parquet"
+    ##  [9] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d2939b3ed0.parquet" 
+    ## [10] "/tmp/Rtmpn3dxmM/mrgsims-ds-1d293f2f5a27.parquet"
 
 To save outputs to a persistent location, use
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md).
@@ -409,7 +409,7 @@ rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
 
-    ## ℹ 10 files are now located in /tmp/RtmpYFFp2B; gc is off.
+    ## ℹ 10 files are now located in /tmp/Rtmpn3dxmM; gc is off.
 
 If you want all the simulated data output in a single parquet file that
 you name and locate.
@@ -471,8 +471,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2030394 108.5    4081700 218.0  3486803 186.3
-    ## Vcells 4463331  34.1   10146329  77.5  6399226  48.9
+    ## Ncells 2030394 108.5    4081698 218.0  3486803 186.3
+    ## Vcells 4463335  34.1   10146329  77.5  6399238  48.9
 
 ``` r
 
@@ -497,8 +497,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2027107 108.3    4081700 218.0  3486803 186.3
-    ## Vcells 3734994  28.5   10146329  77.5  6399226  48.9
+    ## Ncells 2027107 108.3    4081698 218.0  3486803 186.3
+    ## Vcells 3734994  28.5   10146329  77.5  6399238  48.9
 
 ``` r
 [mrgsim.ds] cleaning up 1 file(s) ...
