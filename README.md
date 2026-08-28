@@ -24,7 +24,7 @@ locations for later use.
 ## Installation
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/metrumresearchgroup/mrgsim.ds) with:
 
 ``` r
 # install.packages("devtools")
@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-2efc40f30480.parquet"
+. [1] "mrgsims-ds-31d21a85a344.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-2efc40f30480.parquet
-. - mrgsims-ds-2f5813b9a27d.parquet
+. - mrgsims-ds-31d21a85a344.parquet
+. - mrgsims-ds-3212112c6c6d.parquet
 .    ...
-. - mrgsims-ds-2f5cfdc4509.parquet
-. - mrgsims-ds-2f5cff640f7.parquet
+. - mrgsims-ds-3216d6319d1.parquet
+. - mrgsims-ds-3216e0b158a.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1965973 105.0    6347598 339.0         NA  6673020 356.4
-. Vcells 3684217  28.2   19666515 150.1      16384 22101617 168.7
+. Ncells 1965994 105.0    6348300 339.1         NA  6673017 356.4
+. Vcells 3684221  28.2   19666519 150.1      16384 22101621 168.7
 
 list_temp()
 . 2 files [26.4 Mb]
