@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-1c720ba50df.parquet"
+. [1] "mrgsims-ds-4c154df1508.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-1c720ba50df.parquet
-. - mrgsims-ds-2111251adc.parquet
+. - mrgsims-ds-4c154df1508.parquet
+. - mrgsims-ds-51b1032ab0a.parquet
 .    ...
-. - mrgsims-ds-216e5f90c.parquet
-. - mrgsims-ds-216fcfc5fa.parquet
+. - mrgsims-ds-51ff7d059e.parquet
+. - mrgsims-ds-51ff84b352.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,7 +351,7 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1965995 105.0    6333751 338.3         NA  6672980 356.4
+. Ncells 1965995 105.0    6344072 338.9         NA  6672401 356.4
 . Vcells 3684248  28.2   19666549 150.1      16384 22101649 168.7
 
 list_temp()
