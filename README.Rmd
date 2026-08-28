@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 using.parallel <- requireNamespace("mirai", quietly = TRUE)
+set.seed(1234)
 ```
 
 # mrgsim.ds
