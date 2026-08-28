@@ -12,13 +12,12 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 using.parallel <- requireNamespace("mirai", quietly = TRUE)
+set.seed(1234)
 ```
 
 # mrgsim.ds
 
 <!-- badges: start -->
-[![R-universe version](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/version)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
-[![r-universe status](https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/checks)](https://metrumresearchgroup.r-universe.dev/mrgsim.ds)
 [![Build Status](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml/badge.svg)](https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml)
 <!-- badges: end -->
 
@@ -37,12 +36,11 @@ later use.
 
 ## Installation
 
-You can install the development version of `mrgsim.ds` from 
-[r-universe](https://metrumresearchgroup.r-universe.dev/mrgsim.ds) with:
+You can install the development version from [GitHub](https://github.com/metrumresearchgroup/mrgsim.ds) with:
 
 ``` r
-# Install 'mrgsim.ds' in R:
-install.packages('mrgsim.ds', repos = c('https://metrumresearchgroup.r-universe.dev', 'https://cloud.r-project.org'))
+# install.packages("devtools")
+devtools::install_github("metrumresearchgroup/mrgsim.ds")
 ```
 
 ## Example 
