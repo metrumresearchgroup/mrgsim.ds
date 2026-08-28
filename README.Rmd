@@ -36,12 +36,11 @@ later use.
 
 ## Installation
 
-You can install the development version of `mrgsim.ds` from 
-[r-universe](https://metrumresearchgroup.r-universe.dev/mrgsim.ds) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# Install 'mrgsim.ds' in R:
-install.packages('mrgsim.ds', repos = c('https://metrumresearchgroup.r-universe.dev', 'https://cloud.r-project.org'))
+# install.packages("devtools")
+devtools::install_github("metrumresearchgroup/mrgsim.ds")
 ```
 
 ## Example 
