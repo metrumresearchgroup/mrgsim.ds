@@ -74,11 +74,11 @@ ownership()
 
 list_ownership()
 #>                              file        address
-#> 1 mrgsims-ds-1a1443dff059.parquet 0x56379b485898
-#> 2 mrgsims-ds-1a1477dbfa8a.parquet 0x56379c1e99e8
-#> 3 mrgsims-ds-1a147a50ce8b.parquet 0x56378e632168
-#> 4 mrgsims-ds-1a143594f3d9.parquet 0x56379981bf08
-#> 5 mrgsims-ds-1a1461179bb2.parquet 0x563798bafaa8
+#> 1  mrgsims-ds-1a036f77d38.parquet 0x563f6999fdf0
+#> 2 mrgsims-ds-1a0321008cb6.parquet 0x563f6bb2be68
+#> 3  mrgsims-ds-1a039e51a75.parquet 0x563f69f68e18
+#> 4 mrgsims-ds-1a0368f9de0e.parquet 0x563f692d4b40
+#> 5  mrgsims-ds-1a032f75110.parquet 0x563f6c8c6c40
 
 e1 <- ev(amt = 100)
 e2 <- ev(amt = 200)

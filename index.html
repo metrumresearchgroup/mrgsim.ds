@@ -61,10 +61,10 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <code>mrgsim.ds</code> from <a href="https://metrumresearchgroup.r-universe.dev/mrgsim.ds" class="external-link">r-universe</a> with:</p>
+<p>You can install the development version from <a href="https://github.com/metrumresearchgroup/mrgsim.ds" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install 'mrgsim.ds' in R:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'mrgsim.ds'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://metrumresearchgroup.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"metrumresearchgroup/mrgsim.ds"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -85,25 +85,25 @@
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>. Dim  <span class="sc">:</span> <span class="fl">1.4</span>M x <span class="dv">4</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>. Files<span class="sc">:</span> <span class="dv">1</span> [<span class="fl">13.2</span> Mb]</span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>. Owner<span class="sc">:</span> <span class="fu">yes</span> (gc)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>.     ID time       CL    IPRED</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">2.428538</span> <span class="fl">0.000000</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">2.428538</span> <span class="fl">0.000000</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">2.428538</span> <span class="fl">4.000618</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">2.428538</span> <span class="fl">5.330347</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">2.428538</span> <span class="fl">5.576748</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">2.428538</span> <span class="fl">5.398067</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">2.428538</span> <span class="fl">5.066050</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">2.428538</span> <span class="fl">4.691803</span></span></code></pre></div>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>.     ID time        CL    IPRED</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.9108044</span> <span class="fl">0.000000</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.9108044</span> <span class="fl">0.000000</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">0.9108044</span> <span class="fl">1.030499</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">0.9108044</span> <span class="fl">1.839720</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">0.9108044</span> <span class="fl">2.470340</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">0.9108044</span> <span class="fl">2.956911</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">0.9108044</span> <span class="fl">3.327402</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">0.9108044</span> <span class="fl">3.604456</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="very-lightweight-simulation-output-object">Very lightweight simulation output object<a class="anchor" aria-label="anchor" href="#very-lightweight-simulation-output-object"></a>
 </h2>
 <p>The output object doesn’t actually carry these 1.4M rows of simulated data. Rather it stores a pointer to the data in parquet files on your disk.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">basename</span>(out<span class="sc">$</span>files)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="st">"mrgsims-ds-9227d241ec8.parquet"</span></span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="st">"mrgsims-ds-31d21a85a344.parquet"</span></span></code></pre></div>
 <p>This means there is almost nothing inside the object itself</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>lobstr<span class="sc">:::</span><span class="fu">obj_size</span>(out)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>. <span class="fl">293.65</span> kB</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>. <span class="fl">293.46</span> kB</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">dim</span>(out)</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="dv">1446000</span>       <span class="dv">4</span></span></code></pre></div>
@@ -131,23 +131,23 @@
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>. <span class="co"># A tibble: 6 × 4</span></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>.      ID  time    CL IPRED</span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>.   <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>. <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>. <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>. <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span>  <span class="fl">2.43</span>  <span class="fl">4.00</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>. <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">2.43</span>  <span class="fl">5.33</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>. <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span>  <span class="fl">2.43</span>  <span class="fl">5.58</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>. <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>    <span class="fl">2.43</span>  <span class="fl">5.40</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>. <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>. <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>. <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span> <span class="fl">0.911</span>  <span class="fl">1.03</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>. <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>   <span class="fl">0.911</span>  <span class="fl">1.84</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>. <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span> <span class="fl">0.911</span>  <span class="fl">2.47</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>. <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>   <span class="fl">0.911</span>  <span class="fl">2.96</span></span>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="fu">tail</span>(out)</span>
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>. <span class="co"># A tibble: 6 × 4</span></span>
 <span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>.      ID  time    CL IPRED</span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>.   <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>. <span class="dv">1</span>  <span class="dv">3000</span>  <span class="fl">238.</span> <span class="fl">0.431</span>  <span class="fl">1.49</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>. <span class="dv">2</span>  <span class="dv">3000</span>  <span class="dv">238</span>  <span class="fl">0.431</span>  <span class="fl">1.48</span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>. <span class="dv">3</span>  <span class="dv">3000</span>  <span class="fl">238.</span> <span class="fl">0.431</span>  <span class="fl">1.46</span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>. <span class="dv">4</span>  <span class="dv">3000</span>  <span class="dv">239</span>  <span class="fl">0.431</span>  <span class="fl">1.45</span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>. <span class="dv">5</span>  <span class="dv">3000</span>  <span class="fl">240.</span> <span class="fl">0.431</span>  <span class="fl">1.44</span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>. <span class="dv">6</span>  <span class="dv">3000</span>  <span class="dv">240</span>  <span class="fl">0.431</span>  <span class="fl">1.43</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>. <span class="dv">1</span>  <span class="dv">3000</span>  <span class="fl">238.</span> <span class="fl">0.837</span> <span class="fl">0.234</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>. <span class="dv">2</span>  <span class="dv">3000</span>  <span class="dv">238</span>  <span class="fl">0.837</span> <span class="fl">0.230</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>. <span class="dv">3</span>  <span class="dv">3000</span>  <span class="fl">238.</span> <span class="fl">0.837</span> <span class="fl">0.227</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>. <span class="dv">4</span>  <span class="dv">3000</span>  <span class="dv">239</span>  <span class="fl">0.837</span> <span class="fl">0.224</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>. <span class="dv">5</span>  <span class="dv">3000</span>  <span class="fl">240.</span> <span class="fl">0.837</span> <span class="fl">0.220</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>. <span class="dv">6</span>  <span class="dv">3000</span>  <span class="dv">240</span>  <span class="fl">0.837</span> <span class="fl">0.217</span></span>
 <span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a></span>
 <span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="fu">dim</span>(out)</span>
 <span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="dv">1446000</span>       <span class="dv">4</span></span></code></pre></div>
@@ -156,16 +156,16 @@
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>. <span class="co"># A tibble: 1,446,000 × 4</span></span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>.       ID  time    CL IPRED</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>.    <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>.  <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>.  <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>.  <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span>  <span class="fl">2.43</span>  <span class="fl">4.00</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>.  <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">2.43</span>  <span class="fl">5.33</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>.  <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span>  <span class="fl">2.43</span>  <span class="fl">5.58</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>.  <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>    <span class="fl">2.43</span>  <span class="fl">5.40</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>.  <span class="dv">7</span>     <span class="dv">1</span>   <span class="fl">2.5</span>  <span class="fl">2.43</span>  <span class="fl">5.07</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>.  <span class="dv">8</span>     <span class="dv">1</span>   <span class="dv">3</span>    <span class="fl">2.43</span>  <span class="fl">4.69</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>.  <span class="dv">9</span>     <span class="dv">1</span>   <span class="fl">3.5</span>  <span class="fl">2.43</span>  <span class="fl">4.32</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>. <span class="dv">10</span>     <span class="dv">1</span>   <span class="dv">4</span>    <span class="fl">2.43</span>  <span class="fl">3.97</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>.  <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>.  <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>.  <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span> <span class="fl">0.911</span>  <span class="fl">1.03</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>.  <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>   <span class="fl">0.911</span>  <span class="fl">1.84</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>.  <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span> <span class="fl">0.911</span>  <span class="fl">2.47</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>.  <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>   <span class="fl">0.911</span>  <span class="fl">2.96</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>.  <span class="dv">7</span>     <span class="dv">1</span>   <span class="fl">2.5</span> <span class="fl">0.911</span>  <span class="fl">3.33</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>.  <span class="dv">8</span>     <span class="dv">1</span>   <span class="dv">3</span>   <span class="fl">0.911</span>  <span class="fl">3.60</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>.  <span class="dv">9</span>     <span class="dv">1</span>   <span class="fl">3.5</span> <span class="fl">0.911</span>  <span class="fl">3.81</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>. <span class="dv">10</span>     <span class="dv">1</span>   <span class="dv">4</span>   <span class="fl">0.911</span>  <span class="fl">3.95</span></span>
 <span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>. <span class="co"># ℹ 1,445,990 more rows</span></span></code></pre></div>
 <p>Or stay in the arrow ecosystem</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">as_arrow_ds</span>(out)</span>
@@ -183,16 +183,16 @@
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>. <span class="co"># Database: DuckDB 1.5.1 [kyleb@Darwin 25.5.0:R 4.5.3/:memory:]</span></span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>.       ID  time    CL IPRED</span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>.    <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>.  <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>.  <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>    <span class="fl">2.43</span>  <span class="dv">0</span>   </span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>.  <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span>  <span class="fl">2.43</span>  <span class="fl">4.00</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>.  <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">2.43</span>  <span class="fl">5.33</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>.  <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span>  <span class="fl">2.43</span>  <span class="fl">5.58</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>.  <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>    <span class="fl">2.43</span>  <span class="fl">5.40</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>.  <span class="dv">7</span>     <span class="dv">1</span>   <span class="fl">2.5</span>  <span class="fl">2.43</span>  <span class="fl">5.07</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>.  <span class="dv">8</span>     <span class="dv">1</span>   <span class="dv">3</span>    <span class="fl">2.43</span>  <span class="fl">4.69</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>.  <span class="dv">9</span>     <span class="dv">1</span>   <span class="fl">3.5</span>  <span class="fl">2.43</span>  <span class="fl">4.32</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>. <span class="dv">10</span>     <span class="dv">1</span>   <span class="dv">4</span>    <span class="fl">2.43</span>  <span class="fl">3.97</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>.  <span class="dv">1</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>.  <span class="dv">2</span>     <span class="dv">1</span>   <span class="dv">0</span>   <span class="fl">0.911</span>  <span class="dv">0</span>   </span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>.  <span class="dv">3</span>     <span class="dv">1</span>   <span class="fl">0.5</span> <span class="fl">0.911</span>  <span class="fl">1.03</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>.  <span class="dv">4</span>     <span class="dv">1</span>   <span class="dv">1</span>   <span class="fl">0.911</span>  <span class="fl">1.84</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>.  <span class="dv">5</span>     <span class="dv">1</span>   <span class="fl">1.5</span> <span class="fl">0.911</span>  <span class="fl">2.47</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>.  <span class="dv">6</span>     <span class="dv">1</span>   <span class="dv">2</span>   <span class="fl">0.911</span>  <span class="fl">2.96</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>.  <span class="dv">7</span>     <span class="dv">1</span>   <span class="fl">2.5</span> <span class="fl">0.911</span>  <span class="fl">3.33</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>.  <span class="dv">8</span>     <span class="dv">1</span>   <span class="dv">3</span>   <span class="fl">0.911</span>  <span class="fl">3.60</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>.  <span class="dv">9</span>     <span class="dv">1</span>   <span class="fl">3.5</span> <span class="fl">0.911</span>  <span class="fl">3.81</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>. <span class="dv">10</span>     <span class="dv">1</span>   <span class="dv">4</span>   <span class="fl">0.911</span>  <span class="fl">3.95</span></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>. <span class="co"># ℹ more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -218,15 +218,15 @@
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>.     time  Mean     n</span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>.    <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>.  <span class="dv">1</span>   <span class="dv">0</span>    <span class="dv">0</span>     <span class="dv">6000</span></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>.  <span class="dv">2</span>   <span class="fl">0.5</span>  <span class="fl">1.10</span>  <span class="dv">3000</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>.  <span class="dv">3</span>   <span class="dv">1</span>    <span class="fl">1.78</span>  <span class="dv">3000</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>.  <span class="dv">4</span>   <span class="fl">1.5</span>  <span class="fl">2.24</span>  <span class="dv">3000</span></span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>.  <span class="dv">5</span>   <span class="dv">2</span>    <span class="fl">2.55</span>  <span class="dv">3000</span></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>.  <span class="dv">6</span>   <span class="fl">2.5</span>  <span class="fl">2.76</span>  <span class="dv">3000</span></span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>.  <span class="dv">7</span>   <span class="dv">3</span>    <span class="fl">2.91</span>  <span class="dv">3000</span></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>.  <span class="dv">8</span>   <span class="fl">3.5</span>  <span class="fl">3.00</span>  <span class="dv">3000</span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>.  <span class="dv">9</span>   <span class="dv">4</span>    <span class="fl">3.06</span>  <span class="dv">3000</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>. <span class="dv">10</span>   <span class="fl">4.5</span>  <span class="fl">3.09</span>  <span class="dv">3000</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>.  <span class="dv">2</span>   <span class="fl">0.5</span>  <span class="fl">1.13</span>  <span class="dv">3000</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>.  <span class="dv">3</span>   <span class="dv">1</span>    <span class="fl">1.83</span>  <span class="dv">3000</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>.  <span class="dv">4</span>   <span class="fl">1.5</span>  <span class="fl">2.29</span>  <span class="dv">3000</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>.  <span class="dv">5</span>   <span class="dv">2</span>    <span class="fl">2.60</span>  <span class="dv">3000</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>.  <span class="dv">6</span>   <span class="fl">2.5</span>  <span class="fl">2.81</span>  <span class="dv">3000</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>.  <span class="dv">7</span>   <span class="dv">3</span>    <span class="fl">2.96</span>  <span class="dv">3000</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>.  <span class="dv">8</span>   <span class="fl">3.5</span>  <span class="fl">3.05</span>  <span class="dv">3000</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>.  <span class="dv">9</span>   <span class="dv">4</span>    <span class="fl">3.11</span>  <span class="dv">3000</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>. <span class="dv">10</span>   <span class="fl">4.5</span>  <span class="fl">3.14</span>  <span class="dv">3000</span></span>
 <span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>. <span class="co"># ℹ 471 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -249,17 +249,17 @@
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>. Dim  <span class="sc">:</span> <span class="fl">723.0</span>M x <span class="dv">4</span></span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>. Files<span class="sc">:</span> <span class="dv">500</span> [<span class="fl">6.4</span> Gb]</span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>. Owner<span class="sc">:</span> <span class="fu">yes</span> (gc)</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>.     ID time       CL    IPRED</span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.551846</span> <span class="fl">0.000000</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.551846</span> <span class="fl">0.000000</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">1.551846</span> <span class="fl">1.703326</span></span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">1.551846</span> <span class="fl">2.723161</span></span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">1.551846</span> <span class="fl">3.311224</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">1.551846</span> <span class="fl">3.627276</span></span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">1.551846</span> <span class="fl">3.772682</span></span>
-<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">1.551846</span> <span class="fl">3.811734</span></span></code></pre></div>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>.     ID time        CL     IPRED</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.4098122</span> <span class="fl">0.0000000</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.4098122</span> <span class="fl">0.0000000</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">0.4098122</span> <span class="fl">0.6459828</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">0.4098122</span> <span class="fl">1.1487007</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">0.4098122</span> <span class="fl">1.5390714</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">0.4098122</span> <span class="fl">1.8413456</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">0.4098122</span> <span class="fl">2.0745446</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">0.4098122</span> <span class="fl">2.2535874</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>lobstr<span class="sc">::</span><span class="fu">obj_size</span>(out2)</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>. <span class="fl">429.99</span> kB</span></code></pre></div>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>. <span class="fl">385.89</span> kB</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="files-on-disk-are-automagically-managed">Files on disk are automagically managed<a class="anchor" aria-label="anchor" href="#files-on-disk-are-automagically-managed"></a>
@@ -267,11 +267,11 @@
 <p>All <code>arrow</code> files are stored in the <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> in parquet format</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">list_temp</span>()</span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>. <span class="dv">501</span> files [<span class="fl">6.4</span> Gb]</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-9227</span>d241ec8.parquet</span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-9266131</span>ec9a1.parquet</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-31</span>d21a85a344.parquet</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-3212112</span>c6c6d.parquet</span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>.    ...</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-926</span>aecf2317.parquet</span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-926</span>af585feb.parquet</span></code></pre></div>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-3216</span>d6319d1.parquet</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="fl">-3216e0</span>b158a.parquet</span></code></pre></div>
 <p>This directory is eventually removed when the R session ends. Tools are provided to manage the space.</p>
 <p>We also put a finalizer on each object so that, when it goes out of scope, the files are automatically cleaned up.</p>
 <p>First, run a bunch of simulations.</p>
@@ -307,8 +307,8 @@
 <p>As soon as the garbage collector is called, the leftover files are cleaned up.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">gc</span>()</span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>.           <span class="fu">used</span>  (Mb) gc <span class="fu">trigger</span>  (Mb) <span class="fu">limit</span> (Mb) max <span class="fu">used</span>  (Mb)</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>. Ncells <span class="dv">2151648</span> <span class="fl">115.0</span>    <span class="dv">6588543</span> <span class="fl">351.9</span>         <span class="cn">NA</span>  <span class="dv">6682086</span> <span class="fl">356.9</span></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>. Vcells <span class="dv">3947425</span>  <span class="fl">30.2</span>   <span class="dv">16593983</span> <span class="fl">126.7</span>      <span class="dv">16384</span> <span class="dv">22235779</span> <span class="fl">169.7</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>. Ncells <span class="dv">1965994</span> <span class="fl">105.0</span>    <span class="dv">6348300</span> <span class="fl">339.1</span>         <span class="cn">NA</span>  <span class="dv">6673017</span> <span class="fl">356.4</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>. Vcells <span class="dv">3684221</span>  <span class="fl">28.2</span>   <span class="dv">19666519</span> <span class="fl">150.1</span>      <span class="dv">16384</span> <span class="dv">22101621</span> <span class="fl">168.7</span></span>
 <span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="fu">list_temp</span>()</span>
 <span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>. <span class="dv">2</span> files [<span class="fl">26.4</span> Mb]</span>
@@ -366,15 +366,15 @@
 <span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>. Dim  <span class="sc">:</span> <span class="dv">876</span> x <span class="dv">4</span></span>
 <span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>. Files<span class="sc">:</span> <span class="dv">1</span> [<span class="fl">10.5</span> Kb]</span>
 <span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>. Owner<span class="sc">:</span> no</span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>.     ID TIME        CL    IPRED</span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">0.7523089</span> <span class="fl">2.375005</span></span>
-<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">0.7523089</span> <span class="fl">3.315390</span></span>
-<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">0.7523089</span> <span class="fl">3.666494</span></span>
-<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">0.7523089</span> <span class="fl">3.775863</span></span>
-<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">0.7523089</span> <span class="fl">3.786375</span></span>
-<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">0.7523089</span> <span class="fl">3.756767</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>.     ID TIME       CL     IPRED</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">1.622033</span> <span class="fl">0.5364491</span></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">1.622033</span> <span class="fl">0.9784353</span></span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">1.622033</span> <span class="fl">1.3402577</span></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">1.622033</span> <span class="fl">1.6341085</span></span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">1.622033</span> <span class="fl">1.8703820</span></span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">1.622033</span> <span class="fl">2.0579380</span></span>
 <span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>. [mrgsim.ds] pointer and source pid refreshed.</span></code></pre></div>
 <p>I refer to this as “refreshing” the output: relocate back on the parent R process and re-create the pointer to the data on disk.</p>
 <p>You can refresh a list of simulations like this</p>
@@ -389,15 +389,15 @@
 <span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>. Dim  <span class="sc">:</span> <span class="dv">2</span>,<span class="dv">628</span> x <span class="dv">4</span></span>
 <span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>. Files<span class="sc">:</span> <span class="dv">3</span> [<span class="fl">31.4</span> Kb]</span>
 <span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>. Owner<span class="sc">:</span> <span class="fu">yes</span> (gc)</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>.     ID TIME        CL    IPRED</span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">0.7523089</span> <span class="fl">2.375005</span></span>
-<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">0.7523089</span> <span class="fl">3.315390</span></span>
-<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">0.7523089</span> <span class="fl">3.666494</span></span>
-<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">0.7523089</span> <span class="fl">3.775863</span></span>
-<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">0.7523089</span> <span class="fl">3.786375</span></span>
-<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">0.7523089</span> <span class="fl">3.756767</span></span></code></pre></div>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>.     ID TIME       CL     IPRED</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">1.622033</span> <span class="fl">0.5364491</span></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">1.622033</span> <span class="fl">0.9784353</span></span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">1.622033</span> <span class="fl">1.3402577</span></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">1.622033</span> <span class="fl">1.6341085</span></span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">1.622033</span> <span class="fl">1.8703820</span></span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">1.622033</span> <span class="fl">2.0579380</span></span></code></pre></div>
 <p>Now we have all three files collected in a single object that we can work with</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mrgsolve.org/docs/reference/plot_mrgsims.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">out</span>, <span class="va">IPRED</span> <span class="op">~</span> <span class="va">time</span>, nid <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
@@ -418,15 +418,15 @@
 <span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>. Dim  <span class="sc">:</span> <span class="dv">2</span>,<span class="dv">628</span> x <span class="dv">4</span></span>
 <span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>. Files<span class="sc">:</span> <span class="dv">3</span> [<span class="fl">31.4</span> Kb]</span>
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>. Owner<span class="sc">:</span> <span class="fu">yes</span> (no gc)</span>
-<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>.     ID TIME        CL    IPRED</span>
-<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">0.7523089</span> <span class="fl">0.000000</span></span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">0.7523089</span> <span class="fl">2.375005</span></span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">0.7523089</span> <span class="fl">3.315390</span></span>
-<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">0.7523089</span> <span class="fl">3.666494</span></span>
-<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">0.7523089</span> <span class="fl">3.775863</span></span>
-<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">0.7523089</span> <span class="fl">3.786375</span></span>
-<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">0.7523089</span> <span class="fl">3.756767</span></span></code></pre></div>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>.     ID TIME       CL     IPRED</span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>. <span class="dv">1</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>. <span class="dv">2</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.0</span> <span class="fl">1.622033</span> <span class="fl">0.0000000</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>. <span class="dv">3</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">0.5</span> <span class="fl">1.622033</span> <span class="fl">0.5364491</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>. <span class="dv">4</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.0</span> <span class="fl">1.622033</span> <span class="fl">0.9784353</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a>. <span class="dv">5</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">1.5</span> <span class="fl">1.622033</span> <span class="fl">1.3402577</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>. <span class="dv">6</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.0</span> <span class="fl">1.622033</span> <span class="fl">1.6341085</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a>. <span class="dv">7</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">2.5</span> <span class="fl">1.622033</span> <span class="fl">1.8703820</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a>. <span class="dv">8</span><span class="sc">:</span>   <span class="dv">1</span>  <span class="fl">3.0</span> <span class="fl">1.622033</span> <span class="fl">2.0579380</span></span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">check_ownership</span>(out)</span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="fu">check_ownership</span>(out2)</span>
@@ -479,8 +479,6 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://metrumresearchgroup.r-universe.dev/mrgsim.ds" class="external-link"><img src="https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/version" alt="R-universe version"></a></li>
-<li><a href="https://metrumresearchgroup.r-universe.dev/mrgsim.ds" class="external-link"><img src="https://metrumresearchgroup.r-universe.dev/mrgsim.ds/badges/checks" alt="r-universe status"></a></li>
 <li><a href="https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml" class="external-link"><img src="https://github.com/metrumresearchgroup/mrgsim.ds/actions/workflows/main.yaml/badge.svg" alt="Build Status"></a></li>
 </ul>
 </div>
