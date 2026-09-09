@@ -1,6 +1,6 @@
 # mrgsim.ds 0.1.1
 
-- Minor fixes: corrected the package description in `DESCRIPTION` (#11) and
+- Minor fixes: corrected the package description in `DESCRIPTION` (#11) and  
   removed the r-universe links from the README (#13).
 
 ## Bugs fixed
