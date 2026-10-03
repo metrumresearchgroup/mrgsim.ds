@@ -61,8 +61,13 @@ reference:
   - refresh_ds
   - gc_ds
   - prune_ds
-- title: Manage simulation outputs in `tempdir()`
+- title: Manage the simulation output directory
+  desc: |
+    Set or query where simulated output is written (`tempdir()` by default)
+    and list or clean up output files in that directory.
   contents:
+  - set_ds_dir
+  - get_ds_dir
   - list_temp
   - purge_temp
 - title: Utility functions
