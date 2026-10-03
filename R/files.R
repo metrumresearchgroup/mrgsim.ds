@@ -79,6 +79,13 @@ files_ds <- function(x) {
 #' parquet files must stay in the same directory to be portable.
 #'  **Do not restore the file with `readRDS()`**; use `read_ds()` instead.
 #'
+#' Because saving implies the files should be kept, `save_ds()` turns gc off
+#' for `x` unless gc was locked with [gc_ds()]. A warning is issued when the
+#' files are saved under `tempdir()` or in the simulation output directory
+#' (see [set_ds_dir()]); save to a dedicated directory instead. Once saved,
+#' `x` is detached from the simulation output directory, so later moves will
+#' not turn gc back on.
+#'
 #' `read_ds()` deserializes a file written by `save_ds()`, rebuilds the Arrow
 #' Dataset pointer, and transfers full ownership of the backing files to the
 #' returned object.
@@ -94,17 +101,19 @@ files_ds <- function(x) {
 #'
 #' `read_ds()` returns the restored mrgsimsds object invisibly. gc is disabled
 #' (`gc = FALSE`) on the returned object, the caller holds ownership of the
-#' backing files, and the directory holding `file` becomes the object's output
+#' backing files, and the object is not tied to any simulation output
 #' directory.
 #'
 #' @examples
 #' mod <- house_ds()
-#' 
+#'
 #' out <- mrgsim_ds(mod, events = ev(amt = 100))
 #'
-#' file <- save_ds(out, file.path(tempdir(), "out.rds"))
+#' \dontrun{
+#' file <- save_ds(out, file.path("simulations", "out.rds"))
 #'
 #' out2 <- read_ds(file)
+#' }
 #'
 #' @seealso [move_ds()], [gc_ds()]
 #' @export
@@ -115,14 +124,44 @@ save_ds <- function(x, file, quietly = FALSE) {
     x <- move_ds(x, path, quietly = quietly)
   } 
   path <- current_location(x)
+  # Saving signals that the files should be kept, so gc is turned off unless
+  # it was locked with gc_ds(); x is an environment, so this also protects
+  # the caller's object
+  if(!isTRUE(x$gc_locked)) {
+    x$gc <- FALSE
+  }
+  reasons <- character(0)
   if(isTRUE(x$gc)) {
+    reasons <- c(
+      reasons,
+      `*` = "gc is locked to TRUE, so they may be removed on garbage collection; see `gc_ds()`."
+    )
+  }
+  if(in_tempdir(path)) {
+    reasons <- c(
+      reasons,
+      `*` = "they are saved under `tempdir()`, which is removed when the R session ends."
+    )
+  }
+  if(in_home_ds(x)) {
+    reasons <- c(
+      reasons,
+      `*` = "they are saved in the simulation output directory, where they can be removed by `purge_temp()`."
+    )
+  }
+  if(length(reasons)) {
     warn(
       c(
-        "the backing files may be removed on garbage collection.",
-        i = "see `gc_ds()` to protect them, or save them outside the output directory."
+        "the backing files are not in a safe place for long-term storage:",
+        reasons,
+        i = "consider saving to a dedicated directory instead."
       )
     )
   }
+  # After saving, the files no longer belong to a simulation output directory;
+  # this happens after the checks above so that saving into the output
+  # directory still warns
+  x <- detach_dir_ds(x)
   file <- file.path(path, basename(file))
   reclass <- class(x)
   x <- as.list(x)
@@ -150,9 +189,10 @@ read_ds <- function(file) {
     abort("[read_ds] one or more files could not be located.")
   }
   x$files <- normalizePath(absfiles, mustWork = TRUE)
-  # the restored object is at home where its rds file lives; the directory
-  # recorded when the object was created might not even exist any more
-  x$dir <- normalizePath(dirname(file), mustWork = TRUE)
+  # the restored object is not tied to any simulation output directory;
+  # objects written by save_ds() are already detached, but files saved by
+  # earlier versions still carry the directory where they were simulated
+  x <- detach_dir_ds(x)
   x <- refresh_ds(x)
   x <- copy_ds(x, own = TRUE)
   x <- gc_ds(x, value = FALSE)

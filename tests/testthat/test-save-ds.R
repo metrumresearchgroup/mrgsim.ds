@@ -35,10 +35,45 @@ test_that("save_ds issues a message when quietly = FALSE", {
   expect_message(save_ds(out, file.path(dir, "out.rds")), "file is now located in")
 })
 
-test_that("save_ds warns when the backing files are subject to gc", {
+test_that("save_ds turns gc off and warns when saving in the output directory", {
+  dir <- withr::local_tempdir(tmpdir = getwd())
+  mod <- house_ds(end = 3, delta = 1, ds_dir = dir)
   out <- mrgsim_ds(mod, gc = TRUE)
-  file <- file.path(tempdir(), "out.rds")
-  expect_warning(save_ds(out, file), "removed on garbage collection")
+  expect_warning(
+    save_ds(out, file.path(dir, "out.rds"), quietly = TRUE),
+    "simulation output directory"
+  )
+  expect_false(out$gc)
+})
+
+test_that("save_ds does not warn when re-saving a restored object", {
+  out <- mrgsim_ds(mod, gc = FALSE)
+  dir <- withr::local_tempdir(tmpdir = getwd())
+  file <- file.path(dir, "out.rds")
+  save_ds(out, file, quietly = TRUE)
+  out2 <- read_ds(file)
+  expect_silent(save_ds(out2, file, quietly = TRUE))
+})
+
+test_that("save_ds warns when gc is locked to TRUE", {
+  dir <- withr::local_tempdir(tmpdir = getwd())
+  mod <- house_ds(end = 3, delta = 1, ds_dir = dir)
+  out <- mrgsim_ds(mod)
+  out <- gc_ds(out, value = TRUE)
+  expect_warning(
+    save_ds(out, file.path(dir, "out.rds"), quietly = TRUE),
+    "removed on garbage collection"
+  )
+  expect_true(out$gc)
+})
+
+test_that("save_ds warns when the backing files are saved under tempdir", {
+  out <- mrgsim_ds(mod, gc = FALSE)
+  dir <- withr::local_tempdir()
+  expect_warning(
+    save_ds(out, file.path(dir, "out.rds"), quietly = TRUE),
+    "removed when the R session ends"
+  )
 })
 
 test_that("save_ds does not warn when files move out of the output directory", {

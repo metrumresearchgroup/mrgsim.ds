@@ -227,14 +227,32 @@ test_that("purge_temp refuses to delete outside tempdir without force", {
 
 # save_ds() / read_ds() --------------------------------------------------------
 
-test_that("read_ds sets the output directory to the rds location", {
+test_that("save_ds and read_ds detach the output directory", {
   dir <- withr::local_tempdir()
   mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod, gc = FALSE)
   save_dir <- withr::local_tempdir(tmpdir = getwd())
   file <- save_ds(out, file.path(save_dir, "out.rds"), quietly = TRUE)
+  expect_true(is.na(out$dir))
+  expect_true(is.na(readRDS(file)$dir))
   out2 <- read_ds(file)
-  expect_equal(out2$dir, normalizePath(save_dir))
+  expect_true(is.na(out2$dir))
+})
+
+test_that("read_ds detaches objects saved with an output directory", {
+  mod <- house_ds(end = 1)
+  out <- mrgsim_ds(mod, gc = FALSE)
+  save_dir <- withr::local_tempdir(tmpdir = getwd())
+  file <- save_ds(out, file.path(save_dir, "out.rds"), quietly = TRUE)
+
+  # rds files written by earlier versions carry the simulation directory
+  obj <- readRDS(file)
+  obj$dir <- normalizePath(save_dir)
+  saveRDS(obj, file)
+
+  out2 <- read_ds(file)
+  expect_true(is.na(out2$dir))
+  expect_false(out2$gc)
 })
 
 test_that("read_ds works on an object saved without an output directory", {
@@ -248,8 +266,27 @@ test_that("read_ds works on an object saved without an output directory", {
   saveRDS(obj, file)
 
   out2 <- read_ds(file)
-  expect_equal(out2$dir, normalizePath(save_dir))
+  expect_true(is.na(out2$dir))
   expect_false(out2$gc)
+})
+
+test_that("reduce_ds keeps gc off for restored objects", {
+  mod <- house_ds(end = 1)
+  out <- mrgsim_ds(mod, gc = FALSE)
+  save_dir <- withr::local_tempdir(tmpdir = getwd())
+  file <- save_ds(out, file.path(save_dir, "out.rds"), quietly = TRUE)
+  out2 <- reduce_ds(list(read_ds(file)))
+  expect_false(out2$gc)
+})
+
+test_that("moving a saved object back to the output directory keeps gc off", {
+  dir <- withr::local_tempdir(tmpdir = getwd())
+  mod <- house_ds(end = 1, ds_dir = dir)
+  out <- mrgsim_ds(mod)
+  save_dir <- withr::local_tempdir(tmpdir = getwd())
+  save_ds(out, file.path(save_dir, "out.rds"), quietly = TRUE)
+  out <- move_ds(out, dir, quietly = TRUE)
+  expect_false(out$gc)
 })
 
 mrgsim.ds:::teardown_ds()

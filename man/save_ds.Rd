@@ -24,7 +24,7 @@ location of the backing files on move.}
 
 \code{read_ds()} returns the restored mrgsimsds object invisibly. gc is disabled
 (\code{gc = FALSE}) on the returned object, the caller holds ownership of the
-backing files, and the directory holding \code{file} becomes the object's output
+backing files, and the object is not tied to any simulation output
 directory.
 }
 \description{
@@ -33,6 +33,13 @@ backing parquet files to the same directory as \code{file}. Parquet filenames
 are stored as bare basenames inside the \code{.rds}, so the \code{.rds} file and its
 parquet files must stay in the same directory to be portable.
 \strong{Do not restore the file with \code{readRDS()}}; use \code{read_ds()} instead.
+
+Because saving implies the files should be kept, \code{save_ds()} turns gc off
+for \code{x} unless gc was locked with \code{\link[=gc_ds]{gc_ds()}}. A warning is issued when the
+files are saved under \code{tempdir()} or in the simulation output directory
+(see \code{\link[=set_ds_dir]{set_ds_dir()}}); save to a dedicated directory instead. Once saved,
+\code{x} is detached from the simulation output directory, so later moves will
+not turn gc back on.
 
 \code{read_ds()} deserializes a file written by \code{save_ds()}, rebuilds the Arrow
 Dataset pointer, and transfers full ownership of the backing files to the
@@ -43,9 +50,11 @@ mod <- house_ds()
 
 out <- mrgsim_ds(mod, events = ev(amt = 100))
 
-file <- save_ds(out, file.path(tempdir(), "out.rds"))
+\dontrun{
+file <- save_ds(out, file.path("simulations", "out.rds"))
 
 out2 <- read_ds(file)
+}
 
 }
 \seealso{

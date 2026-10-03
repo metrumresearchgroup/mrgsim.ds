@@ -6,21 +6,35 @@ in_tempdir <- function(files) {
 }
 
 # The directory where the object's files were originally written; `tempdir()`
-# is the fallback for objects created before `dir` was tracked
+# is the fallback for objects created before `dir` was tracked. This is
+# NA when the object has been detached from its output directory (see
+# detach_dir_ds())
 home_dir_ds <- function(x) {
   if(is.character(x$dir) && length(x$dir) == 1L) {
-    return(x$dir)  
+    return(x$dir)
   }
   tempdir()
+}
+
+# Mark the object as no longer having an output directory where its files
+# are disposable (e.g., once it has been saved with save_ds()); automatic gc
+# is then always FALSE for this object
+detach_dir_ds <- function(x) {
+  x$dir <- NA_character_
+  invisible(x)
 }
 
 # Are the files still in the directory where they were written? This is the
 # test for automatic gc: output is cleaned up in the directory it was written
 # to, whether or not that directory is under tempdir()
 in_home_ds <- function(x) {
+  home <- home_dir_ds(x)
+  # detached objects have no home; this check is required because
+  # normalizePath(NA) returns "NA" rather than failing
+  if(is.na(home)) return(FALSE)
   # `mustWork` is FALSE here because the home directory can be gone by the
   # time we check (e.g., tempdir() from a previous session)
-  home <- normalizePath(home_dir_ds(x), mustWork = FALSE)
+  home <- normalizePath(home, mustWork = FALSE)
   files <- normalizePath(x$files, mustWork = TRUE)
 
   return(all(fs::path_has_parent(files, home)))
