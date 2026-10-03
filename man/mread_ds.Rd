@@ -25,7 +25,7 @@ mread_cache_ds(..., ds_dir = NULL)
 \code{NULL}, \code{getOption("mrgsim.ds.dir")} is used, falling back to \code{tempdir()}.
 The directory is created when it doesn't exist and the location is resolved
 one time, here, when the model is loaded. See \code{\link[=set_ds_dir]{set_ds_dir()}} to change this
-after the model is loaded.}
+after the model is loaded. See \strong{Details}.}
 }
 \value{
 A model object with process information saved, suitable for use with
@@ -38,6 +38,15 @@ Thin wrappers around mrgsolve model-loading functions (\code{mread()},
 directory where simulated output should be written. This stamp is required by
 \code{\link[=mrgsim_ds]{mrgsim_ds()}} to correctly associate simulation outputs with the process that
 created them.
+}
+\details{
+For most applications, the default output directory (\code{tempdir()}) is fine.
+The main reason to set \code{ds_dir} to something else is when simulating on
+worker nodes on a grid (e.g., Slurm or SGE). There, each worker has its own
+\code{tempdir()}, which is usually on storage local to the node and is removed
+when the worker's R session ends. In that case, set \code{ds_dir} (or the
+\code{mrgsim.ds.dir} option) to a location on a shared file system so the output
+is still available to the main R session after the workers finish.
 }
 \examples{
 mod <- house_ds()

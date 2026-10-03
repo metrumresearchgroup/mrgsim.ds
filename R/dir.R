@@ -16,6 +16,15 @@
 #' subject to garbage collection in the output directory whether or not that
 #' directory is under `tempdir()`; see [move_ds()] and [gc_ds()].
 #'
+#' For most applications, the default output directory (`tempdir()`) is fine.
+#' The main reason to write output somewhere else is when simulating on worker
+#' nodes on a grid (e.g., Slurm or SGE). There, each worker has its own
+#' `tempdir()`, which is usually on storage local to the node and is removed
+#' when the worker's R session ends. In that case, use `set_ds_dir()` (or the
+#' `ds_dir` argument to [mread_ds()], or the `mrgsim.ds.dir` option) to write
+#' to a location on a shared file system so the output is still available to
+#' the main R session after the workers finish.
+#'
 #' Like other updates to the model environment, `set_ds_dir()` works by
 #' reference: copies of a model object share one environment, so they will all
 #' write to the directory you set. Load the model a second time (see
