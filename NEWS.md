@@ -6,8 +6,8 @@
   `ds_dir` to `mread_ds()`, `mcode_ds()`, `modlib_ds()`, `house_ds()`,
   `mread_cache_ds()`, or `save_process_info()`, or set
   `options(mrgsim.ds.dir = )` as a session default. This is intended for
-  parallel simulation, where worker processes generally cannot see `tempdir()`
-  from the R process which loaded the model.
+  parallel simulation on a grid, where worker processes may not be able to 
+  see `tempdir()` from the R process which loaded the model.
 
 - New `set_ds_dir()` re-targets the output directory on a model object which
   was already loaded and `get_ds_dir()` reports where output will be written.
