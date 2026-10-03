@@ -15,7 +15,7 @@ get_ds_dir(mod)
 \item{dir}{the directory where simulated output should be written.}
 }
 \value{
-\code{set_ds_dir()} returns the updated model object.
+\code{set_ds_dir()} returns the updated model object invisibly.
 
 \code{get_ds_dir()} returns the output directory as a string.
 }

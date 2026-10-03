@@ -35,7 +35,7 @@
 #' @param dir the directory where simulated output should be written.
 #'
 #' @return
-#' `set_ds_dir()` returns the updated model object.
+#' `set_ds_dir()` returns the updated model object invisibly.
 #'
 #' `get_ds_dir()` returns the output directory as a string.
 #'
@@ -61,7 +61,7 @@ set_ds_dir <- function(mod, dir) {
   # Only the directory gets re-stamped here; the process information is left
   # alone so that gc behavior continues to track the parent R process
   mod@envir$mrgsim.ds.output_dir <- check_ds_dir(dir)
-  mod
+  invisible(mod)
 }
 
 #' @rdname set_ds_dir
