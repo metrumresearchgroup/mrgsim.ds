@@ -24,11 +24,15 @@
   still gets `gc = TRUE`, and `move_ds()` turns gc off when files leave that
   directory (back on when they return).
 
-- `save_ds()` now warns when the backing files it just saved are still subject
-  to garbage collection, rather than when they are in `tempdir()`.
+- `save_ds()` now turns gc off for the saved object unless gc was locked with
+  `gc_ds()`. It warns when the saved files are not in a safe place for 
+  long-term storage: gc is locked to `TRUE`, the files are under `tempdir()`,
+  or the files are in the simulation output directory.
 
-- `read_ds()` sets the restored object's output directory to the directory
-  holding the `.rds` file.
+- Objects saved with `save_ds()` or restored with `read_ds()` are detached from
+  the simulation output directory, so automatic gc can no longer turn back on
+  for them (e.g., after `move_ds()` or `reduce_ds()`). Re-saving a restored
+  object does not warn.
 
 - Model objects are now stamped with `mrgsim.ds.output_dir` in place of
   `mrgsim.ds.mread_tempdir`; models stamped by earlier versions continue to
