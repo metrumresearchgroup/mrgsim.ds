@@ -12,11 +12,6 @@
 #' 2. `getOption("mrgsim.ds.dir")`
 #' 3. `tempdir()`
 #'
-#' Setting the `mrgsim.ds.dir` option before loading a model is the most
-#' convenient way to send output to a location which every worker can reach
-#' when simulating in parallel; `tempdir()` on a worker node is generally
-#' _not_ the same directory as `tempdir()` on the parent node.
-#'
 #' The directory is created when it doesn't exist. Note that output files are
 #' subject to garbage collection in the output directory whether or not that
 #' directory is under `tempdir()`; see [move_ds()] and [gc_ds()].

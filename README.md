@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-f6c83b9a744.parquet"
+. [1] "mrgsims-ds-100ca5421acc4.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -253,7 +253,7 @@ library(future.apply, quietly = TRUE)
 
 plan(multisession, workers = 5L)
 
-out2 <- future_lapply(1:500, \(x) { mrgsim_ds(mod, data) }, future.seed = TRUE)
+out2 <- future_lapply(1:500, \(x) { mrgsim_ds(mod, data) }, future.seed = 1234L)
 
 out2 <- reduce_ds(out2)
 
@@ -270,14 +270,14 @@ out2
 . Files: 500 [6.4 Gb]
 . Owner: yes (gc)
 .     ID time        CL     IPRED
-. 1:   1  0.0 0.4098122 0.0000000
-. 2:   1  0.0 0.4098122 0.0000000
-. 3:   1  0.5 0.4098122 0.6459828
-. 4:   1  1.0 0.4098122 1.1487007
-. 5:   1  1.5 0.4098122 1.5390714
-. 6:   1  2.0 0.4098122 1.8413456
-. 7:   1  2.5 0.4098122 2.0745446
-. 8:   1  3.0 0.4098122 2.2535874
+. 1:   1  0.0 0.8662169 0.0000000
+. 2:   1  0.0 0.8662169 0.0000000
+. 3:   1  0.5 0.8662169 0.8249596
+. 4:   1  1.0 0.8662169 1.3772874
+. 5:   1  1.5 0.8662169 1.7441338
+. 6:   1  2.0 0.8662169 1.9848224
+. 7:   1  2.5 0.8662169 2.1397344
+. 8:   1  3.0 0.8662169 2.2363570
 ```
 
 ``` r
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-f6c83b9a744.parquet
-. - mrgsims-ds-f70f11dff53f.parquet
+. - mrgsims-ds-100ca5421acc4.parquet
+. - mrgsims-ds-1010810412d97.parquet
 .    ...
-. - mrgsims-ds-f713c7aa98e.parquet
-. - mrgsims-ds-f713d2f71c4.parquet
+. - mrgsims-ds-1010ca83fbe2.parquet
+. - mrgsims-ds-1010cb596189.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -316,7 +316,7 @@ plan(multisession, workers = 5L)
 out1 <- mrgsim_ds(mod, data)
 rename_ds(out1, "out1")
 
-out2 <- future_lapply(1:10, \(x) { mrgsim_ds(mod, data) }, future.seed = TRUE)
+out2 <- future_lapply(1:10, \(x) { mrgsim_ds(mod, data) }, future.seed = 5678L)
 
 out2 <- reduce_ds(out2)
 rename_ds(out2, "out2")
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1965628 105.0    6390945 341.4         NA  6673177 356.4
-. Vcells 3684435  28.2   19669800 150.1      16384 22106544 168.7
+. Ncells 1966985 105.1    6339532 338.6         NA  6675920 356.6
+. Vcells 3686631  28.2   19672330 150.1      16384 22114930 168.8
 
 list_temp()
 . 2 files [26.4 Mb]
@@ -413,7 +413,7 @@ mod <- modlib_ds("popex", end = 72)
 
 data <- evd_expand(amt = 100, ID = 1:6)
 
-daemons(3)
+daemons(3, seed = 1234)
 
 out <- mirai_map(
   1:3, 
@@ -439,15 +439,15 @@ out[[1]]
 . Dim  : 876 x 4
 . Files: 1 [10.5 Kb]
 . Owner: no
-.     ID TIME       CL     IPRED
-. 1:   1  0.0 2.595017 0.0000000
-. 2:   1  0.0 2.595017 0.0000000
-. 3:   1  0.5 2.595017 0.3473730
-. 4:   1  1.0 2.595017 0.6462037
-. 5:   1  1.5 2.595017 0.9017091
-. 6:   1  2.0 2.595017 1.1185962
-. 7:   1  2.5 2.595017 1.3011094
-. 8:   1  3.0 2.595017 1.4530742
+.     ID TIME       CL    IPRED
+. 1:   1  0.0 1.251533 0.000000
+. 2:   1  0.0 1.251533 0.000000
+. 3:   1  0.5 1.251533 1.111774
+. 4:   1  1.0 1.251533 1.907083
+. 5:   1  1.5 1.251533 2.468268
+. 6:   1  2.0 1.251533 2.856435
+. 7:   1  2.5 1.251533 3.116927
+. 8:   1  3.0 1.251533 3.283385
 . [mrgsim.ds] pointer and source pid refreshed.
 ```
 
@@ -476,15 +476,15 @@ out
 . Dim  : 2,628 x 4
 . Files: 3 [31.4 Kb]
 . Owner: yes (gc)
-.     ID TIME       CL     IPRED
-. 1:   1  0.0 2.595017 0.0000000
-. 2:   1  0.0 2.595017 0.0000000
-. 3:   1  0.5 2.595017 0.3473730
-. 4:   1  1.0 2.595017 0.6462037
-. 5:   1  1.5 2.595017 0.9017091
-. 6:   1  2.0 2.595017 1.1185962
-. 7:   1  2.5 2.595017 1.3011094
-. 8:   1  3.0 2.595017 1.4530742
+.     ID TIME       CL    IPRED
+. 1:   1  0.0 1.251533 0.000000
+. 2:   1  0.0 1.251533 0.000000
+. 3:   1  0.5 1.251533 1.111774
+. 4:   1  1.0 1.251533 1.907083
+. 5:   1  1.5 1.251533 2.468268
+. 6:   1  2.0 1.251533 2.856435
+. 7:   1  2.5 1.251533 3.116927
+. 8:   1  3.0 1.251533 3.283385
 ```
 
 Now we have all three files collected in a single object that we can
@@ -520,15 +520,15 @@ out2
 . Dim  : 2,628 x 4
 . Files: 3 [31.4 Kb]
 . Owner: yes (no gc)
-.     ID TIME       CL     IPRED
-. 1:   1  0.0 2.595017 0.0000000
-. 2:   1  0.0 2.595017 0.0000000
-. 3:   1  0.5 2.595017 0.3473730
-. 4:   1  1.0 2.595017 0.6462037
-. 5:   1  1.5 2.595017 0.9017091
-. 6:   1  2.0 2.595017 1.1185962
-. 7:   1  2.5 2.595017 1.3011094
-. 8:   1  3.0 2.595017 1.4530742
+.     ID TIME       CL    IPRED
+. 1:   1  0.0 1.251533 0.000000
+. 2:   1  0.0 1.251533 0.000000
+. 3:   1  0.5 1.251533 1.111774
+. 4:   1  1.0 1.251533 1.907083
+. 5:   1  1.5 1.251533 2.468268
+. 6:   1  2.0 1.251533 2.856435
+. 7:   1  2.5 1.251533 3.116927
+. 8:   1  3.0 1.251533 3.283385
 ```
 
 ``` r

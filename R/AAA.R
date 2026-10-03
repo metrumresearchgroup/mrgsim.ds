@@ -45,11 +45,6 @@ assign("nullptr", new("externalptr"), .global)
 #'   - [modlib_ds()]
 #'   - [house_ds()]
 #'
-#' - Set the simulation output directory
-#'   - [set_ds_dir()]
-#'   - [get_ds_dir()]
-#'   - [save_process_info()]
-#'
 #' - Generate Apache Arrow dataset-backed outputs
 #'   - [mrgsim_ds()]
 #'   - [as_mrgsim_ds()]
@@ -87,6 +82,9 @@ assign("nullptr", new("externalptr"), .global)
 #' - Manage the output directory
 #'   - [list_temp()]
 #'   - [purge_temp()]
+#'   - [set_ds_dir()]
+#'   - [get_ds_dir()]
+#'   - [save_process_info()]
 #'
 #' - Enter dplyr / arrow pipelines with
 #'   - [dplyr::mutate()]
