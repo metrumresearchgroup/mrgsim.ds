@@ -66,10 +66,7 @@ get_ds_dir <- function(mod) {
 
 # The session-level default, used when `ds_dir` isn't passed when loading a model
 default_dir_ds <- function() {
-  dir <- getOption("mrgsim.ds.dir")
-  if(is.null(dir)) {
-    return(tempdir())
-  }
+  dir <- getOption("mrgsim.ds.dir", tempdir())
   if(!is.character(dir) || length(dir) != 1L) {
     abort("the `mrgsim.ds.dir` option must be a single string.")
   }
@@ -86,6 +83,7 @@ check_ds_dir <- function(dir, call = caller_env()) {
     abort("the output directory cannot contain spaces.", call = call)
   }
   if(!dir_exists(dir)) {
+    inform(glue("creating output directory: {dir}"))
     dir_create(dir)
   }
   dir <- normalizePath(dir, mustWork = TRUE)
