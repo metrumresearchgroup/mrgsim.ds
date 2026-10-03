@@ -104,7 +104,7 @@ get_output_dir <- function(x) {
     abort(
       c(
         "the model object does not have an output directory.",
-        i = "re-load the model with `mread_ds()` or call `save_process_info()`."
+        i = "re-load the model with `mread_ds()` or friend, or call `save_process_info()`."
       )
     )
   }
