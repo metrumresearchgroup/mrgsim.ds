@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-100ca5421acc4.parquet"
+. [1] "mrgsims-ds-125ba344b0a7d.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -185,7 +185,7 @@ Or try your hand at duckdb
 ``` r
 as_duckdb_ds(out)
 . # Source:   table<arrow_001> [?? x 4]
-. # Database: DuckDB 1.5.1 [kyleb@Darwin 25.5.0:R 4.5.3/:memory:]
+. # Database: DuckDB 1.5.1 [root@Darwin 25.5.0:R 4.5.3/:memory:]
 .       ID  time    CL IPRED
 .    <dbl> <dbl> <dbl> <dbl>
 .  1     1   0   0.911  0   
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-100ca5421acc4.parquet
-. - mrgsims-ds-1010810412d97.parquet
+. - mrgsims-ds-125ba344b0a7d.parquet
+. - mrgsims-ds-1260910552e88.parquet
 .    ...
-. - mrgsims-ds-1010ca83fbe2.parquet
-. - mrgsims-ds-1010cb596189.parquet
+. - mrgsims-ds-1260d9a587d9.parquet
+. - mrgsims-ds-1260dc157692.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1966985 105.1    6339532 338.6         NA  6675920 356.6
-. Vcells 3686631  28.2   19672330 150.1      16384 22114930 168.8
+. Ncells 1972410 105.4    6370089 340.2         NA  6687763 357.2
+. Vcells 3698628  28.3   19683332 150.2      16384 22111820 168.7
 
 list_temp()
 . 2 files [26.4 Mb]
@@ -413,7 +413,7 @@ mod <- modlib_ds("popex", end = 72)
 
 data <- evd_expand(amt = 100, ID = 1:6)
 
-daemons(3, seed = 1234)
+daemons(3, seed = 20)
 
 out <- mirai_map(
   1:3, 
@@ -439,15 +439,15 @@ out[[1]]
 . Dim  : 876 x 4
 . Files: 1 [10.5 Kb]
 . Owner: no
-.     ID TIME       CL    IPRED
-. 1:   1  0.0 1.251533 0.000000
-. 2:   1  0.0 1.251533 0.000000
-. 3:   1  0.5 1.251533 1.111774
-. 4:   1  1.0 1.251533 1.907083
-. 5:   1  1.5 1.251533 2.468268
-. 6:   1  2.0 1.251533 2.856435
-. 7:   1  2.5 1.251533 3.116927
-. 8:   1  3.0 1.251533 3.283385
+.     ID TIME        CL    IPRED
+. 1:   1  0.0 0.8079768 0.000000
+. 2:   1  0.0 0.8079768 0.000000
+. 3:   1  0.5 0.8079768 1.911559
+. 4:   1  1.0 0.8079768 3.198112
+. 5:   1  1.5 0.8079768 4.049238
+. 6:   1  2.0 0.8079768 4.597363
+. 7:   1  2.5 0.8079768 4.934977
+. 8:   1  3.0 0.8079768 5.126674
 . [mrgsim.ds] pointer and source pid refreshed.
 ```
 
@@ -476,15 +476,15 @@ out
 . Dim  : 2,628 x 4
 . Files: 3 [31.4 Kb]
 . Owner: yes (gc)
-.     ID TIME       CL    IPRED
-. 1:   1  0.0 1.251533 0.000000
-. 2:   1  0.0 1.251533 0.000000
-. 3:   1  0.5 1.251533 1.111774
-. 4:   1  1.0 1.251533 1.907083
-. 5:   1  1.5 1.251533 2.468268
-. 6:   1  2.0 1.251533 2.856435
-. 7:   1  2.5 1.251533 3.116927
-. 8:   1  3.0 1.251533 3.283385
+.     ID TIME        CL    IPRED
+. 1:   1  0.0 0.8079768 0.000000
+. 2:   1  0.0 0.8079768 0.000000
+. 3:   1  0.5 0.8079768 1.911559
+. 4:   1  1.0 0.8079768 3.198112
+. 5:   1  1.5 0.8079768 4.049238
+. 6:   1  2.0 0.8079768 4.597363
+. 7:   1  2.5 0.8079768 4.934977
+. 8:   1  3.0 0.8079768 5.126674
 ```
 
 Now we have all three files collected in a single object that we can
@@ -520,15 +520,15 @@ out2
 . Dim  : 2,628 x 4
 . Files: 3 [31.4 Kb]
 . Owner: yes (no gc)
-.     ID TIME       CL    IPRED
-. 1:   1  0.0 1.251533 0.000000
-. 2:   1  0.0 1.251533 0.000000
-. 3:   1  0.5 1.251533 1.111774
-. 4:   1  1.0 1.251533 1.907083
-. 5:   1  1.5 1.251533 2.468268
-. 6:   1  2.0 1.251533 2.856435
-. 7:   1  2.5 1.251533 3.116927
-. 8:   1  3.0 1.251533 3.283385
+.     ID TIME        CL    IPRED
+. 1:   1  0.0 0.8079768 0.000000
+. 2:   1  0.0 0.8079768 0.000000
+. 3:   1  0.5 0.8079768 1.911559
+. 4:   1  1.0 0.8079768 3.198112
+. 5:   1  1.5 0.8079768 4.049238
+. 6:   1  2.0 0.8079768 4.597363
+. 7:   1  2.5 0.8079768 4.934977
+. 8:   1  3.0 0.8079768 5.126674
 ```
 
 ``` r

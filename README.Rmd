@@ -296,7 +296,7 @@ mod <- modlib_ds("popex", end = 72)
 
 data <- evd_expand(amt = 100, ID = 1:6)
 
-daemons(3, seed = 1234)
+daemons(3, seed = 20)
 
 out <- mirai_map(
   1:3, 
