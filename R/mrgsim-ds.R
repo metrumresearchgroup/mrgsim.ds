@@ -36,11 +36,11 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   
   if(verbose) message("Writing dataset [2/3].")
   
-  if(!mread_with_ds(x@mod)) {
-    abort("model was not loaded with `mread_ds()` or equivalent.")
-  }
   if(!inherits(x, "mrgsims")) {
     abort("`x` must be an `mrgsims` object.")
+  }
+  if(!mread_with_ds(x@mod)) {
+    abort("model was not loaded with `mread_ds()` or equivalent.")
   }
   
   dir <- get_output_dir(x@mod)
