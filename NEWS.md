@@ -34,6 +34,10 @@
   for them (e.g., after `move_ds()` or `reduce_ds()`). Re-saving a restored
   object does not warn.
 
+- `mrgsim_ds()` and `as_mrgsim_ds()` now error when the output directory does
+  not exist in the R process running the simulation (e.g., a worker on another
+  node that can't see the directory).
+
 - Model objects are now stamped with `mrgsim.ds.output_dir` in place of
   `mrgsim.ds.mread_tempdir`; models stamped by earlier versions continue to
   work.
