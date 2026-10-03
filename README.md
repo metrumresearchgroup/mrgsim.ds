@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-125ba344b0a7d.parquet"
+. [1] "mrgsims-ds-13ed62db417c4.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-125ba344b0a7d.parquet
-. - mrgsims-ds-1260910552e88.parquet
+. - mrgsims-ds-13ed62db417c4.parquet
+. - mrgsims-ds-13f151181f8fb.parquet
 .    ...
-. - mrgsims-ds-1260d9a587d9.parquet
-. - mrgsims-ds-1260dc157692.parquet
+. - mrgsims-ds-13f19fcdac1b.parquet
+. - mrgsims-ds-13f19fe9ce9a.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1972410 105.4    6370089 340.2         NA  6687763 357.2
-. Vcells 3698628  28.3   19683332 150.2      16384 22111820 168.7
+. Ncells 1965637 105.0    6408308 342.3         NA  6699707 357.9
+. Vcells 3684496  28.2   19669871 150.1      16384 22106562 168.7
 
 list_temp()
 . 2 files [26.4 Mb]
@@ -546,13 +546,15 @@ outputs are always written to that directory, which is resolved one
 time, when the model is loaded: the `ds_dir` argument to `mread_ds()`
 and friends, then `getOption("mrgsim.ds.dir")`, then `tempdir()`.
 
-Resolving the location at load time is what makes parallel simulation
-work: the directory travels with the model object out to the worker
-nodes. But `tempdir()` on a worker node is *not* the same directory as
-`tempdir()` on the parent node, so pass `ds_dir` (or set the option)
-when the workers are R processes which can’t see the parent’s
-`tempdir()`; this is the usual situation when workers are launched
-through a scheduler like slurm.
+In most cases, you should stay with the default (`tempdir()`). A
+customized output directory is meant for special circumstances, like
+simulating on worker nodes on a grid (e.g., Slurm or SGE). Resolving the
+location at load time is what makes parallel simulation work: the
+directory travels with the model object out to the worker nodes. But the
+parent’s `tempdir()` is usually on storage local to the parent node, so
+workers on other nodes can’t see it. In that case, pass `ds_dir` (or set
+the option) to a location on a shared file system; `mrgsim_ds()` will
+error on a worker that can’t find the output directory.
 
 ``` r
 options(mrgsim.ds.dir = "/scratch/sims")
@@ -567,8 +569,8 @@ loaded and `get_ds_dir()` to see where output will be written.
 
 Simulated output is subject to garbage collection in the output
 directory, whether or not that directory is under `tempdir()`. Moving
-files out of the output directory with `move_ds()` or `save_ds()` turns
-garbage collection off.
+files out of the output directory with `move_ds()` turns garbage
+collection off, and `save_ds()` always turns it off.
 
 At the time simulations are saved, the current R process id (`pid`) is
 saved to the simulation output object. In the parallel simulation case,

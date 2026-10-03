@@ -322,8 +322,11 @@ next section).
 
 # Setting the output directory
 
-By default, simulated output is written to `tempdir()`. Pass `ds_dir` when you 
-load the model to send output somewhere else.
+By default, simulated output is written to `tempdir()`, and you should stay
+with the default in most cases. A customized output directory is only required
+in special circumstances, like simulating on worker nodes on a grid (e.g.,
+Slurm or SGE), where the workers can't see `tempdir()` from the parent R
+process. Pass `ds_dir` when you load the model to send output somewhere else.
 
 ```{r}
 sim_dir <- file.path(tempdir(), "vignette-sims")

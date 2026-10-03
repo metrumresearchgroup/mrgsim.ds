@@ -391,13 +391,15 @@ are always written to that directory, which is resolved one time, when the
 model is loaded: the `ds_dir` argument to `mread_ds()` and friends, then 
 `getOption("mrgsim.ds.dir")`, then `tempdir()`.
 
-Resolving the location at load time is what makes parallel simulation work: the
-directory travels with the model object out to the worker nodes. But 
-`tempdir()` on a worker node is _not_ the same directory as `tempdir()` on the
-parent node, so pass `ds_dir` (or set the option) when the workers are R 
-processes
-which can't see the parent's `tempdir()`; this is the usual situation when 
-workers are launched through a scheduler like slurm.
+In most cases, you should stay with the default (`tempdir()`). A customized
+output directory is meant for special circumstances, like simulating on worker
+nodes on a grid (e.g., Slurm or SGE). Resolving the location at load time is
+what makes parallel simulation work: the directory travels with the model
+object out to the worker nodes. But the parent's `tempdir()` is usually on
+storage local to the parent node, so workers on other nodes can't see it. In
+that case, pass `ds_dir` (or set the option) to a location on a shared file
+system; `mrgsim_ds()` will error on a worker that can't find the output
+directory.
 
 ```{r, eval = FALSE}
 options(mrgsim.ds.dir = "/scratch/sims")
@@ -411,8 +413,9 @@ choosing the location, but it can't make a node-local path shared. Use
 `get_ds_dir()` to see where output will be written.
 
 Simulated output is subject to garbage collection in the output directory, 
-whether or not that directory is under `tempdir()`. Moving files out of the 
-output directory with `move_ds()` or `save_ds()` turns garbage collection off.
+whether or not that directory is under `tempdir()`. Moving files out of the
+output directory with `move_ds()` turns garbage collection off, and `save_ds()`
+always turns it off.
 
 At the time simulations are saved, the current R process id (`pid`) is saved
 to the simulation output object. In the parallel simulation case, this will be 
