@@ -52,6 +52,14 @@ test_that("the output directory is created when it doesn't exist", {
   expect_equal(get_ds_dir(mod), normalizePath(dir))
 })
 
+test_that("simulating errors when the output directory is gone", {
+  dir <- withr::local_tempdir()
+  mod <- house_ds(end = 1, ds_dir = dir)
+  unlink(dir, recursive = TRUE)
+  expect_error(mrgsim_ds(mod), "output directory does not exist")
+  expect_false(dir.exists(dir))
+})
+
 test_that("all five model loading wrappers accept ds_dir", {
   dir <- withr::local_tempdir()
   code <- "$param a = 1"

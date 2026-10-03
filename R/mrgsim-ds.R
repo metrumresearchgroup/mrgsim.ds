@@ -45,9 +45,16 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   
   dir <- get_output_dir(x@mod)
   if(!dir_exists(dir)) {
-    # the directory is created when it gets set, but it might not exist in the
-    # R process where the simulation is actually happening
-    dir_create(dir)  
+    # the directory is created when it gets set; when it's missing here, the
+    # simulation is likely running somewhere that can't see it (e.g., a worker
+    # on another node), so fail rather than writing where nobody will look
+    abort(
+      c(
+        glue("the output directory does not exist: {dir}"),
+        i = "when simulating on worker nodes, set `ds_dir` to a location every worker can see; see `?set_ds_dir`.",
+        i = "otherwise, re-load the model or call `set_ds_dir()`."
+      )
+    )
   }
 
   file <- file.path(dir, file_ds())
