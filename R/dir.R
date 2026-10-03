@@ -78,7 +78,7 @@ default_dir_ds <- function() {
 
 # Validate and create an output directory; this is called whenever the
 # directory is set so that bad input fails there rather than mid-simulation
-check_ds_dir <- function(dir, create = TRUE, call = caller_env()) {
+check_ds_dir <- function(dir, call = caller_env()) {
   if(!is.character(dir) || length(dir) != 1L || is.na(dir)) {
     abort("the output directory must be a single string.", call = call)
   }
@@ -86,9 +86,6 @@ check_ds_dir <- function(dir, create = TRUE, call = caller_env()) {
     abort("the output directory cannot contain spaces.", call = call)
   }
   if(!dir_exists(dir)) {
-    if(!isTRUE(create)) {
-      abort(glue("the output directory does not exist: {dir}"), call = call)
-    }
     dir_create(dir)
   }
   dir <- normalizePath(dir, mustWork = TRUE)

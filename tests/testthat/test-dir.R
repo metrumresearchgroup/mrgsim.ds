@@ -140,15 +140,6 @@ test_that("the output directory must be a single string", {
   expect_error(house_ds(end = 1, ds_dir = NA_character_), "must be a single string")
 })
 
-test_that("check_ds_dir can require an existing directory", {
-  dir <- file.path(withr::local_tempdir(), "nope")
-  expect_error(
-    mrgsim.ds:::check_ds_dir(dir, create = FALSE), 
-    "does not exist"
-  )
-  expect_false(dir.exists(dir))
-})
-
 # gc behavior ------------------------------------------------------------------
 
 test_that("gc is on for output written outside of tempdir", {

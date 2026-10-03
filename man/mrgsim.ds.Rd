@@ -28,12 +28,6 @@ to move this data to more permanent locations for later use.
 \item \code{\link[=modlib_ds]{modlib_ds()}}
 \item \code{\link[=house_ds]{house_ds()}}
 }
-\item Set the simulation output directory
-\itemize{
-\item \code{\link[=set_ds_dir]{set_ds_dir()}}
-\item \code{\link[=get_ds_dir]{get_ds_dir()}}
-\item \code{\link[=save_process_info]{save_process_info()}}
-}
 \item Generate Apache Arrow dataset-backed outputs
 \itemize{
 \item \code{\link[=mrgsim_ds]{mrgsim_ds()}}
@@ -78,6 +72,9 @@ to move this data to more permanent locations for later use.
 \itemize{
 \item \code{\link[=list_temp]{list_temp()}}
 \item \code{\link[=purge_temp]{purge_temp()}}
+\item \code{\link[=set_ds_dir]{set_ds_dir()}}
+\item \code{\link[=get_ds_dir]{get_ds_dir()}}
+\item \code{\link[=save_process_info]{save_process_info()}}
 }
 \item Enter dplyr / arrow pipelines with
 \itemize{

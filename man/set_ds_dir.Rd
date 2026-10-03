@@ -32,11 +32,6 @@ The output directory is resolved in this order:
 \item \code{tempdir()}
 }
 
-Setting the \code{mrgsim.ds.dir} option before loading a model is the most
-convenient way to send output to a location which every worker can reach
-when simulating in parallel; \code{tempdir()} on a worker node is generally
-\emph{not} the same directory as \code{tempdir()} on the parent node.
-
 The directory is created when it doesn't exist. Note that output files are
 subject to garbage collection in the output directory whether or not that
 directory is under \code{tempdir()}; see \code{\link[=move_ds]{move_ds()}} and \code{\link[=gc_ds]{gc_ds()}}.
