@@ -27,7 +27,7 @@ to see where simulated output will be written.
 
 The output directory is resolved in this order:
 \enumerate{
-\item the \code{dir} argument to \code{\link[=mread_ds]{mread_ds()}} and friends
+\item the \code{ds_dir} argument to \code{\link[=mread_ds]{mread_ds()}} and friends
 \item \code{getOption("mrgsim.ds.dir")}
 \item \code{tempdir()}
 }

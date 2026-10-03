@@ -10,9 +10,9 @@ test_that("output directory defaults to tempdir", {
   expect_equal(get_ds_dir(mod), normalizePath(tempdir()))
 })
 
-test_that("output directory comes from the dir argument", {
+test_that("output directory comes from the ds_dir argument", {
   dir <- withr::local_tempdir()
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   expect_equal(get_ds_dir(mod), normalizePath(dir))
 
   out <- mrgsim_ds(mod)
@@ -30,11 +30,11 @@ test_that("output directory comes from the mrgsim.ds.dir option", {
   expect_equal(normalizePath(dirname(out$files[[1]])), normalizePath(dir))
 })
 
-test_that("the dir argument takes precedence over the option", {
+test_that("the ds_dir argument takes precedence over the option", {
   opt_dir <- withr::local_tempdir()
   arg_dir <- withr::local_tempdir()
   withr::local_options(mrgsim.ds.dir = opt_dir)
-  mod <- house_ds(end = 1, dir = arg_dir)
+  mod <- house_ds(end = 1, ds_dir = arg_dir)
   expect_equal(get_ds_dir(mod), normalizePath(arg_dir))
 })
 
@@ -47,23 +47,23 @@ test_that("the output directory is created when it doesn't exist", {
   base <- withr::local_tempdir()
   dir <- file.path(base, "sims", "nested")
   expect_false(dir.exists(dir))
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   expect_true(dir.exists(dir))
   expect_equal(get_ds_dir(mod), normalizePath(dir))
 })
 
-test_that("all five model loading wrappers accept dir", {
+test_that("all five model loading wrappers accept ds_dir", {
   dir <- withr::local_tempdir()
   code <- "$param a = 1"
   file <- file.path(withr::local_tempdir(), "model.mod")
   cat(code, file = file, sep = "\n")
 
   mods <- list(
-    house_ds(end = 1, dir = dir),
-    modlib_ds("pk1", compile = FALSE, dir = dir),
-    mcode_ds("test-dir-mcode", code, compile = FALSE, dir = dir),
-    mread_ds(file, compile = FALSE, dir = dir),
-    mread_cache_ds(file, compile = FALSE, dir = dir)
+    house_ds(end = 1, ds_dir = dir),
+    modlib_ds("pk1", compile = FALSE, ds_dir = dir),
+    mcode_ds("test-dir-mcode", code, compile = FALSE, ds_dir = dir),
+    mread_ds(file, compile = FALSE, ds_dir = dir),
+    mread_cache_ds(file, compile = FALSE, ds_dir = dir)
   )
   for(mod in mods) {
     expect_equal(get_ds_dir(mod), normalizePath(dir))
@@ -131,13 +131,13 @@ test_that("the output directory falls back to the legacy stamp", {
 
 test_that("the output directory cannot contain spaces", {
   dir <- file.path(tempdir(), "with space")
-  expect_error(house_ds(end = 1, dir = dir), "cannot contain spaces")
+  expect_error(house_ds(end = 1, ds_dir = dir), "cannot contain spaces")
 })
 
 test_that("the output directory must be a single string", {
-  expect_error(house_ds(end = 1, dir = 5), "must be a single string")
-  expect_error(house_ds(end = 1, dir = c("a", "b")), "must be a single string")
-  expect_error(house_ds(end = 1, dir = NA_character_), "must be a single string")
+  expect_error(house_ds(end = 1, ds_dir = 5), "must be a single string")
+  expect_error(house_ds(end = 1, ds_dir = c("a", "b")), "must be a single string")
+  expect_error(house_ds(end = 1, ds_dir = NA_character_), "must be a single string")
 })
 
 test_that("check_ds_dir can require an existing directory", {
@@ -153,7 +153,7 @@ test_that("check_ds_dir can require an existing directory", {
 
 test_that("gc is on for output written outside of tempdir", {
   dir <- withr::local_tempdir(tmpdir = getwd())
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod)
   expect_false(mrgsim.ds:::in_tempdir(out$files))
   expect_true(out$gc)
@@ -162,7 +162,7 @@ test_that("gc is on for output written outside of tempdir", {
 test_that("gc switches off when files leave the output directory", {
   dir <- withr::local_tempdir(tmpdir = getwd())
   other <- withr::local_tempdir(tmpdir = getwd())
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod)
   expect_true(out$gc)
 
@@ -177,7 +177,7 @@ test_that("gc switches off when files leave the output directory", {
 test_that("gc warns when locked to TRUE and files leave the output directory", {
   dir <- withr::local_tempdir(tmpdir = getwd())
   other <- withr::local_tempdir(tmpdir = getwd())
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod)
   out <- gc_ds(out, value = TRUE)
   expect_warning(
@@ -190,8 +190,8 @@ test_that("gc warns when locked to TRUE and files leave the output directory", {
 test_that("reduce_ds turns gc off when outputs come from different directories", {
   dir1 <- withr::local_tempdir(tmpdir = getwd())
   dir2 <- withr::local_tempdir(tmpdir = getwd())
-  mod1 <- house_ds(end = 1, dir = dir1)
-  mod2 <- house_ds(end = 1, dir = dir2)
+  mod1 <- house_ds(end = 1, ds_dir = dir1)
+  mod2 <- house_ds(end = 1, ds_dir = dir2)
   out <- list(mrgsim_ds(mod1), mrgsim_ds(mod2))
   sims <- reduce_ds(out)
   expect_length(sims$files, 2)
@@ -202,7 +202,7 @@ test_that("reduce_ds turns gc off when outputs come from different directories",
 
 test_that("list_temp and purge_temp honor the dir argument", {
   dir <- withr::local_tempdir()
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- lapply(1:3, function(i) mrgsim_ds(mod, gc = FALSE))
   expect_length(list_temp(dir, quietly = TRUE), 3)
   # ... and the files aren't in the session default directory
@@ -225,7 +225,7 @@ test_that("list_temp and purge_temp default to the mrgsim.ds.dir option", {
 
 test_that("purge_temp refuses to delete outside tempdir without force", {
   dir <- withr::local_tempdir(tmpdir = getwd())
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod, gc = FALSE)
   expect_error(purge_temp(dir), "refusing to purge")
   expect_length(list_temp(dir, quietly = TRUE), 1)
@@ -238,7 +238,7 @@ test_that("purge_temp refuses to delete outside tempdir without force", {
 
 test_that("read_ds sets the output directory to the rds location", {
   dir <- withr::local_tempdir()
-  mod <- house_ds(end = 1, dir = dir)
+  mod <- house_ds(end = 1, ds_dir = dir)
   out <- mrgsim_ds(mod, gc = FALSE)
   save_dir <- withr::local_tempdir(tmpdir = getwd())
   file <- save_ds(out, file.path(save_dir, "out.rds"), quietly = TRUE)

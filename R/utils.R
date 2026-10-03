@@ -47,7 +47,7 @@ format_big <- function() {
 #' [mrgsolve::mread()]) and still want to use [mrgsim_ds()].
 #'
 #' @param x a model object.
-#' @param dir the directory where simulated output should be written; when
+#' @param ds_dir the directory where simulated output should be written; when
 #' `NULL`, `getOption("mrgsim.ds.dir")` is used, falling back to `tempdir()`.
 #' The directory is created when it doesn't exist. See [set_ds_dir()] to change
 #' this after the model is loaded.
@@ -63,16 +63,16 @@ format_big <- function() {
 #' @seealso [set_ds_dir()], [get_ds_dir()]
 #' 
 #' @export
-save_process_info <- function(x, dir = NULL) {
+save_process_info <- function(x, ds_dir = NULL) {
   if(!is.mrgmod(x)) { # nocov start
     abort("`x` must be an mrgmod object.")  
   } # nocov end
-  if(is.null(dir)) {
-    dir <- default_dir_ds()  
+  if(is.null(ds_dir)) {
+    ds_dir <- default_dir_ds()  
   }
   x@envir$mrgsim.ds.mread_valid <- TRUE
   x@envir$mrgsim.ds.mread_pid <- Sys.getpid()
-  x@envir$mrgsim.ds.output_dir <- check_ds_dir(dir)
+  x@envir$mrgsim.ds.output_dir <- check_ds_dir(ds_dir)
   x
 }
 

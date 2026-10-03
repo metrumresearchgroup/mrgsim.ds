@@ -76,7 +76,7 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-ecae9c78c4f.parquet"
+. [1] "mrgsims-ds-f6c83b9a744.parquet"
 ```
 
 This means there is almost nothing inside the object itself
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-ecae9c78c4f.parquet
-. - mrgsims-ds-ecec11b86f01.parquet
+. - mrgsims-ds-f6c83b9a744.parquet
+. - mrgsims-ds-f70f11dff53f.parquet
 .    ...
-. - mrgsims-ds-ecf0ca14788.parquet
-. - mrgsims-ds-ecf0e905020.parquet
+. - mrgsims-ds-f713c7aa98e.parquet
+. - mrgsims-ds-f713d2f71c4.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1965632 105.0    6426606 343.3         NA  6671735 356.4
-. Vcells 3684429  28.2   19669794 150.1      16384 22106538 168.7
+. Ncells 1965628 105.0    6390945 341.4         NA  6673177 356.4
+. Vcells 3684435  28.2   19669800 150.1      16384 22106544 168.7
 
 list_temp()
 . 2 files [26.4 Mb]
@@ -543,16 +543,16 @@ check_ownership(out2)
 `mrgsim.ds` tracks the output directory and the process ID (via
 `Sys.getpid()`) of the R process where the model was loaded. Simulation
 outputs are always written to that directory, which is resolved one
-time, when the model is loaded: the `dir` argument to `mread_ds()` and
-friends, then `getOption("mrgsim.ds.dir")`, then `tempdir()`.
+time, when the model is loaded: the `ds_dir` argument to `mread_ds()`
+and friends, then `getOption("mrgsim.ds.dir")`, then `tempdir()`.
 
 Resolving the location at load time is what makes parallel simulation
 work: the directory travels with the model object out to the worker
 nodes. But `tempdir()` on a worker node is *not* the same directory as
-`tempdir()` on the parent node, so pass `dir` (or set the option) when
-the workers are R processes which can’t see the parent’s `tempdir()`;
-this is the usual situation when workers are launched through a
-scheduler like slurm.
+`tempdir()` on the parent node, so pass `ds_dir` (or set the option)
+when the workers are R processes which can’t see the parent’s
+`tempdir()`; this is the usual situation when workers are launched
+through a scheduler like slurm.
 
 ``` r
 options(mrgsim.ds.dir = "/scratch/sims")

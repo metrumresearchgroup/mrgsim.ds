@@ -388,13 +388,14 @@ unlink("inst/readme_temp", recursive = TRUE)
 `mrgsim.ds` tracks the output directory and the process ID (via 
 `Sys.getpid()`) of the R process where the model was loaded. Simulation outputs
 are always written to that directory, which is resolved one time, when the 
-model is loaded: the `dir` argument to `mread_ds()` and friends, then 
+model is loaded: the `ds_dir` argument to `mread_ds()` and friends, then 
 `getOption("mrgsim.ds.dir")`, then `tempdir()`.
 
 Resolving the location at load time is what makes parallel simulation work: the
 directory travels with the model object out to the worker nodes. But 
 `tempdir()` on a worker node is _not_ the same directory as `tempdir()` on the
-parent node, so pass `dir` (or set the option) when the workers are R processes
+parent node, so pass `ds_dir` (or set the option) when the workers are R 
+processes
 which can't see the parent's `tempdir()`; this is the usual situation when 
 workers are launched through a scheduler like slurm.
 

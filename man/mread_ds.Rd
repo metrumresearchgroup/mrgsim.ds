@@ -8,20 +8,20 @@
 \alias{mread_cache_ds}
 \title{Load an mrgsolve model for Arrow-backed simulation}
 \usage{
-mread_ds(..., dir = NULL)
+mread_ds(..., ds_dir = NULL)
 
-mcode_ds(..., dir = NULL)
+mcode_ds(..., ds_dir = NULL)
 
-modlib_ds(..., dir = NULL)
+modlib_ds(..., ds_dir = NULL)
 
-house_ds(..., dir = NULL)
+house_ds(..., ds_dir = NULL)
 
-mread_cache_ds(..., dir = NULL)
+mread_cache_ds(..., ds_dir = NULL)
 }
 \arguments{
 \item{...}{passed to the corresponding mrgsolve function.}
 
-\item{dir}{the directory where simulated output should be written; when
+\item{ds_dir}{the directory where simulated output should be written; when
 \code{NULL}, \code{getOption("mrgsim.ds.dir")} is used, falling back to \code{tempdir()}.
 The directory is created when it doesn't exist and the location is resolved
 one time, here, when the model is loaded. See \code{\link[=set_ds_dir]{set_ds_dir()}} to change this
@@ -44,7 +44,7 @@ mod <- house_ds()
 
 mod
 
-mod <- house_ds(dir = file.path(tempdir(), "sims"))
+mod <- house_ds(ds_dir = file.path(tempdir(), "sims"))
 
 get_ds_dir(mod)
 

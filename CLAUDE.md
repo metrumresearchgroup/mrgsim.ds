@@ -72,7 +72,7 @@ A `.global` environment holds package-wide constants and state:
 
 The directory where parquet files get written is resolved once, when the model
 is loaded, and stamped on the model object as `mrgsim.ds.output_dir`:
-`dir` argument to the `mread_ds()` wrappers → `getOption("mrgsim.ds.dir")` →
+`ds_dir` argument to the `mread_ds()` wrappers → `getOption("mrgsim.ds.dir")` →
 `tempdir()`. `set_ds_dir()` re-targets a loaded model (by reference, since the
 model environment is shared). Objects record their creation directory in `$dir`;
 that — not `tempdir()` — is what the automatic gc adjustment in `R/gc.R` keys on

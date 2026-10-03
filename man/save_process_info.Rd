@@ -4,12 +4,12 @@
 \alias{save_process_info}
 \title{Save information about the R process that loaded a model}
 \usage{
-save_process_info(x, dir = NULL)
+save_process_info(x, ds_dir = NULL)
 }
 \arguments{
 \item{x}{a model object.}
 
-\item{dir}{the directory where simulated output should be written; when
+\item{ds_dir}{the directory where simulated output should be written; when
 \code{NULL}, \code{getOption("mrgsim.ds.dir")} is used, falling back to \code{tempdir()}.
 The directory is created when it doesn't exist. See \code{\link[=set_ds_dir]{set_ds_dir()}} to change
 this after the model is loaded.}

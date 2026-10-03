@@ -8,7 +8,7 @@
 #'
 #' The output directory is resolved in this order:
 #'
-#' 1. the `dir` argument to [mread_ds()] and friends
+#' 1. the `ds_dir` argument to [mread_ds()] and friends
 #' 2. `getOption("mrgsim.ds.dir")`
 #' 3. `tempdir()`
 #'
@@ -69,7 +69,7 @@ get_ds_dir <- function(mod) {
   get_output_dir(mod)
 }
 
-# The session-level default, used when `dir` isn't passed when loading a model
+# The session-level default, used when `ds_dir` isn't passed when loading a model
 default_dir_ds <- function() {
   dir <- getOption("mrgsim.ds.dir")
   if(is.null(dir)) {

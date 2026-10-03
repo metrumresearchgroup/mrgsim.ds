@@ -322,13 +322,13 @@ next section).
 
 # Setting the output directory
 
-By default, simulated output is written to `tempdir()`. Pass `dir` when you 
+By default, simulated output is written to `tempdir()`. Pass `ds_dir` when you 
 load the model to send output somewhere else.
 
 ```{r}
 sim_dir <- file.path(tempdir(), "vignette-sims")
 
-mod <- house_ds(end = 24, dir = sim_dir)
+mod <- house_ds(end = 24, ds_dir = sim_dir)
 
 get_ds_dir(mod)
 ```
@@ -342,7 +342,7 @@ files_ds(out)
 The location is resolved one time, when the model is loaded, and it is stamped
 on the model object; this is what allows the location to travel with the model
 object when you simulate in parallel. `getOption("mrgsim.ds.dir")` is 
-consulted when `dir` isn't passed, so you can set the location one time for 
+consulted when `ds_dir` isn't passed, so you can set the location one time for 
 your whole session or script
 
 ```{r, eval = FALSE}

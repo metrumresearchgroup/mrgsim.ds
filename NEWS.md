@@ -3,7 +3,7 @@
 ## New features
 
 - Simulated output can be written to a directory other than `tempdir()`: pass
-  `dir` to `mread_ds()`, `mcode_ds()`, `modlib_ds()`, `house_ds()`,
+  `ds_dir` to `mread_ds()`, `mcode_ds()`, `modlib_ds()`, `house_ds()`,
   `mread_cache_ds()`, or `save_process_info()`, or set
   `options(mrgsim.ds.dir = )` as a session default. This is intended for
   parallel simulation, where worker processes generally cannot see `tempdir()`
