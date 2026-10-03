@@ -48,6 +48,7 @@ Objects track `$pid` (creation process). Arrow Dataset pointers become invalid a
 | File | Responsibility |
 |------|---------------|
 | `R/mrgsim-ds.R` | `mrgsim_ds()`, `as_mrgsim_ds()`, core S3 methods |
+| `R/dir.R` | Output directory: `set_ds_dir()`, `get_ds_dir()`, resolution and validation |
 | `R/own.R` | Ownership system: claim, transfer, disown |
 | `R/files.R` | `move_ds()`, `rename_ds()`, `combine_ds()`, `save_ds()`, `read_ds()`, `write_parquet_ds()`, `write_dataset_ds()` |
 | `R/wrapper.R` | `mread_ds()` and friends — mrgsolve model loading (stamps model with `save_process_info()`, required before `mrgsim_ds()`) |
@@ -67,9 +68,19 @@ A `.global` environment holds package-wide constants and state:
 - `file.re` — regex to identify package-managed files
 - `nullptr` — sentinel `externalptr` used to detect invalidated Arrow pointers
 
+### Output Directory (`R/dir.R`)
+
+The directory where parquet files get written is resolved once, when the model
+is loaded, and stamped on the model object as `mrgsim.ds.output_dir`:
+`dir` argument to the `mread_ds()` wrappers → `getOption("mrgsim.ds.dir")` →
+`tempdir()`. `set_ds_dir()` re-targets a loaded model (by reference, since the
+model environment is shared). Objects record their creation directory in `$dir`;
+that — not `tempdir()` — is what the automatic gc adjustment in `R/gc.R` keys on
+(`in_home_ds()`).
+
 ### File Naming Convention
 
-Parquet files are written to `tempdir()` with the pattern:
+Parquet files are written to the output directory with the pattern:
 ```
 mrgsims-ds-{id}-{index}.parquet
 ```

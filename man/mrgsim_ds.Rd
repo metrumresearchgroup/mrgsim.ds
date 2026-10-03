@@ -20,19 +20,20 @@ output.}
 \item{gc}{initial gc setting; if \code{TRUE}, a finalizer function will attempt
 to remove files once the object is out of scope. This value is not locked:
 \code{\link[=move_ds]{move_ds()}} and \code{\link[=save_ds]{save_ds()}} will automatically adjust gc based on whether
-the files remain under \code{tempdir()}. To lock the gc setting and prevent
-automatic adjustment, call \code{\link[=gc_ds]{gc_ds()}} after creation.}
+the files remain in the output directory where they were written. To lock the
+gc setting and prevent automatic adjustment, call \code{\link[=gc_ds]{gc_ds()}} after creation.}
 }
 \value{
 An object with class \code{mrgsimsds}.
 }
 \description{
 Runs \code{\link[mrgsolve:mrgsim]{mrgsolve::mrgsim()}} and writes simulation output to a parquet file in
-\code{tempdir()}, returning an \code{mrgsimsds} object. Files in \code{tempdir()} are
-auto-deleted on garbage collection by default. Use \code{\link[=move_ds]{move_ds()}} or
-\code{\link[=save_ds]{save_ds()}} to relocate files outside \code{tempdir()}, which automatically
-disables gc, or call \code{\link[=gc_ds]{gc_ds()}} to control gc directly. Note that full
-argument names must be used for all arguments.
+the output directory attached to the model object (\code{tempdir()} by default;
+see \code{\link[=mread_ds]{mread_ds()}} and \code{\link[=set_ds_dir]{set_ds_dir()}}), returning an \code{mrgsimsds} object. Files
+in the output directory are auto-deleted on garbage collection by default.
+Use \code{\link[=move_ds]{move_ds()}} or \code{\link[=save_ds]{save_ds()}} to relocate files outside the output
+directory, which automatically disables gc, or call \code{\link[=gc_ds]{gc_ds()}} to control gc
+directly. Note that full argument names must be used for all arguments.
 }
 \examples{
 mod <- house_ds()

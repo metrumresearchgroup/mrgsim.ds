@@ -4,25 +4,33 @@
 \alias{save_process_info}
 \title{Save information about the R process that loaded a model}
 \usage{
-save_process_info(x)
+save_process_info(x, dir = NULL)
 }
 \arguments{
 \item{x}{a model object.}
+
+\item{dir}{the directory where simulated output should be written; when
+\code{NULL}, \code{getOption("mrgsim.ds.dir")} is used, falling back to \code{tempdir()}.
+The directory is created when it doesn't exist. See \code{\link[=set_ds_dir]{set_ds_dir()}} to change
+this after the model is loaded.}
 }
 \value{
 An updated model object suitable for using with \code{\link[=mrgsim_ds]{mrgsim_ds()}}.
 }
 \description{
-Stamps the model object with the current process ID and \code{tempdir()} path so
-that \code{\link[=mrgsim_ds]{mrgsim_ds()}} knows where to write output files. This is called
-automatically by \code{\link[=mread_ds]{mread_ds()}}, \code{\link[=house_ds]{house_ds()}}, and the other model-loading
-wrappers. Call it directly only when you load a model through the base
-mrgsolve functions (e.g. \code{\link[mrgsolve:mread]{mrgsolve::mread()}}) and still want to use
-\code{\link[=mrgsim_ds]{mrgsim_ds()}}.
+Stamps the model object with the current process ID and the directory where
+simulated output should be written so that \code{\link[=mrgsim_ds]{mrgsim_ds()}} knows where to
+write output files. This is called automatically by \code{\link[=mread_ds]{mread_ds()}},
+\code{\link[=house_ds]{house_ds()}}, and the other model-loading wrappers. Call it directly only
+when you load a model through the base mrgsolve functions (e.g.
+\code{\link[mrgsolve:mread]{mrgsolve::mread()}}) and still want to use \code{\link[=mrgsim_ds]{mrgsim_ds()}}.
 }
 \examples{
 mod <- mrgsolve::house()
 
 mod <- save_process_info(mod)
 
+}
+\seealso{
+\code{\link[=set_ds_dir]{set_ds_dir()}}, \code{\link[=get_ds_dir]{get_ds_dir()}}
 }

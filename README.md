@@ -76,14 +76,14 @@ disk.
 
 ``` r
 basename(out$files)
-. [1] "mrgsims-ds-31d21a85a344.parquet"
+. [1] "mrgsims-ds-ecae9c78c4f.parquet"
 ```
 
 This means there is almost nothing inside the object itself
 
 ``` r
 lobstr:::obj_size(out)
-. 293.46 kB
+. 293.63 kB
 
 dim(out)
 . [1] 1446000       4
@@ -282,7 +282,7 @@ out2
 
 ``` r
 lobstr::obj_size(out2)
-. 385.89 kB
+. 386.12 kB
 ```
 
 ## Files on disk are automagically managed
@@ -292,11 +292,11 @@ All `arrow` files are stored in the `tempdir()` in parquet format
 ``` r
 list_temp()
 . 501 files [6.4 Gb]
-. - mrgsims-ds-31d21a85a344.parquet
-. - mrgsims-ds-3212112c6c6d.parquet
+. - mrgsims-ds-ecae9c78c4f.parquet
+. - mrgsims-ds-ecec11b86f01.parquet
 .    ...
-. - mrgsims-ds-3216d6319d1.parquet
-. - mrgsims-ds-3216e0b158a.parquet
+. - mrgsims-ds-ecf0ca14788.parquet
+. - mrgsims-ds-ecf0e905020.parquet
 ```
 
 This directory is eventually removed when the R session ends. Tools are
@@ -351,8 +351,8 @@ cleaned up.
 ``` r
 gc()
 .           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-. Ncells 1965994 105.0    6348300 339.1         NA  6673017 356.4
-. Vcells 3684221  28.2   19666519 150.1      16384 22101621 168.7
+. Ncells 1965632 105.0    6426606 343.3         NA  6671735 356.4
+. Vcells 3684429  28.2   19669794 150.1      16384 22106538 168.7
 
 list_temp()
 . 2 files [26.4 Mb]
@@ -440,14 +440,14 @@ out[[1]]
 . Files: 1 [10.5 Kb]
 . Owner: no
 .     ID TIME       CL     IPRED
-. 1:   1  0.0 1.622033 0.0000000
-. 2:   1  0.0 1.622033 0.0000000
-. 3:   1  0.5 1.622033 0.5364491
-. 4:   1  1.0 1.622033 0.9784353
-. 5:   1  1.5 1.622033 1.3402577
-. 6:   1  2.0 1.622033 1.6341085
-. 7:   1  2.5 1.622033 1.8703820
-. 8:   1  3.0 1.622033 2.0579380
+. 1:   1  0.0 2.595017 0.0000000
+. 2:   1  0.0 2.595017 0.0000000
+. 3:   1  0.5 2.595017 0.3473730
+. 4:   1  1.0 2.595017 0.6462037
+. 5:   1  1.5 2.595017 0.9017091
+. 6:   1  2.0 2.595017 1.1185962
+. 7:   1  2.5 2.595017 1.3011094
+. 8:   1  3.0 2.595017 1.4530742
 . [mrgsim.ds] pointer and source pid refreshed.
 ```
 
@@ -477,14 +477,14 @@ out
 . Files: 3 [31.4 Kb]
 . Owner: yes (gc)
 .     ID TIME       CL     IPRED
-. 1:   1  0.0 1.622033 0.0000000
-. 2:   1  0.0 1.622033 0.0000000
-. 3:   1  0.5 1.622033 0.5364491
-. 4:   1  1.0 1.622033 0.9784353
-. 5:   1  1.5 1.622033 1.3402577
-. 6:   1  2.0 1.622033 1.6341085
-. 7:   1  2.5 1.622033 1.8703820
-. 8:   1  3.0 1.622033 2.0579380
+. 1:   1  0.0 2.595017 0.0000000
+. 2:   1  0.0 2.595017 0.0000000
+. 3:   1  0.5 2.595017 0.3473730
+. 4:   1  1.0 2.595017 0.6462037
+. 5:   1  1.5 2.595017 0.9017091
+. 6:   1  2.0 2.595017 1.1185962
+. 7:   1  2.5 2.595017 1.3011094
+. 8:   1  3.0 2.595017 1.4530742
 ```
 
 Now we have all three files collected in a single object that we can
@@ -521,14 +521,14 @@ out2
 . Files: 3 [31.4 Kb]
 . Owner: yes (no gc)
 .     ID TIME       CL     IPRED
-. 1:   1  0.0 1.622033 0.0000000
-. 2:   1  0.0 1.622033 0.0000000
-. 3:   1  0.5 1.622033 0.5364491
-. 4:   1  1.0 1.622033 0.9784353
-. 5:   1  1.5 1.622033 1.3402577
-. 6:   1  2.0 1.622033 1.6341085
-. 7:   1  2.5 1.622033 1.8703820
-. 8:   1  3.0 1.622033 2.0579380
+. 1:   1  0.0 2.595017 0.0000000
+. 2:   1  0.0 2.595017 0.0000000
+. 3:   1  0.5 2.595017 0.3473730
+. 4:   1  1.0 2.595017 0.6462037
+. 5:   1  1.5 2.595017 0.9017091
+. 6:   1  2.0 2.595017 1.1185962
+. 7:   1  2.5 2.595017 1.3011094
+. 8:   1  3.0 2.595017 1.4530742
 ```
 
 ``` r
@@ -540,12 +540,35 @@ check_ownership(out2)
 
 ## Details
 
-`mrgsim.ds` tracks the `tempdir()` location and the process ID (via
-`Sys.getpid()`) of the R process where the model was loaded. When
-simulation outputs are saved to file, the save location is always
-`tempdir()` from that parent R process. When simulating in parallel,
-this will likely be *different* than what a call to `tempdir()` says on
-the worker node.
+`mrgsim.ds` tracks the output directory and the process ID (via
+`Sys.getpid()`) of the R process where the model was loaded. Simulation
+outputs are always written to that directory, which is resolved one
+time, when the model is loaded: the `dir` argument to `mread_ds()` and
+friends, then `getOption("mrgsim.ds.dir")`, then `tempdir()`.
+
+Resolving the location at load time is what makes parallel simulation
+work: the directory travels with the model object out to the worker
+nodes. But `tempdir()` on a worker node is *not* the same directory as
+`tempdir()` on the parent node, so pass `dir` (or set the option) when
+the workers are R processes which can’t see the parent’s `tempdir()`;
+this is the usual situation when workers are launched through a
+scheduler like slurm.
+
+``` r
+options(mrgsim.ds.dir = "/scratch/sims")
+
+mod <- mread_ds("model.mod")
+```
+
+Note that the directory has to be reachable from every node; this is a
+knob for choosing the location, but it can’t make a node-local path
+shared. Use `set_ds_dir()` to re-target a model object which was already
+loaded and `get_ds_dir()` to see where output will be written.
+
+Simulated output is subject to garbage collection in the output
+directory, whether or not that directory is under `tempdir()`. Moving
+files out of the output directory with `move_ds()` or `save_ds()` turns
+garbage collection off.
 
 At the time simulations are saved, the current R process id (`pid`) is
 saved to the simulation output object. In the parallel simulation case,

@@ -23,8 +23,9 @@ location of the backing files on move.}
 \code{save_ds()} returns the path to the written \code{.rds} file, invisibly.
 
 \code{read_ds()} returns the restored mrgsimsds object invisibly. gc is disabled
-(\code{gc = FALSE}) on the returned object and the caller holds ownership of the
-backing files.
+(\code{gc = FALSE}) on the returned object, the caller holds ownership of the
+backing files, and the directory holding \code{file} becomes the object's output
+directory.
 }
 \description{
 \code{save_ds()} serializes an mrgsimsds object to an \code{.rds} file, moving the

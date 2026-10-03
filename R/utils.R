@@ -39,14 +39,18 @@ format_big <- function() {
 }
 #' Save information about the R process that loaded a model
 #'
-#' Stamps the model object with the current process ID and `tempdir()` path so
-#' that [mrgsim_ds()] knows where to write output files. This is called
-#' automatically by [mread_ds()], [house_ds()], and the other model-loading
-#' wrappers. Call it directly only when you load a model through the base
-#' mrgsolve functions (e.g. [mrgsolve::mread()]) and still want to use
-#' [mrgsim_ds()].
+#' Stamps the model object with the current process ID and the directory where
+#' simulated output should be written so that [mrgsim_ds()] knows where to
+#' write output files. This is called automatically by [mread_ds()],
+#' [house_ds()], and the other model-loading wrappers. Call it directly only
+#' when you load a model through the base mrgsolve functions (e.g.
+#' [mrgsolve::mread()]) and still want to use [mrgsim_ds()].
 #'
 #' @param x a model object.
+#' @param dir the directory where simulated output should be written; when
+#' `NULL`, `getOption("mrgsim.ds.dir")` is used, falling back to `tempdir()`.
+#' The directory is created when it doesn't exist. See [set_ds_dir()] to change
+#' this after the model is loaded.
 #' 
 #' @return 
 #' An updated model object suitable for using with [mrgsim_ds()].
@@ -56,14 +60,19 @@ format_big <- function() {
 #' 
 #' mod <- save_process_info(mod)
 #' 
+#' @seealso [set_ds_dir()], [get_ds_dir()]
+#' 
 #' @export
-save_process_info <- function(x) {
+save_process_info <- function(x, dir = NULL) {
   if(!is.mrgmod(x)) { # nocov start
     abort("`x` must be an mrgmod object.")  
   } # nocov end
+  if(is.null(dir)) {
+    dir <- default_dir_ds()  
+  }
   x@envir$mrgsim.ds.mread_valid <- TRUE
   x@envir$mrgsim.ds.mread_pid <- Sys.getpid()
-  x@envir$mrgsim.ds.mread_tempdir <- tempdir()
+  x@envir$mrgsim.ds.output_dir <- check_ds_dir(dir)
   x
 }
 
@@ -95,13 +104,8 @@ get_mread_pid <- function(x) {
   pid
 }
 
-get_mread_tempdir <- function(x) {
-  tempd <- x@envir$mrgsim.ds.mread_tempdir
-  tempd
-}
-
 mread_with_ds <- function(x) {
-  is.character(x@envir$mrgsim.ds.mread_tempdir)  
+  isTRUE(x@envir$mrgsim.ds.mread_valid)  
 }
 
 get_nid_from_ds <- function(x, nid = 10, batch_size = 10000) {

@@ -13,9 +13,9 @@ pipeline for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk.
 Those files are automatically removed when the owning object goes out of scope
 and becomes subject to the R garbage collector. While "anonymous",
-parquet-formatted files hold the data in \code{tempdir()} as you are working in
-R, functions are provided to move this data to more permanent locations for
-later use.
+parquet-formatted files hold the data in \code{tempdir()} (or another output
+directory of your choosing) as you are working in R, functions are provided
+to move this data to more permanent locations for later use.
 }
 \section{Function listing}{
 
@@ -27,6 +27,12 @@ later use.
 \item \code{\link[=mread_cache_ds]{mread_cache_ds()}}
 \item \code{\link[=modlib_ds]{modlib_ds()}}
 \item \code{\link[=house_ds]{house_ds()}}
+}
+\item Set the simulation output directory
+\itemize{
+\item \code{\link[=set_ds_dir]{set_ds_dir()}}
+\item \code{\link[=get_ds_dir]{get_ds_dir()}}
+\item \code{\link[=save_process_info]{save_process_info()}}
 }
 \item Generate Apache Arrow dataset-backed outputs
 \itemize{
@@ -68,7 +74,7 @@ later use.
 \item \code{\link[=refresh_ds]{refresh_ds()}}
 \item \code{\link[=prune_ds]{prune_ds()}}
 }
-\item Manage tempdir
+\item Manage the output directory
 \itemize{
 \item \code{\link[=list_temp]{list_temp()}}
 \item \code{\link[=purge_temp]{purge_temp()}}

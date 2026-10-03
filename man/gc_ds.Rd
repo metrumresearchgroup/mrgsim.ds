@@ -42,8 +42,8 @@ The \code{notify} flag is intended for debugging only.
 Calling \code{gc_ds()} with \code{value} locks the gc setting: once a value is
 explicitly set, the package will never automatically change it when files are
 moved or written. A warning is issued if gc is locked to \code{TRUE} but files
-are moved outside of \code{tempdir()}, since those files would then be
-auto-deleted on garbage collection.
+are moved outside of the output directory where they were written, since
+those files would then be auto-deleted on garbage collection.
 }
 \examples{
 mod <- modlib_ds("popex", outvars = "IPRED")

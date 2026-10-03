@@ -3,15 +3,23 @@
 \name{list_temp}
 \alias{list_temp}
 \alias{purge_temp}
-\title{Manage simulated outputs in the per-session temporary directory}
+\title{Manage simulated outputs in the output directory}
 \usage{
-list_temp(quietly = FALSE)
+list_temp(dir = default_dir_ds(), quietly = FALSE)
 
-purge_temp(quietly = FALSE)
+purge_temp(dir = default_dir_ds(), quietly = FALSE, force = FALSE)
 }
 \arguments{
+\item{dir}{the directory to list or purge; defaults to
+\code{getOption("mrgsim.ds.dir")}, falling back to \code{tempdir()}. Note that this is
+the session default and not necessarily where any specific object wrote its
+files; see \code{\link[=files_ds]{files_ds()}}.}
+
 \item{quietly}{if \code{TRUE}, suppresses console output (the file listing for
 \code{list_temp()} and the deletion summary for \code{purge_temp()}).}
+
+\item{force}{if \code{TRUE}, allow \code{purge_temp()} to delete files in a directory
+which is not under \code{tempdir()}.}
 }
 \value{
 \code{list_temp()} returns a character vector of file paths invisibly, and prints
@@ -21,12 +29,16 @@ a summary to the console unless \code{quietly = TRUE}.
 }
 \description{
 Functions for inspecting and cleaning up package-managed parquet files in
-\code{tempdir()}. \code{list_temp()} shows what is present; \code{purge_temp()}
+the output directory (\code{tempdir()} unless you set another location; see
+\code{\link[=mread_ds]{mread_ds()}}). \code{list_temp()} shows what is present; \code{purge_temp()}
 resets the simulation file system.
 
-\code{purge_temp()} deletes all package-managed files unconditionally and clears
-the ownership maps, resetting the system to a clean state. It is intended
-for use in testing teardown or session cleanup, not routine usage.
+\code{purge_temp()} deletes all package-managed files in \code{dir} unconditionally
+and clears the ownership maps, resetting the system to a clean state. It is
+intended for use in testing teardown or session cleanup, not routine usage.
+Because files outside of \code{tempdir()} might be shared with other R processes
+(e.g., when simulating in parallel), \code{force = TRUE} is required to purge
+them.
 }
 \examples{
 mod <- house_ds()

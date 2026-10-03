@@ -34,14 +34,16 @@ brings simulated data from multiple backing files into a single file.
 \subsection{Automatic gc adjustment}{
 
 Only \code{move_ds()} automatically updates the gc flag based on where the files
-end up: files that remain under \code{tempdir()} keep \code{gc = TRUE}; files moved
-outside \code{tempdir()} get \code{gc = FALSE}, protecting them from automatic
-deletion. Neither \code{rename_ds()} nor \code{combine_ds()} changes the gc flag
-because neither changes the file location.
+end up: files that remain in the output directory where they were written
+(see \code{\link[=mread_ds]{mread_ds()}}) keep \code{gc = TRUE}; files moved outside of that directory
+get \code{gc = FALSE}, protecting them from automatic deletion. This is the case
+whether or not the output directory is under \code{tempdir()}. Neither
+\code{rename_ds()} nor \code{combine_ds()} changes the gc flag because neither changes
+the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to \code{\link[=gc_ds]{gc_ds()}}. A warning is issued if gc is locked to \code{TRUE} but
-files land outside \code{tempdir()}.
+files land outside the output directory.
 
 The object (\code{x}) is required to own the underlying files in order to move,
 rename, or combine them.

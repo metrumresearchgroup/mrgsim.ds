@@ -93,8 +93,9 @@ files_ds <- function(x) {
 #' `save_ds()` returns the path to the written `.rds` file, invisibly.
 #'
 #' `read_ds()` returns the restored mrgsimsds object invisibly. gc is disabled
-#' (`gc = FALSE`) on the returned object and the caller holds ownership of the
-#' backing files.
+#' (`gc = FALSE`) on the returned object, the caller holds ownership of the
+#' backing files, and the directory holding `file` becomes the object's output
+#' directory.
 #'
 #' @examples
 #' mod <- house_ds()
@@ -114,8 +115,13 @@ save_ds <- function(x, file, quietly = FALSE) {
     x <- move_ds(x, path, quietly = quietly)
   } 
   path <- current_location(x)
-  if (in_tempdir(path)) {
-    warn("object and backing files will be saved to tempdir().")
+  if(isTRUE(x$gc)) {
+    warn(
+      c(
+        "the backing files may be removed on garbage collection.",
+        i = "see `gc_ds()` to protect them, or save them outside the output directory."
+      )
+    )
   }
   file <- file.path(path, basename(file))
   reclass <- class(x)
@@ -144,6 +150,9 @@ read_ds <- function(file) {
     abort("[read_ds] one or more files could not be located.")
   }
   x$files <- normalizePath(absfiles, mustWork = TRUE)
+  # the restored object is at home where its rds file lives; the directory
+  # recorded when the object was created might not even exist any more
+  x$dir <- normalizePath(dirname(file), mustWork = TRUE)
   x <- refresh_ds(x)
   x <- copy_ds(x, own = TRUE)
   x <- gc_ds(x, value = FALSE)
@@ -160,14 +169,16 @@ read_ds <- function(file) {
 #' ## Automatic gc adjustment
 #'
 #' Only `move_ds()` automatically updates the gc flag based on where the files
-#' end up: files that remain under `tempdir()` keep `gc = TRUE`; files moved
-#' outside `tempdir()` get `gc = FALSE`, protecting them from automatic
-#' deletion. Neither `rename_ds()` nor `combine_ds()` changes the gc flag
-#' because neither changes the file location.
+#' end up: files that remain in the output directory where they were written
+#' (see [mread_ds()]) keep `gc = TRUE`; files moved outside of that directory
+#' get `gc = FALSE`, protecting them from automatic deletion. This is the case
+#' whether or not the output directory is under `tempdir()`. Neither
+#' `rename_ds()` nor `combine_ds()` changes the gc flag because neither changes
+#' the file location.
 #'
 #' This automatic adjustment is skipped if the gc setting has been locked by a
 #' prior call to [gc_ds()]. A warning is issued if gc is locked to `TRUE` but
-#' files land outside `tempdir()`.
+#' files land outside the output directory.
 #'
 #' The object (`x`) is required to own the underlying files in order to move,
 #' rename, or combine them.

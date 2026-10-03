@@ -5,18 +5,39 @@ in_tempdir <- function(files) {
   return(all(fs::path_has_parent(files, tdir)))
 }
 
+# The directory where the object's files were originally written; `tempdir()`
+# is the fallback for objects created before `dir` was tracked
+home_dir_ds <- function(x) {
+  if(is.character(x$dir) && length(x$dir) == 1L) {
+    return(x$dir)  
+  }
+  tempdir()
+}
+
+# Are the files still in the directory where they were written? This is the
+# test for automatic gc: output is cleaned up in the directory it was written
+# to, whether or not that directory is under tempdir()
+in_home_ds <- function(x) {
+  # `mustWork` is FALSE here because the home directory can be gone by the
+  # time we check (e.g., tempdir() from a previous session)
+  home <- normalizePath(home_dir_ds(x), mustWork = FALSE)
+  files <- normalizePath(x$files, mustWork = TRUE)
+
+  return(all(fs::path_has_parent(files, home)))
+}
+
 set_gc_auto <- function(x) {
   if(isTRUE(x$gc_locked)) {
-    if(isTRUE(x$gc) && !in_tempdir(x$files)) {
+    if(isTRUE(x$gc) && !in_home_ds(x)) {
       warning(
-        "gc is locked to TRUE but files are outside tempdir(); ",
+        "gc is locked to TRUE but files are outside the output directory; ",
         "files may be auto-deleted on garbage collection.",
         call. = FALSE
       )
     }
     return(invisible(x))
   }
-  x$gc <- in_tempdir(x$files)
+  x$gc <- in_home_ds(x)
   invisible(x)
 }
 
@@ -32,8 +53,8 @@ set_gc_auto <- function(x) {
 #' Calling `gc_ds()` with `value` locks the gc setting: once a value is
 #' explicitly set, the package will never automatically change it when files are
 #' moved or written. A warning is issued if gc is locked to `TRUE` but files
-#' are moved outside of `tempdir()`, since those files would then be
-#' auto-deleted on garbage collection.
+#' are moved outside of the output directory where they were written, since
+#' those files would then be auto-deleted on garbage collection.
 #'
 #' @param x an mrgsimsds object or a list of objects.
 #' @param value logical; if `TRUE` the underlying files will be deleted on

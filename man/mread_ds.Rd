@@ -8,18 +8,24 @@
 \alias{mread_cache_ds}
 \title{Load an mrgsolve model for Arrow-backed simulation}
 \usage{
-mread_ds(...)
+mread_ds(..., dir = NULL)
 
-mcode_ds(...)
+mcode_ds(..., dir = NULL)
 
-modlib_ds(...)
+modlib_ds(..., dir = NULL)
 
-house_ds(...)
+house_ds(..., dir = NULL)
 
-mread_cache_ds(...)
+mread_cache_ds(..., dir = NULL)
 }
 \arguments{
 \item{...}{passed to the corresponding mrgsolve function.}
+
+\item{dir}{the directory where simulated output should be written; when
+\code{NULL}, \code{getOption("mrgsim.ds.dir")} is used, falling back to \code{tempdir()}.
+The directory is created when it doesn't exist and the location is resolved
+one time, here, when the model is loaded. See \code{\link[=set_ds_dir]{set_ds_dir()}} to change this
+after the model is loaded.}
 }
 \value{
 A model object with process information saved, suitable for use with
@@ -28,16 +34,21 @@ A model object with process information saved, suitable for use with
 \description{
 Thin wrappers around mrgsolve model-loading functions (\code{mread()},
 \code{mcode()}, \code{modlib()}, \code{house()}, \code{mread_cache()}) that additionally call
-\code{\link[=save_process_info]{save_process_info()}} to stamp the model with the current process ID. This
-stamp is required by \code{\link[=mrgsim_ds]{mrgsim_ds()}} to correctly associate simulation outputs
-with the process that created them.
+\code{\link[=save_process_info]{save_process_info()}} to stamp the model with the current process ID and the
+directory where simulated output should be written. This stamp is required by
+\code{\link[=mrgsim_ds]{mrgsim_ds()}} to correctly associate simulation outputs with the process that
+created them.
 }
 \examples{
 mod <- house_ds()
 
 mod
 
+mod <- house_ds(dir = file.path(tempdir(), "sims"))
+
+get_ds_dir(mod)
+
 }
 \seealso{
-\code{\link[=save_process_info]{save_process_info()}}.
+\code{\link[=save_process_info]{save_process_info()}}, \code{\link[=set_ds_dir]{set_ds_dir()}}, \code{\link[=get_ds_dir]{get_ds_dir()}}.
 }

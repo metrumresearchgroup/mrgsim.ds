@@ -35,10 +35,17 @@ test_that("save_ds issues a message when quietly = FALSE", {
   expect_message(save_ds(out, file.path(dir, "out.rds")), "file is now located in")
 })
 
-test_that("save_ds warns when files end up in tempdir", {
-  out <- mrgsim_ds(mod, gc = FALSE)
+test_that("save_ds warns when the backing files are subject to gc", {
+  out <- mrgsim_ds(mod, gc = TRUE)
   file <- file.path(tempdir(), "out.rds")
-  expect_warning(save_ds(out, file), "tempdir")
+  expect_warning(save_ds(out, file), "removed on garbage collection")
+})
+
+test_that("save_ds does not warn when files move out of the output directory", {
+  out <- mrgsim_ds(mod, gc = TRUE)
+  dir <- withr::local_tempdir(tmpdir = getwd())
+  expect_silent(save_ds(out, file.path(dir, "out.rds"), quietly = TRUE))
+  expect_false(out$gc)
 })
 
 # read_ds -----------------------------------------------------------------------

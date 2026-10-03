@@ -3,10 +3,12 @@
 #'
 #' @description
 #' Converts the output of [mrgsolve::mrgsim()] to an `mrgsimsds` object by
-#' writing the simulation data to a parquet file in `tempdir()`. Files in
-#' `tempdir()` are auto-deleted on garbage collection by default. Use
-#' [move_ds()] or [save_ds()] to relocate files outside `tempdir()`, which
-#' automatically disables gc, or call [gc_ds()] to control gc directly.
+#' writing the simulation data to a parquet file in the output directory
+#' attached to the model object (`tempdir()` by default; see [mread_ds()] and
+#' [set_ds_dir()]). Files in the output directory are auto-deleted on garbage
+#' collection by default. Use [move_ds()] or [save_ds()] to relocate files
+#' outside the output directory, which automatically disables gc, or call
+#' [gc_ds()] to control gc directly.
 #'
 #' @inheritParams mrgsim_ds
 #' @param x an mrgsims object.
@@ -41,12 +43,14 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
     abort("`x` must be an `mrgsims` object.")
   }
   
-  dir <- get_mread_tempdir(x@mod)
+  dir <- get_output_dir(x@mod)
+  if(!dir_exists(dir)) {
+    # the directory is created when it gets set, but it might not exist in the
+    # R process where the simulation is actually happening
+    dir_create(dir)  
+  }
 
   file <- file.path(dir, file_ds())
-  if(grepl(" ", file)) {
-    abort("output file name cannot contain spaces.")  
-  }
   
   write_parquet(x = x@data, sink = file)
   
@@ -55,6 +59,7 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
   ans <- new.env(parent = emptyenv())
   ans$ds <- open_dataset(file)
   ans$files <- ans$ds$files
+  ans$dir <- dir
   ans$mod <- x@mod
   ans$dim <- dim(ans$ds)
   n <- min(10, ans$dim[1L])
@@ -82,11 +87,12 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #'
 #' @description
 #' Runs [mrgsolve::mrgsim()] and writes simulation output to a parquet file in
-#' `tempdir()`, returning an `mrgsimsds` object. Files in `tempdir()` are
-#' auto-deleted on garbage collection by default. Use [move_ds()] or
-#' [save_ds()] to relocate files outside `tempdir()`, which automatically
-#' disables gc, or call [gc_ds()] to control gc directly. Note that full
-#' argument names must be used for all arguments.
+#' the output directory attached to the model object (`tempdir()` by default;
+#' see [mread_ds()] and [set_ds_dir()]), returning an `mrgsimsds` object. Files
+#' in the output directory are auto-deleted on garbage collection by default.
+#' Use [move_ds()] or [save_ds()] to relocate files outside the output
+#' directory, which automatically disables gc, or call [gc_ds()] to control gc
+#' directly. Note that full argument names must be used for all arguments.
 #'
 #' @param x a model object loaded through [mread_ds()], [mcode_ds()],
 #' [modlib_ds()], [mread_cache_ds()], or [house_ds()].
@@ -97,8 +103,8 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' @param gc initial gc setting; if `TRUE`, a finalizer function will attempt
 #' to remove files once the object is out of scope. This value is not locked:
 #' [move_ds()] and [save_ds()] will automatically adjust gc based on whether
-#' the files remain under `tempdir()`. To lock the gc setting and prevent
-#' automatic adjustment, call [gc_ds()] after creation.
+#' the files remain in the output directory where they were written. To lock the
+#' gc setting and prevent automatic adjustment, call [gc_ds()] after creation.
 #' 
 #' @examples
 #' mod <- house_ds()

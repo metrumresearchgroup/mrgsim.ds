@@ -385,11 +385,33 @@ unlink("inst/readme_temp", recursive = TRUE)
 
 ## Details
 
-`mrgsim.ds` tracks the `tempdir()` location and the process ID (via 
-`Sys.getpid()`) of the R process where the model was loaded. When simulation 
-outputs are saved to file, the save location is always `tempdir()` from that 
-parent R process. When simulating in parallel, this will likely be _different_
-than what  a call to `tempdir()` says on the worker node. 
+`mrgsim.ds` tracks the output directory and the process ID (via 
+`Sys.getpid()`) of the R process where the model was loaded. Simulation outputs
+are always written to that directory, which is resolved one time, when the 
+model is loaded: the `dir` argument to `mread_ds()` and friends, then 
+`getOption("mrgsim.ds.dir")`, then `tempdir()`.
+
+Resolving the location at load time is what makes parallel simulation work: the
+directory travels with the model object out to the worker nodes. But 
+`tempdir()` on a worker node is _not_ the same directory as `tempdir()` on the
+parent node, so pass `dir` (or set the option) when the workers are R processes
+which can't see the parent's `tempdir()`; this is the usual situation when 
+workers are launched through a scheduler like slurm.
+
+```{r, eval = FALSE}
+options(mrgsim.ds.dir = "/scratch/sims")
+
+mod <- mread_ds("model.mod")
+```
+
+Note that the directory has to be reachable from every node; this is a knob for
+choosing the location, but it can't make a node-local path shared. Use 
+`set_ds_dir()` to re-target a model object which was already loaded and 
+`get_ds_dir()` to see where output will be written.
+
+Simulated output is subject to garbage collection in the output directory, 
+whether or not that directory is under `tempdir()`. Moving files out of the 
+output directory with `move_ds()` or `save_ds()` turns garbage collection off.
 
 At the time simulations are saved, the current R process id (`pid`) is saved
 to the simulation output object. In the parallel simulation case, this will be 

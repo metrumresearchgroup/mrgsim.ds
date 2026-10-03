@@ -28,9 +28,9 @@ pipeline for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. 
 Those files are automatically removed when the owning object goes out of scope 
 and becomes subject to the R garbage collector. While "anonymous", 
-parquet-formatted files hold the data in `tempdir()` as you are working in 
-R, functions are provided to move this data to more permanent locations for 
-later use. 
+parquet-formatted files hold the data in `tempdir()` (or another output 
+directory of your choosing) as you are working in R, functions are provided to 
+move this data to more permanent locations for later use. 
 
 
 # Load a model
@@ -199,7 +199,7 @@ a single object that now holds a single pointer to all
 
 In the last simulation, we created a list of output objects and then reduced
 that list to a single object with the outputs held in 10 parquet files. You 
-can see these files when they are in `tempdir()`.
+can see these files when they are in the output directory.
 
 ```{r}
 list_temp()
@@ -313,4 +313,60 @@ Now, your files will remain after the object goes out of scope. But remember
 that, in this example, the files are still in `tempdir()` and they will be 
 blown away when R restarts. So if you really want to keep the output files
 safe, it's best to use `save_ds()`, `move_ds()`, or `write_parquet_ds()` to
-relocate files out of `tempdir()`, while also disabling file garbage collection.
+relocate files out of the output directory, while also disabling file garbage 
+collection.
+
+Note that simulated output is garbage collected in whatever output directory it
+was written to, whether or not that directory is under `tempdir()` (see the
+next section).
+
+# Setting the output directory
+
+By default, simulated output is written to `tempdir()`. Pass `dir` when you 
+load the model to send output somewhere else.
+
+```{r}
+sim_dir <- file.path(tempdir(), "vignette-sims")
+
+mod <- house_ds(end = 24, dir = sim_dir)
+
+get_ds_dir(mod)
+```
+
+```{r}
+out <- mrgsim_ds(mod, data)
+
+files_ds(out)
+```
+
+The location is resolved one time, when the model is loaded, and it is stamped
+on the model object; this is what allows the location to travel with the model
+object when you simulate in parallel. `getOption("mrgsim.ds.dir")` is 
+consulted when `dir` isn't passed, so you can set the location one time for 
+your whole session or script
+
+```{r, eval = FALSE}
+options(mrgsim.ds.dir = "/scratch/sims")
+```
+
+and `set_ds_dir()` will re-target a model object which was already loaded
+
+```{r, eval = FALSE}
+mod <- set_ds_dir(mod, "/scratch/other-sims")
+```
+
+This is the fix for simulating in parallel when the worker nodes are R 
+processes which can't see `tempdir()` from the parent R process; note that 
+whatever location you pick does have to be reachable from every node.
+
+Simulated output in a custom output directory is still garbage collected there,
+just like output in `tempdir()`; `move_ds()` turns gc off when the files leave
+that directory.
+
+```{r}
+list_temp(sim_dir)
+```
+
+```{r}
+purge_temp(sim_dir, quietly = TRUE)
+```

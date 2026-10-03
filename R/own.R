@@ -209,6 +209,7 @@ copy_ds <- function(x, own = TRUE) {
   ans <- new.env(parent = emptyenv())
   ans$ds <- open_dataset(x$files)
   ans$files <- x$files
+  ans$dir <- x$dir
   ans$mod <- x$mod
   ans$dim <- x$dim
   ans$head <- x$head

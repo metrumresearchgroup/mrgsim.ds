@@ -32,9 +32,9 @@ assign("nullptr", new("externalptr"), .global)
 #' output objects in R claim ownership of their files on disk.
 #' Those files are automatically removed when the owning object goes out of scope
 #' and becomes subject to the R garbage collector. While "anonymous",
-#' parquet-formatted files hold the data in `tempdir()` as you are working in
-#' R, functions are provided to move this data to more permanent locations for
-#' later use.
+#' parquet-formatted files hold the data in `tempdir()` (or another output
+#' directory of your choosing) as you are working in R, functions are provided
+#' to move this data to more permanent locations for later use.
 #'
 #' @section Function listing:
 #'
@@ -44,6 +44,11 @@ assign("nullptr", new("externalptr"), .global)
 #'   - [mread_cache_ds()]
 #'   - [modlib_ds()]
 #'   - [house_ds()]
+#'
+#' - Set the simulation output directory
+#'   - [set_ds_dir()]
+#'   - [get_ds_dir()]
+#'   - [save_process_info()]
 #'
 #' - Generate Apache Arrow dataset-backed outputs
 #'   - [mrgsim_ds()]
@@ -79,7 +84,7 @@ assign("nullptr", new("externalptr"), .global)
 #'   - [refresh_ds()]
 #'   - [prune_ds()]
 #'
-#' - Manage tempdir
+#' - Manage the output directory
 #'   - [list_temp()]
 #'   - [purge_temp()]
 #'
