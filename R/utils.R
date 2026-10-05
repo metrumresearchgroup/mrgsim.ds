@@ -46,11 +46,6 @@ format_big <- function() {
 #' when you load a model through the base mrgsolve functions (e.g.
 #' [mrgsolve::mread()]) and still want to use [mrgsim_ds()].
 #'
-#' To change the output directory on a model which was already stamped, use
-#' [set_ds_dir()]; calling `save_process_info()` again also re-stamps the
-#' process ID, which should only happen in the R process that will collect the
-#' simulation output.
-#'
 #' @param x a model object.
 #' @param ds_dir the directory where simulated output should be written; when
 #' `NULL`, `getOption("mrgsim.ds.dir")` is used, falling back to `tempdir()`.

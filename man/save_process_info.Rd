@@ -25,12 +25,6 @@ write output files. This is called automatically by \code{\link[=mread_ds]{mread
 when you load a model through the base mrgsolve functions (e.g.
 \code{\link[mrgsolve:mread]{mrgsolve::mread()}}) and still want to use \code{\link[=mrgsim_ds]{mrgsim_ds()}}.
 }
-\details{
-To change the output directory on a model which was already stamped, use
-\code{\link[=set_ds_dir]{set_ds_dir()}}; calling \code{save_process_info()} again also re-stamps the
-process ID, which should only happen in the R process that will collect the
-simulation output.
-}
 \examples{
 mod <- mrgsolve::house()
 
