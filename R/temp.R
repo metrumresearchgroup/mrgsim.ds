@@ -2,10 +2,15 @@ in_tempdir <- function(files) {
   if (!length(files)) {
     abort(c("Must specify at least one file."))
   }
-  tdir <- normalizePath(tempdir(), mustWork = TRUE)
-  files <- normalizePath(files, mustWork = TRUE)
 
-  return(all(fs::path_has_parent(files, tdir)))
+  if (length(unique(dirname(files))) > 1) {
+    abort(c("All files must be in the same directory.", files))
+  }
+
+  tdir <- normalizePath(tempdir(), mustWork = TRUE)
+  path <- normalizePath(files[1], mustWork = TRUE)
+
+  return(fs::path_has_parent(path, tdir))
 }
 
 #' Manage simulated outputs in the per-session temporary directory
