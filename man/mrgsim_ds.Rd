@@ -47,5 +47,5 @@ head(out)
 
 }
 \seealso{
-\code{\link[=as_mrgsim_ds]{as_mrgsim_ds()}}, \link{mrgsimsds-methods}.
+\code{\link[=as_mrgsim_ds]{as_mrgsim_ds()}}, \link{mrgsimsds-methods}, \code{\link[=set_tempdir_base]{set_tempdir_base()}}.
 }

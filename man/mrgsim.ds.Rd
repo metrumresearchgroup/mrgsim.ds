@@ -72,6 +72,7 @@ locations for later use.
 \itemize{
 \item \code{\link[=list_temp]{list_temp()}}
 \item \code{\link[=purge_temp]{purge_temp()}}
+\item \code{\link[=set_tempdir_base]{set_tempdir_base()}}
 }
 \item Enter dplyr / arrow pipelines with
 \itemize{

@@ -40,3 +40,6 @@ purge_temp()
 list_temp()
 
 }
+\seealso{
+\code{\link[=set_tempdir_base]{set_tempdir_base()}}
+}

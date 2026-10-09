@@ -13,8 +13,8 @@ save_process_info(x)
 An updated model object suitable for using with \code{\link[=mrgsim_ds]{mrgsim_ds()}}.
 }
 \description{
-Stamps the model object with the current process ID and \code{tempdir()} path so
-that \code{\link[=mrgsim_ds]{mrgsim_ds()}} knows where to write output files. This is called
+Stamps the model object with the current process ID and temporary directory
+path so that \code{\link[=mrgsim_ds]{mrgsim_ds()}} knows where to write output files. This is called
 automatically by \code{\link[=mread_ds]{mread_ds()}}, \code{\link[=house_ds]{house_ds()}}, and the other model-loading
 wrappers. Call it directly only when you load a model through the base
 mrgsolve functions (e.g. \code{\link[mrgsolve:mread]{mrgsolve::mread()}}) and still want to use

@@ -160,10 +160,11 @@ read_ds <- function(file) {
 #' ## Automatic gc adjustment
 #'
 #' Only `move_ds()` automatically updates the gc flag based on where the files
-#' end up: files that remain under `tempdir()` keep `gc = TRUE`; files moved
-#' outside `tempdir()` get `gc = FALSE`, protecting them from automatic
-#' deletion. Neither `rename_ds()` nor `combine_ds()` changes the gc flag
-#' because neither changes the file location.
+#' end up: files that remain under the temporary directory (`tempdir()` or the
+#' location specified via [set_tempdir_base()]) keep `gc = TRUE`; files moved
+#' outside the temporary directory get `gc = FALSE`, protecting them from
+#' automatic deletion. Neither `rename_ds()` nor `combine_ds()` changes the gc
+#' flag because neither changes the file location.
 #'
 #' This automatic adjustment is skipped if the gc setting has been locked by a
 #' prior call to [gc_ds()]. A warning is issued if gc is locked to `TRUE` but

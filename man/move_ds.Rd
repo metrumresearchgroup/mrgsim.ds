@@ -34,10 +34,11 @@ brings simulated data from multiple backing files into a single file.
 \subsection{Automatic gc adjustment}{
 
 Only \code{move_ds()} automatically updates the gc flag based on where the files
-end up: files that remain under \code{tempdir()} keep \code{gc = TRUE}; files moved
-outside \code{tempdir()} get \code{gc = FALSE}, protecting them from automatic
-deletion. Neither \code{rename_ds()} nor \code{combine_ds()} changes the gc flag
-because neither changes the file location.
+end up: files that remain under the temporary directory (\code{tempdir()} or the
+location specified via \code{\link[=set_tempdir_base]{set_tempdir_base()}}) keep \code{gc = TRUE}; files moved
+outside the temporary directory get \code{gc = FALSE}, protecting them from
+automatic deletion. Neither \code{rename_ds()} nor \code{combine_ds()} changes the gc
+flag because neither changes the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to \code{\link[=gc_ds]{gc_ds()}}. A warning is issued if gc is locked to \code{TRUE} but

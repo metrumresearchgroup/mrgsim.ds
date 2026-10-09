@@ -41,5 +41,5 @@ obj
 
 }
 \seealso{
-\code{\link[=mrgsim_ds]{mrgsim_ds()}}.
+\code{\link[=mrgsim_ds]{mrgsim_ds()}}, \code{\link[=set_tempdir_base]{set_tempdir_base()}}.
 }

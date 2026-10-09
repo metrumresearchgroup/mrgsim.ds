@@ -26,7 +26,7 @@
 #' @return
 #' An object with class `mrgsimsds`.
 #' 
-#' @seealso [mrgsim_ds()].
+#' @seealso [mrgsim_ds()], [set_tempdir_base()].
 #' 
 #' @export
 as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
@@ -115,7 +115,7 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' @return 
 #' An object with class `mrgsimsds`.
 #' 
-#' @seealso [as_mrgsim_ds()], [mrgsimsds-methods].
+#' @seealso [as_mrgsim_ds()], [mrgsimsds-methods], [set_tempdir_base()].
 #' 
 #' @export
 mrgsim_ds <- function(x,  ..., tags = list(), verbose = FALSE, 

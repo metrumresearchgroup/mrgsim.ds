@@ -82,6 +82,7 @@ assign("nullptr", new("externalptr"), .global)
 #' - Manage tempdir
 #'   - [list_temp()]
 #'   - [purge_temp()]
+#'   - [set_tempdir_base()]
 #'
 #' - Enter dplyr / arrow pipelines with
 #'   - [dplyr::mutate()]
