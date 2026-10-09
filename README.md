@@ -17,9 +17,9 @@ for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. Those files
 are automatically removed when the owning object goes out of scope and
 becomes subject to the R garbage collector. While “anonymous”,
-parquet-formatted files hold the data in `tempdir()` as you are working
-in R, functions are provided to move this data to more permanent
-locations for later use.
+parquet-formatted files hold the data in a temporary directory as you
+are working in R, functions are provided to move this data to more
+permanent locations for later use.
 
 ## Installation
 
@@ -287,7 +287,7 @@ lobstr::obj_size(out2)
 
 ## Files on disk are automagically managed
 
-All `arrow` files are stored in the `tempdir()` in parquet format
+All `arrow` files are stored in a temporary directory in parquet format
 
 ``` r
 list_temp()

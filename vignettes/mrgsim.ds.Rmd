@@ -28,9 +28,9 @@ pipeline for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. 
 Those files are automatically removed when the owning object goes out of scope 
 and becomes subject to the R garbage collector. While "anonymous", 
-parquet-formatted files hold the data in `tempdir()` as you are working in 
-R, functions are provided to move this data to more permanent locations for 
-later use. 
+parquet-formatted files hold the data in a temporary directory you are
+working in R, functions are provided to move this data to more
+permanent locations for later use.
 
 
 # Load a model
@@ -199,7 +199,7 @@ a single object that now holds a single pointer to all
 
 In the last simulation, we created a list of output objects and then reduced
 that list to a single object with the outputs held in 10 parquet files. You 
-can see these files when they are in `tempdir()`.
+can see these files when they are in the temporary directory.
 
 ```{r}
 list_temp()

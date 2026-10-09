@@ -41,7 +41,7 @@ because neither changes the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to \code{\link[=gc_ds]{gc_ds()}}. A warning is issued if gc is locked to \code{TRUE} but
-files land outside \code{tempdir()}.
+files land outside the temporary directory.
 
 The object (\code{x}) is required to own the underlying files in order to move,
 rename, or combine them.

@@ -3,10 +3,11 @@
 #'
 #' @description
 #' Converts the output of [mrgsolve::mrgsim()] to an `mrgsimsds` object by
-#' writing the simulation data to a parquet file in `tempdir()`. Files in
-#' `tempdir()` are auto-deleted on garbage collection by default. Use
-#' [move_ds()] or [save_ds()] to relocate files outside `tempdir()`, which
-#' automatically disables gc, or call [gc_ds()] to control gc directly.
+#' writing the simulation data to a parquet file in a temporary directory. Files
+#' in the temporary directory are auto-deleted on garbage collection by default.
+#' Use [move_ds()] or [save_ds()] to relocate files outside of the temporary
+#' directory, which automatically disables gc, or call [gc_ds()] to control gc
+#' directly.
 #'
 #' @inheritParams mrgsim_ds
 #' @param x an mrgsims object.
@@ -82,11 +83,11 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #'
 #' @description
 #' Runs [mrgsolve::mrgsim()] and writes simulation output to a parquet file in
-#' `tempdir()`, returning an `mrgsimsds` object. Files in `tempdir()` are
-#' auto-deleted on garbage collection by default. Use [move_ds()] or
-#' [save_ds()] to relocate files outside `tempdir()`, which automatically
-#' disables gc, or call [gc_ds()] to control gc directly. Note that full
-#' argument names must be used for all arguments.
+#' a temporary directory, returning an `mrgsimsds` object. Files in the
+#' temporary directory are auto-deleted on garbage collection by default. Use
+#' [move_ds()] or [save_ds()] to relocate files outside of the temporary
+#' directory, which automatically disables gc, or call [gc_ds()] to control gc
+#' directly. Note that full argument names must be used for all arguments.
 #'
 #' @param x a model object loaded through [mread_ds()], [mcode_ds()],
 #' [modlib_ds()], [mread_cache_ds()], or [house_ds()].
@@ -97,8 +98,8 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' @param gc initial gc setting; if `TRUE`, a finalizer function will attempt
 #' to remove files once the object is out of scope. This value is not locked:
 #' [move_ds()] and [save_ds()] will automatically adjust gc based on whether
-#' the files remain under `tempdir()`. To lock the gc setting and prevent
-#' automatic adjustment, call [gc_ds()] after creation.
+#' the files remain under the temporary directory. To lock the gc setting and
+#' prevent automatic adjustment, call [gc_ds()] after creation.
 #' 
 #' @examples
 #' mod <- house_ds()

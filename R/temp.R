@@ -33,7 +33,7 @@ in_tempdir <- function(files) {
 #'
 #' @description
 #' Functions for inspecting and cleaning up package-managed parquet files in
-#' `tempdir()`. `list_temp()` shows what is present; `purge_temp()`
+#' the temporary directory. `list_temp()` shows what is present; `purge_temp()`
 #' resets the simulation file system.
 #'
 #' `purge_temp()` deletes all package-managed files unconditionally and clears

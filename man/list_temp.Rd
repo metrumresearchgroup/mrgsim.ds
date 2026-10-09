@@ -21,7 +21,7 @@ a summary to the console unless \code{quietly = TRUE}.
 }
 \description{
 Functions for inspecting and cleaning up package-managed parquet files in
-\code{tempdir()}. \code{list_temp()} shows what is present; \code{purge_temp()}
+the temporary directory. \code{list_temp()} shows what is present; \code{purge_temp()}
 resets the simulation file system.
 
 \code{purge_temp()} deletes all package-managed files unconditionally and clears

@@ -24,8 +24,8 @@ set_gc_auto <- function(x) {
 #'
 #' Calling `gc_ds()` with `value` locks the gc setting: once a value is
 #' explicitly set, the package will never automatically change it when files are
-#' moved or written. A warning is issued if gc is locked to `TRUE` but files
-#' are moved outside of `tempdir()`, since those files would then be
+#' moved or written. A warning is issued if gc is locked to `TRUE` but files are
+#' moved outside of the temporary directory, since those files would then be
 #' auto-deleted on garbage collection.
 #'
 #' @param x an mrgsimsds object or a list of objects.

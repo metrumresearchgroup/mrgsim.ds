@@ -167,7 +167,7 @@ read_ds <- function(file) {
 #'
 #' This automatic adjustment is skipped if the gc setting has been locked by a
 #' prior call to [gc_ds()]. A warning is issued if gc is locked to `TRUE` but
-#' files land outside `tempdir()`.
+#' files land outside the temporary directory.
 #'
 #' The object (`x`) is required to own the underlying files in order to move,
 #' rename, or combine them.
