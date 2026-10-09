@@ -382,26 +382,6 @@ check_ownership(out2)
 unlink("inst/readme_temp", recursive = TRUE)
 ```
 
-
-## Details
-
-`mrgsim.ds` tracks the `tempdir()` location and the process ID (via 
-`Sys.getpid()`) of the R process where the model was loaded. When simulation 
-outputs are saved to file, the save location is always `tempdir()` from that 
-parent R process. When simulating in parallel, this will likely be _different_
-than what  a call to `tempdir()` says on the worker node. 
-
-At the time simulations are saved, the current R process id (`pid`) is saved
-to the simulation output object. In the parallel simulation case, this will be 
-different than the `pid` from the parent R process, saved in the model 
-object. The finalizer function for a simulation object which removes output 
-files from disk when the object goes out of scope is only run when the finalizer
-is called from the parent R process as determined by `Sys.getpid()`. 
-
-
-
-
-
 ## If this is so great, why not make it the default for mrgsolve?
 
 There is a cost to all of this. For small to mid-size simulations, you might 
