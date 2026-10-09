@@ -349,7 +349,15 @@ Now we have all three files collected in a single object that we can work with
 plot(out, IPRED ~ time, nid = 5)
 ```
 
+### Simulating via workers on different machines
 
+The temporary directory in which output is written must be accessible
+to all R processes.  When spreading simulations across multiple
+machines (e.g., via Slurm or SGE), you will likely need to instruct
+`mrgsim.ds` to create its temporary directory in a different location.
+See the "Overriding where temporary directory is created" section of
+the [Get Started](https://metrumresearchgroup.github.io/mrgsim.ds/articles/mrgsim.ds.html)
+vignette for more details.
 
 ## Save outputs
 

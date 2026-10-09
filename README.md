@@ -496,6 +496,16 @@ plot(out, IPRED ~ time, nid = 5)
 
 <img src="man/figures/README-parallel_output-1.png" alt="" width="80%" style="display: block; margin: auto;" />
 
+### Simulating via workers on different machines
+
+The temporary directory in which output is written must be accessible to
+all R processes. When spreading simulations across multiple machines
+(e.g., via Slurm or SGE), you will likely need to instruct `mrgsim.ds`
+to create its temporary directory in a different location. See the
+“Overriding where temporary directory is created” section of the [Get
+Started](https://metrumresearchgroup.github.io/mrgsim.ds/articles/mrgsim.ds.html)
+vignette for more details.
+
 ## Save outputs
 
 You can save the simulation output object for use later

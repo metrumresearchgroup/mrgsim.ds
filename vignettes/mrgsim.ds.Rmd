@@ -309,8 +309,62 @@ out <- gc_ds(out, value = FALSE)
 out
 ```
 
-Now, your files will remain after the object goes out of scope. But remember 
-that, in this example, the files are still in `tempdir()` and they will be 
-blown away when R restarts. So if you really want to keep the output files
-safe, it's best to use `save_ds()`, `move_ds()`, or `write_parquet_ds()` to
-relocate files out of `tempdir()`, while also disabling file garbage collection.
+Now, your files will remain after the object goes out of scope. But remember
+that, in this example, the files are still in a subdirectory under `tempdir()`,
+and they will be blown away when R restarts. So if you really want to keep the
+output files safe, it's best to use `save_ds()`, `move_ds()`, or
+`write_parquet_ds()` to relocate files out of the temporary directory, while
+also disabling file garbage collection.
+
+Note that simulated output is garbage collected in whatever output directory it
+was written to, whether or not that directory is under `tempdir()` (see the
+next section).
+
+# Overriding where temporary directory is created
+
+By default, `mrgsim.ds` creates its temporary directory under `tempdir()`. When
+spreading the simulation across multiple machines (e.g., via Slurm or SGE), you
+will need to set this to a different location if `tempdir()` is on storage that
+is local to each machine.
+
+One solution this is to configure R to put its temporary directory in a shared
+location (e.g., by setting the `TMPDIR` environment variable before R loads).
+
+`mrgsim.ds` provides a more targeted method: call `set_tempdir_base()` with a
+directory that is accessible from all machines.  For example, assuming the
+`/data/` drive is shared, you could tell `mrgsim.ds` to create its temporary
+directory under `/data/sims-tmp-*` instead of `tempdir()`:
+
+```{r, eval = FALSE}
+library(mirai)
+
+tdir <- withr::local_tempdir("sims-tmp-", "/data")
+set_tempdir_base(tdir)
+
+mod <- modlib_ds("popex", end = 72)
+data <- evd_expand(amt = 100, ID = 1:6)
+
+daemons(
+  n = 4,
+  url = host_url(),
+  remote = cluster_config(
+    command = "sbatch",
+    options = "
+#SBATCH --job-name=mrgsim
+#SBATCH --output=mrgsim_%j.out"
+  )
+)
+out <- mirai_map(
+  1:4,
+  \(i, mod, data) mrgsim.ds::mrgsim_ds(mod, data),
+  .args = list(mod = mod, data = data)
+)[]
+daemons(0)
+
+save_ds(reduce_ds(out), "sims.rds")
+```
+
+Simulated output is subject to garbage collection in the temporary
+directory, whether or not that directory is under `tempdir()`. Moving
+files out of the temporary directory with `move_ds()` turns garbage
+collection off, and `save_ds()` always turns it off.
