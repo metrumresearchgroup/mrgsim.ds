@@ -63,7 +63,7 @@ save_process_info <- function(x) {
   } # nocov end
   x@envir$mrgsim.ds.mread_valid <- TRUE
   x@envir$mrgsim.ds.mread_pid <- Sys.getpid()
-  x@envir$mrgsim.ds.mread_tempdir <- tempdir()
+  x@envir$mrgsim.ds.mread_tempdir <- our_tempdir()
   x
 }
 

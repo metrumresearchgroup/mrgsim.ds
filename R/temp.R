@@ -1,3 +1,19 @@
+our_tempdir <- function() {
+  tdir <- .global[["tempdir"]]
+  if (!is.null(tdir)) {
+    return(tdir)
+  }
+
+  basedir <- tempdir()
+
+  tdir <- tempfile(pattern = "mrgsim.ds-", tmpdir = basedir)
+  dir.create(tdir)
+  tdir <- normalizePath(tdir, mustWork = TRUE)
+  .global[["tempdir"]] <- tdir
+
+  return(tdir)
+}
+
 in_tempdir <- function(files) {
   if (!length(files)) {
     abort(c("Must specify at least one file."))
@@ -46,7 +62,7 @@ in_tempdir <- function(files) {
 #'
 #' @export
 list_temp <- function(quietly = FALSE) {
-  temp <- list.files(tempdir(), pattern = .global$file.re, full.names = TRUE)
+  temp <- list.files(our_tempdir(), pattern = .global$file.re, full.names = TRUE)
   if(isTRUE(quietly)) {
     return(invisible(temp))
   }
@@ -72,7 +88,7 @@ list_temp <- function(quietly = FALSE) {
 #' @rdname list_temp
 #' @export
 purge_temp <- function(quietly = FALSE) {
-  temp <- list.files(tempdir(), pattern = .global$file.re, full.names = TRUE)
+  temp <- list.files(our_tempdir(), pattern = .global$file.re, full.names = TRUE)
   unlink(x = temp, recursive = TRUE)
   clear_ownership()
   if(!isTRUE(quietly)) {
