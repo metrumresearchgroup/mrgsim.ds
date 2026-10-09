@@ -115,7 +115,7 @@ save_ds <- function(x, file, quietly = FALSE) {
   } 
   path <- current_location(x)
   if (in_tempdir(path)) {
-    warn("object and backing files will be saved to tempdir().")
+    warn("object and backing files will be saved to the temporary directory.")
   }
   file <- file.path(path, basename(file))
   reclass <- class(x)

@@ -2,7 +2,7 @@ set_gc_auto <- function(x) {
   if(isTRUE(x$gc_locked)) {
     if(isTRUE(x$gc) && !in_tempdir(x$files)) {
       warning(
-        "gc is locked to TRUE but files are outside tempdir(); ",
+        "gc is locked to TRUE but files are outside of the temporary directory; ",
         "files may be auto-deleted on garbage collection.",
         call. = FALSE
       )
