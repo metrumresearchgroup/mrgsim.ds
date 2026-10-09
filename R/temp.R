@@ -1,4 +1,7 @@
 in_tempdir <- function(files) {
+  if (!length(files)) {
+    abort(c("Must specify at least one file."))
+  }
   tdir <- normalizePath(tempdir(), mustWork = TRUE)
   files <- normalizePath(files, mustWork = TRUE)
 
