@@ -19,7 +19,7 @@ directory within \code{\link[=tempdir]{tempdir()}}. Use \code{set_tempdir_base()
 alternative location to \code{\link[=tempdir]{tempdir()}}.
 
 This is useful in scenarios where the work will be spread across machines
-(e.g., via Slurm) that do not shares access to the file system on which
+(e.g., via Slurm) that do not share access to the file system on which
 \code{\link[=tempdir]{tempdir()}} resides.
 }
 \details{
@@ -28,9 +28,9 @@ a temporary directory. Use \code{\link[=save_ds]{save_ds()}} or \code{\link[=mov
 more permanent locations.
 
 \code{mrgsim.ds} may delete the backing parquet files in its temporary directory
-(see \code{\link[=gc_ds]{gc_ds()}}), it does not delete \code{path} or the temporary directory that it
-creates within it. The caller is expected to manage this temporary directory,
-including its removal.
+(see \code{\link[=gc_ds]{gc_ds()}}), but it does not delete \code{path} or the temporary directory
+that it creates within it. The caller is expected to manage this temporary
+directory, including its removal.
 
 This function aborts if it is called after any \code{mrgsim.ds} functionality that
 relies of the temporary directory.

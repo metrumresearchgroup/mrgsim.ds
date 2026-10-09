@@ -120,6 +120,17 @@ as_mrgsim_ds <- function(x, verbose = FALSE, gc = TRUE) {
 #' @export
 mrgsim_ds <- function(x,  ..., tags = list(), verbose = FALSE, 
                       gc = TRUE) {
+  dir <- get_mread_tempdir(x)
+  if (!dir_exists(dir)) {
+    abort(
+      c(
+        paste("The mrgsim.ds temporary directory does not exist:", dir),
+        i = "If simulating on worker nodes, those nodes must have access to the temporary directory.",
+        i = "Use `set_tempdir_base()` to point to a location under a disk shared by all machines."
+      )
+    )
+  }
+
   verbose <- isTRUE(verbose)
   if(verbose) message("Simulating data [1/3].")
   out <- mrgsim(x, output = NULL, ...)

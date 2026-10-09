@@ -52,6 +52,17 @@ test_that("set_tempdir_base: non-existent", {
   )
 })
 
+test_that("mrgsim_ds errors if temporary directory does not exist", {
+  local_unset_tempdir()
+
+  tdir <- withr::local_tempdir()
+  set_tempdir_base(tdir)
+  mod <- house_ds(end = 3, delta = 1)
+  unlink(tdir, recursive = TRUE)
+
+  expect_error(mrgsim_ds(mod), "temporary directory does not exist")
+})
+
 test_that("in_tempdir", {
   local_unset_tempdir()
 
