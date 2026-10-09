@@ -1,3 +1,10 @@
+in_tempdir <- function(files) {
+  tdir <- normalizePath(tempdir(), mustWork = TRUE)
+  files <- normalizePath(files, mustWork = TRUE)
+
+  return(all(fs::path_has_parent(files, tdir)))
+}
+
 #' Manage simulated outputs in the per-session temporary directory
 #'
 #' @description
