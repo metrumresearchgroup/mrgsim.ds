@@ -63,9 +63,10 @@ simlist_reduce_ok <- function(x) {
 #'
 #' The returned object always gets a fresh, unlocked gc state: `gc_locked` is
 #' set to `FALSE` and gc is determined by file location via the same rule used
-#' at creation time — `TRUE` if files are under `tempdir()`, `FALSE` otherwise.
-#' Any gc lock set on the input objects is not carried over. To lock the gc
-#' setting on the result, call [gc_ds()] after reducing.
+#' at creation time — `TRUE` if files are under `tempdir()` (or another location
+#' specified by [set_tempdir_base()]), `FALSE` otherwise. Any gc lock set on the
+#' input objects is not carried over. To lock the gc setting on the result, call
+#' [gc_ds()] after reducing.
 #'
 #' @param x a list of mrgsimsds objects or a single mrgsimsds object.
 #' @param ... not used.

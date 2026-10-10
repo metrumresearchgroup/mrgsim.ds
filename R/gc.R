@@ -1,15 +1,8 @@
-in_tempdir <- function(files) {
-  tdir <- normalizePath(tempdir(), mustWork = TRUE)
-  files <- normalizePath(files, mustWork = TRUE)
-
-  return(all(fs::path_has_parent(files, tdir)))
-}
-
 set_gc_auto <- function(x) {
   if(isTRUE(x$gc_locked)) {
     if(isTRUE(x$gc) && !in_tempdir(x$files)) {
       warning(
-        "gc is locked to TRUE but files are outside tempdir(); ",
+        "gc is locked to TRUE but files are outside of the temporary directory; ",
         "files may be auto-deleted on garbage collection.",
         call. = FALSE
       )
@@ -31,8 +24,8 @@ set_gc_auto <- function(x) {
 #'
 #' Calling `gc_ds()` with `value` locks the gc setting: once a value is
 #' explicitly set, the package will never automatically change it when files are
-#' moved or written. A warning is issued if gc is locked to `TRUE` but files
-#' are moved outside of `tempdir()`, since those files would then be
+#' moved or written. A warning is issued if gc is locked to `TRUE` but files are
+#' moved outside of the temporary directory, since those files would then be
 #' auto-deleted on garbage collection.
 #'
 #' @param x an mrgsimsds object or a list of objects.

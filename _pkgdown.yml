@@ -61,10 +61,11 @@ reference:
   - refresh_ds
   - gc_ds
   - prune_ds
-- title: Manage simulation outputs in `tempdir()`
+- title: Manage temporary directory
   contents:
   - list_temp
   - purge_temp
+  - set_tempdir_base
 - title: Utility functions
   contents:
   - save_process_info

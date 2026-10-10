@@ -34,9 +34,10 @@ Ownership of every file is transferred to the new object.
 
 The returned object always gets a fresh, unlocked gc state: \code{gc_locked} is
 set to \code{FALSE} and gc is determined by file location via the same rule used
-at creation time — \code{TRUE} if files are under \code{tempdir()}, \code{FALSE} otherwise.
-Any gc lock set on the input objects is not carried over. To lock the gc
-setting on the result, call \code{\link[=gc_ds]{gc_ds()}} after reducing.
+at creation time — \code{TRUE} if files are under \code{tempdir()} (or another location
+specified by \code{\link[=set_tempdir_base]{set_tempdir_base()}}), \code{FALSE} otherwise. Any gc lock set on the
+input objects is not carried over. To lock the gc setting on the result, call
+\code{\link[=gc_ds]{gc_ds()}} after reducing.
 }
 }
 \examples{

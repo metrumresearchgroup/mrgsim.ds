@@ -39,8 +39,8 @@ format_big <- function() {
 }
 #' Save information about the R process that loaded a model
 #'
-#' Stamps the model object with the current process ID and `tempdir()` path so
-#' that [mrgsim_ds()] knows where to write output files. This is called
+#' Stamps the model object with the current process ID and temporary directory
+#' path so that [mrgsim_ds()] knows where to write output files. This is called
 #' automatically by [mread_ds()], [house_ds()], and the other model-loading
 #' wrappers. Call it directly only when you load a model through the base
 #' mrgsolve functions (e.g. [mrgsolve::mread()]) and still want to use
@@ -63,7 +63,7 @@ save_process_info <- function(x) {
   } # nocov end
   x@envir$mrgsim.ds.mread_valid <- TRUE
   x@envir$mrgsim.ds.mread_pid <- Sys.getpid()
-  x@envir$mrgsim.ds.mread_tempdir <- tempdir()
+  x@envir$mrgsim.ds.mread_tempdir <- our_tempdir()
   x
 }
 

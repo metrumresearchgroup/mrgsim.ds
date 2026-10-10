@@ -13,9 +13,9 @@ pipeline for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk.
 Those files are automatically removed when the owning object goes out of scope
 and becomes subject to the R garbage collector. While "anonymous",
-parquet-formatted files hold the data in \code{tempdir()} as you are working in
-R, functions are provided to move this data to more permanent locations for
-later use.
+parquet-formatted files hold the data in a temporary directory as you are
+working in R, functions are provided to move this data to more permanent
+locations for later use.
 }
 \section{Function listing}{
 
@@ -72,6 +72,7 @@ later use.
 \itemize{
 \item \code{\link[=list_temp]{list_temp()}}
 \item \code{\link[=purge_temp]{purge_temp()}}
+\item \code{\link[=set_tempdir_base]{set_tempdir_base()}}
 }
 \item Enter dplyr / arrow pipelines with
 \itemize{

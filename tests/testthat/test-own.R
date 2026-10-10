@@ -4,26 +4,28 @@ library(mrgsim.ds)
 test_that("ownership", {
   mrgsim.ds:::clear_ownership()
   mod <- house_ds()
-  out <- mrgsim_ds(mod)
-  
-  expect_true(check_ownership(out))
+  out1 <- mrgsim_ds(mod)
+
+  expect_true(check_ownership(out1))
   expect_output(ownership(), "Objects: 1")
   
   df <- list_ownership()
   expect_is(df, "data.frame")
-  
-  out <- mrgsim_ds(mod)
-  expect_true(check_ownership(out))
+
+  out2 <- mrgsim_ds(mod)
+  expect_true(check_ownership(out2))
   expect_output(ownership(), "Objects: 2")
 
-  disown(out)
+  disown(out2)
 
-  expect_false(check_ownership(out))
+  expect_false(check_ownership(out2))
   expect_output(ownership(), "Objects: 1")
 
+  # out1 is still owned until it is removed and collected
+  rm(out1)
   gc()
 
-  expect_false(check_ownership(out))
+  expect_false(check_ownership(out2))
   expect_message(ownership(), "No ownership information")
 })
 

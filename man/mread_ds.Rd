@@ -19,7 +19,8 @@ house_ds(...)
 mread_cache_ds(...)
 }
 \arguments{
-\item{...}{passed to the corresponding mrgsolve function.}
+\item{...}{passed to the corresponding mrgsolve function. \code{sloc} is already
+specified underneath and cannot be included here.}
 }
 \value{
 A model object with process information saved, suitable for use with

@@ -38,7 +38,7 @@ test_that("save_ds issues a message when quietly = FALSE", {
 test_that("save_ds warns when files end up in tempdir", {
   out <- mrgsim_ds(mod, gc = FALSE)
   file <- file.path(tempdir(), "out.rds")
-  expect_warning(save_ds(out, file), "tempdir")
+  expect_warning(save_ds(out, file), "temporary directory")
 })
 
 # read_ds -----------------------------------------------------------------------

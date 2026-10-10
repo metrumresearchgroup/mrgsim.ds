@@ -7,7 +7,8 @@
 #' stamp is required by [mrgsim_ds()] to correctly associate simulation outputs
 #' with the process that created them.
 #'
-#' @param ... passed to the corresponding mrgsolve function.
+#' @param ... passed to the corresponding mrgsolve function. `sloc` is already
+#'   specified underneath and cannot be included here.
 #'
 #' @seealso [save_process_info()].
 #'
@@ -22,21 +23,21 @@
 #'
 #' @export
 mread_ds <- function(...) {
-  x <- mread(...)
+  x <- mread(..., soloc = our_tempdir())
   save_process_info(x)
 }
 
 #' @rdname mread_ds
 #' @export
 mcode_ds <- function(...) {
-  x <- mcode(...)
+  x <- mcode(..., soloc = our_tempdir())
   save_process_info(x)
 }
 
 #' @rdname mread_ds
 #' @export
 modlib_ds <- function(...) {
-  x <- modlib(...)
+  x <- modlib(..., soloc = our_tempdir())
   save_process_info(x)
 }
 
@@ -50,6 +51,6 @@ house_ds <- function(...) {
 #' @rdname mread_ds
 #' @export
 mread_cache_ds <- function(...) {
-  x <- mread_cache(...)
+  x <- mread_cache(..., soloc = our_tempdir())
   save_process_info(x)
 }
