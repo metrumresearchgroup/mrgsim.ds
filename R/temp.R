@@ -22,7 +22,7 @@
 #' directory, including its removal.
 #'
 #' This function aborts if it is called after any `mrgsim.ds` functionality that
-#' relies of the temporary directory.
+#' relies on the temporary directory.
 #'
 #' @param path The name of an existing directory.
 #'

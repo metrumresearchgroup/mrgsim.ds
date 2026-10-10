@@ -33,7 +33,7 @@ that it creates within it. The caller is expected to manage this temporary
 directory, including its removal.
 
 This function aborts if it is called after any \code{mrgsim.ds} functionality that
-relies of the temporary directory.
+relies on the temporary directory.
 }
 \seealso{
 \code{\link[=list_temp]{list_temp()}}

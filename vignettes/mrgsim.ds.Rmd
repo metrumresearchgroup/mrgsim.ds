@@ -327,7 +327,7 @@ spreading the simulation across multiple machines (e.g., via Slurm or SGE), you
 will need to set this to a different location if `tempdir()` is on storage that
 is local to each machine.
 
-One solution this is to configure R to put its temporary directory in a shared
+One solution is to configure R to put its temporary directory in a shared
 location (e.g., by setting the `TMPDIR` environment variable before R loads).
 
 `mrgsim.ds` provides a more targeted method: call `set_tempdir_base()` with a
