@@ -32,7 +32,8 @@ mread_cache_ds(...)
 
 - ...:
 
-  passed to the corresponding mrgsolve function.
+  passed to the corresponding mrgsolve function. `sloc` is already
+  specified underneath and cannot be included here.
 
 ## Value
 

@@ -57,7 +57,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>mrgsim.ds</code> provides an <a href="https://arrow.apache.org/docs/r/" class="external-link">Apache Arrow</a>-backed simulation output object for <a href="https://mrgsolve.org" class="external-link">mrgsolve</a>, greatly reducing the memory footprint of large simulations and providing a high-performance pipeline for summarizing huge simulation outputs. The arrow-based simulation output objects in R claim ownership of their files on disk. Those files are automatically removed when the owning object goes out of scope and becomes subject to the R garbage collector. While “anonymous”, parquet-formatted files hold the data in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> as you are working in R, functions are provided to move this data to more permanent locations for later use.</p>
+<p><code>mrgsim.ds</code> provides an <a href="https://arrow.apache.org/docs/r/" class="external-link">Apache Arrow</a>-backed simulation output object for <a href="https://mrgsolve.org" class="external-link">mrgsolve</a>, greatly reducing the memory footprint of large simulations and providing a high-performance pipeline for summarizing huge simulation outputs. The arrow-based simulation output objects in R claim ownership of their files on disk. Those files are automatically removed when the owning object goes out of scope and becomes subject to the R garbage collector. While “anonymous”, parquet-formatted files hold the data in a temporary directory as you are working in R, functions are provided to move this data to more permanent locations for later use.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -264,7 +264,7 @@
 <div class="section level2">
 <h2 id="files-on-disk-are-automagically-managed">Files on disk are automagically managed<a class="anchor" aria-label="anchor" href="#files-on-disk-are-automagically-managed"></a>
 </h2>
-<p>All <code>arrow</code> files are stored in the <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> in parquet format</p>
+<p>All <code>arrow</code> files are stored in a temporary directory in parquet format</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">list_temp</span>()</span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>. <span class="dv">501</span> files [<span class="fl">6.4</span> Gb]</span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>. <span class="sc">-</span> mrgsims<span class="sc">-</span>ds<span class="dv">-31</span>d21a85a344.parquet</span>
@@ -402,6 +402,11 @@
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://mrgsolve.org/docs/reference/plot_mrgsims.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">out</span>, <span class="va">IPRED</span> <span class="op">~</span> <span class="va">time</span>, nid <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-parallel_output-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
+<div class="section level3">
+<h3 id="simulating-via-workers-on-different-machines">Simulating via workers on different machines<a class="anchor" aria-label="anchor" href="#simulating-via-workers-on-different-machines"></a>
+</h3>
+<p>The temporary directory in which output is written must be accessible to all R processes. When spreading simulations across multiple machines (e.g., via Slurm or SGE), you will likely need to instruct <code>mrgsim.ds</code> to create its temporary directory in a different location. See the “Overriding where temporary directory is created” section of the <a href="https://metrumresearchgroup.github.io/mrgsim.ds/articles/mrgsim.ds.html">Get Started</a> vignette for more details.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="save-outputs">Save outputs<a class="anchor" aria-label="anchor" href="#save-outputs"></a>
@@ -431,12 +436,6 @@
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="fu">check_ownership</span>(out2)</span>
 <span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>. [<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
-</h2>
-<p><code>mrgsim.ds</code> tracks the <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> location and the process ID (via <code><a href="https://rdrr.io/r/base/Sys.getpid.html" class="external-link">Sys.getpid()</a></code>) of the R process where the model was loaded. When simulation outputs are saved to file, the save location is always <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> from that parent R process. When simulating in parallel, this will likely be <em>different</em> than what a call to <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> says on the worker node.</p>
-<p>At the time simulations are saved, the current R process id (<code>pid</code>) is saved to the simulation output object. In the parallel simulation case, this will be different than the <code>pid</code> from the parent R process, saved in the model object. The finalizer function for a simulation object which removes output files from disk when the object goes out of scope is only run when the finalizer is called from the parent R process as determined by <code><a href="https://rdrr.io/r/base/Sys.getpid.html" class="external-link">Sys.getpid()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="if-this-is-so-great-why-not-make-it-the-default-for-mrgsolve">If this is so great, why not make it the default for mrgsolve?<a class="anchor" aria-label="anchor" href="#if-this-is-so-great-why-not-make-it-the-default-for-mrgsolve"></a>

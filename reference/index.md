@@ -100,11 +100,17 @@ Commonly needed after batch simulation in parallel
 - [`prune_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/prune_ds.md)
   : Prune a list of mrgsimsds objects
 
-## Manage simulation outputs in `tempdir()`
+## Manage temporary directory
 
 - [`list_temp()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/list_temp.md)
   [`purge_temp()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/list_temp.md)
   : Manage simulated outputs in the per-session temporary directory
+
+- [`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md)
+  :
+
+  Override the directory under which `mrgsim.ds` creates its temporary
+  directory
 
 ## Utility functions
 

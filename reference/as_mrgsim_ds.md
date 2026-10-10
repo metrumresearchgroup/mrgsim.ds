@@ -3,15 +3,13 @@
 Converts the output of
 [`mrgsolve::mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html)
 to an `mrgsimsds` object by writing the simulation data to a parquet
-file in [`tempdir()`](https://rdrr.io/r/base/tempfile.html). Files in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) are auto-deleted on
-garbage collection by default. Use
+file in a temporary directory. Files in the temporary directory are
+auto-deleted on garbage collection by default. Use
 [`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md)
 or
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
-to relocate files outside
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html), which automatically
-disables gc, or call
+to relocate files outside of the temporary directory, which
+automatically disables gc, or call
 [`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
 to control gc directly.
 
@@ -40,8 +38,8 @@ as_mrgsim_ds(x, verbose = FALSE, gc = TRUE)
   and
   [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
   will automatically adjust gc based on whether the files remain under
-  [`tempdir()`](https://rdrr.io/r/base/tempfile.html). To lock the gc
-  setting and prevent automatic adjustment, call
+  the temporary directory. To lock the gc setting and prevent automatic
+  adjustment, call
   [`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
   after creation.
 
@@ -51,7 +49,8 @@ An object with class `mrgsimsds`.
 
 ## See also
 
-[`mrgsim_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsim_ds.md).
+[`mrgsim_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsim_ds.md),
+[`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md).
 
 ## Examples
 

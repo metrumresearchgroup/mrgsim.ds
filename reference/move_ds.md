@@ -7,18 +7,20 @@ simulated data from multiple backing files into a single file.
 ### Automatic gc adjustment
 
 Only `move_ds()` automatically updates the gc flag based on where the
-files end up: files that remain under
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) keep `gc = TRUE`;
-files moved outside [`tempdir()`](https://rdrr.io/r/base/tempfile.html)
-get `gc = FALSE`, protecting them from automatic deletion. Neither
+files end up: files that remain under the temporary directory
+([`tempdir()`](https://rdrr.io/r/base/tempfile.html) or the location
+specified via
+[`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md))
+keep `gc = TRUE`; files moved outside the temporary directory get
+`gc = FALSE`, protecting them from automatic deletion. Neither
 `rename_ds()` nor `combine_ds()` changes the gc flag because neither
 changes the file location.
 
 This automatic adjustment is skipped if the gc setting has been locked
 by a prior call to
 [`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md).
-A warning is issued if gc is locked to `TRUE` but files land outside
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html).
+A warning is issued if gc is locked to `TRUE` but files land outside the
+temporary directory.
 
 The object (`x`) is required to own the underlying files in order to
 move, rename, or combine them.
@@ -79,12 +81,12 @@ out <- reduce_ds(out)
 out <- rename_ds(out, "new-name")
 
 out$files
-#> [1] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-1.parquet"
-#> [2] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-2.parquet"
-#> [3] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-3.parquet"
+#> [1] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-1.parquet"
+#> [2] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-2.parquet"
+#> [3] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-3.parquet"
 
 out <- combine_ds(out)
 
 out$files
-#> [1] "/tmp/Rtmpmh9hly/mrgsims-ds-191955d75272.parquet"
+#> [1] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-1a2e3f60331b.parquet"
 ```

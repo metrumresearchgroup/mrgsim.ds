@@ -58,7 +58,8 @@ mod <- house_ds()
 out <- mrgsim_ds(mod, events = ev(amt = 100))
 
 file <- save_ds(out, file.path(tempdir(), "out.rds"))
-#> Warning: object and backing files will be saved to tempdir().
+#> ℹ 1 file is now located in /tmp/RtmpbWHz1p; gc is on.
+#> Warning: object and backing files will be saved to the temporary directory.
 
 out2 <- read_ds(file)
 ```

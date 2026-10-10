@@ -16,9 +16,8 @@ for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. Those files
 are automatically removed when the owning object goes out of scope and
 becomes subject to the R garbage collector. While “anonymous”,
-parquet-formatted files hold the data in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) as you are working
-in R, functions are provided to move this data to more permanent
+parquet-formatted files hold the data in a temporary directory you are
+working in R, functions are provided to move this data to more permanent
 locations for later use.
 
 ## Load a model
@@ -218,7 +217,7 @@ out %>%
 ```
 
     ## duckdb keeps downloaded extensions and secrets in a temporary directory:
-    ## ℹ /tmp/RtmpVhDuM0/duckdb
+    ## ℹ /tmp/RtmpLXynnq/duckdb
     ## This is removed when the R session ends.
     ## • Extensions are re-downloaded each session.
     ## • Secrets are lost.
@@ -334,8 +333,7 @@ object that now holds a single pointer to all 10 files.
 
 In the last simulation, we created a list of output objects and then
 reduced that list to a single object with the outputs held in 10 parquet
-files. You can see these files when they are in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html).
+files. You can see these files when they are in the temporary directory.
 
 ``` r
 
@@ -343,11 +341,11 @@ list_temp()
 ```
 
     ## 10 files [2.9 Mb]
-    ## - mrgsims-ds-1bc0138af73b.parquet
-    ## - mrgsims-ds-1bc0252cd40c.parquet
+    ## - mrgsims-ds-1ce0106fdc59.parquet
+    ## - mrgsims-ds-1ce0162da757.parquet
     ##    ...
-    ## - mrgsims-ds-1bc065f752e3.parquet
-    ## - mrgsims-ds-1bc076bf489.parquet
+    ## - mrgsims-ds-1ce068e44b00.parquet
+    ## - mrgsims-ds-1ce07fddae5c.parquet
 
 Or get a list of the files as an R character vector:
 
@@ -356,16 +354,16 @@ Or get a list of the files as an R character vector:
 files_ds(out)
 ```
 
-    ##  [1] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc0138af73b.parquet"
-    ##  [2] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc065f752e3.parquet"
-    ##  [3] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc047c1dc02.parquet"
-    ##  [4] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc03a7f8a05.parquet"
-    ##  [5] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc076bf489.parquet" 
-    ##  [6] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc0439dfb94.parquet"
-    ##  [7] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc0513363d1.parquet"
-    ##  [8] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc034a878d6.parquet"
-    ##  [9] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc02ab67ec8.parquet"
-    ## [10] "/tmp/RtmpVhDuM0/mrgsims-ds-1bc0252cd40c.parquet"
+    ##  [1] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce066252e2.parquet" 
+    ##  [2] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce0162da757.parquet"
+    ##  [3] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce053a2817c.parquet"
+    ##  [4] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce02d45ff50.parquet"
+    ##  [5] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce068e44b00.parquet"
+    ##  [6] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce0106fdc59.parquet"
+    ##  [7] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce0271a5b45.parquet"
+    ##  [8] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce07fddae5c.parquet"
+    ##  [9] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce05ff0a17a.parquet"
+    ## [10] "/tmp/RtmpLXynnq/mrgsim.ds-1ce03ccd5add/mrgsims-ds-1ce051dda63b.parquet"
 
 To save outputs to a persistent location, use
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md).
@@ -409,7 +407,7 @@ rename_ds(bah, "regimen-1")
 move_ds(bah, save_dir)
 ```
 
-    ## ℹ 10 files are now located in /tmp/RtmpVhDuM0; gc is off.
+    ## ℹ 10 files are now located in /tmp/RtmpLXynnq; gc is off.
 
 If you want all the simulated data output in a single parquet file that
 you name and locate.
@@ -421,7 +419,7 @@ write_parquet_ds(x = bah, sink = "new/path/file.parquet")
 
 ## Garbage collection
 
-    ## Discarding 10 files.
+    ## Discarding 0 files.
 
 When a new simulation output object is created, that object owns the
 files and, by default, the files will be deleted as soon as the object
@@ -471,8 +469,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2031642 108.6    4080847 218.0  3460249 184.8
-    ## Vcells 4465424  34.1   10146329  77.5  6372495  48.7
+    ## Ncells 2034516 108.7    4091360 218.6  3644312 194.7
+    ## Vcells 4472591  34.2   10146329  77.5  6436151  49.2
 
 ``` r
 
@@ -497,8 +495,8 @@ gc()
 ```
 
     ##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-    ## Ncells 2028361 108.4    4080847 218.0  3460249 184.8
-    ## Vcells 3737149  28.6   10146329  77.5  6372495  48.7
+    ## Ncells 2031181 108.5    4091360 218.6  3644312 194.7
+    ## Vcells 3744226  28.6   10146329  77.5  6436151  49.2
 
 ``` r
 [mrgsim.ds] cleaning up 1 file(s) ...
@@ -530,14 +528,77 @@ out
     ## 8:   1  3.0 -0.2222274 3.645541 3.645541
 
 Now, your files will remain after the object goes out of scope. But
-remember that, in this example, the files are still in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) and they will be
-blown away when R restarts. So if you really want to keep the output
+remember that, in this example, the files are still in a subdirectory
+under [`tempdir()`](https://rdrr.io/r/base/tempfile.html), and they will
+be blown away when R restarts. So if you really want to keep the output
 files safe, it’s best to use
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md),
 [`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md),
 or
 [`write_parquet_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/write_parquet_ds.md)
-to relocate files out of
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html), while also
-disabling file garbage collection.
+to relocate files out of the temporary directory, while also disabling
+file garbage collection.
+
+Note that simulated output is garbage collected in whatever output
+directory it was written to, whether or not that directory is under
+[`tempdir()`](https://rdrr.io/r/base/tempfile.html) (see the next
+section).
+
+## Overriding where temporary directory is created
+
+By default, `mrgsim.ds` creates its temporary directory under
+[`tempdir()`](https://rdrr.io/r/base/tempfile.html). When spreading the
+simulation across multiple machines (e.g., via Slurm or SGE), you will
+need to set this to a different location if
+[`tempdir()`](https://rdrr.io/r/base/tempfile.html) is on storage that
+is local to each machine.
+
+One solution is to configure R to put its temporary directory in a
+shared location (e.g., by setting the `TMPDIR` environment variable
+before R loads).
+
+`mrgsim.ds` provides a more targeted method: call
+[`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md)
+with a directory that is accessible from all machines. For example,
+assuming the `/data/` drive is shared, you could tell `mrgsim.ds` to
+create its temporary directory under `/data/sims-tmp-*` instead of
+[`tempdir()`](https://rdrr.io/r/base/tempfile.html):
+
+``` r
+
+library(mirai)
+
+tdir <- withr::local_tempdir("sims-tmp-", "/data")
+set_tempdir_base(tdir)
+
+mod <- modlib_ds("popex", end = 72)
+data <- evd_expand(amt = 100, ID = 1:6)
+
+daemons(
+  n = 4,
+  url = host_url(),
+  remote = cluster_config(
+    command = "sbatch",
+    options = "
+#SBATCH --job-name=mrgsim
+#SBATCH --output=mrgsim_%j.out"
+  )
+)
+out <- mirai_map(
+  1:4,
+  \(i, mod, data) mrgsim.ds::mrgsim_ds(mod, data),
+  .args = list(mod = mod, data = data)
+)[]
+daemons(0)
+
+save_ds(reduce_ds(out), "sims.rds")
+```
+
+Simulated output is subject to garbage collection in the temporary
+directory, whether or not that directory is under
+[`tempdir()`](https://rdrr.io/r/base/tempfile.html). Moving files out of
+the temporary directory with
+[`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md)
+turns garbage collection off, and
+[`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
+always turns it off.

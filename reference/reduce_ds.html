@@ -37,7 +37,7 @@ Ownership of every file is transferred to the new object."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Reduce a list of mrgsimsds objects into a single object</h1>
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/0.1.1/R/reduce.R" class="external-link"><code>R/reduce.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/R/reduce.R" class="external-link"><code>R/reduce.R</code></a></small>
       <div class="d-none name"><code>reduce_ds.Rd</code></div>
     </div>
 
@@ -86,9 +86,10 @@ invisibly with its <code>pid</code> updated to the current process.</p>
 
 <p>The returned object always gets a fresh, unlocked gc state: <code>gc_locked</code> is
 set to <code>FALSE</code> and gc is determined by file location via the same rule used
-at creation time — <code>TRUE</code> if files are under <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, <code>FALSE</code> otherwise.
-Any gc lock set on the input objects is not carried over. To lock the gc
-setting on the result, call <code><a href="gc_ds.html">gc_ds()</a></code> after reducing.</p>
+at creation time — <code>TRUE</code> if files are under <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> (or another location
+specified by <code><a href="set_tempdir_base.html">set_tempdir_base()</a></code>), <code>FALSE</code> otherwise. Any gc lock set on the
+input objects is not carried over. To lock the gc setting on the result, call
+<code><a href="gc_ds.html">gc_ds()</a></code> after reducing.</p>
 </div>
 
     </div>

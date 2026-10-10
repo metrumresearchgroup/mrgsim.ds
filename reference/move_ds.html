@@ -6,13 +6,14 @@ Automatic gc adjustment
 
 
 Only move_ds() automatically updates the gc flag based on where the files
-end up: files that remain under tempdir() keep gc = TRUE; files moved
-outside tempdir() get gc = FALSE, protecting them from automatic
-deletion. Neither rename_ds() nor combine_ds() changes the gc flag
-because neither changes the file location.
+end up: files that remain under the temporary directory (tempdir() or the
+location specified via set_tempdir_base()) keep gc = TRUE; files moved
+outside the temporary directory get gc = FALSE, protecting them from
+automatic deletion. Neither rename_ds() nor combine_ds() changes the gc
+flag because neither changes the file location.
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to gc_ds(). A warning is issued if gc is locked to TRUE but
-files land outside tempdir().
+files land outside the temporary directory.
 The object (x) is required to own the underlying files in order to move,
 rename, or combine them.
 All three functions modify x in place and file ownership stays with x.
@@ -24,13 +25,14 @@ Automatic gc adjustment
 
 
 Only move_ds() automatically updates the gc flag based on where the files
-end up: files that remain under tempdir() keep gc = TRUE; files moved
-outside tempdir() get gc = FALSE, protecting them from automatic
-deletion. Neither rename_ds() nor combine_ds() changes the gc flag
-because neither changes the file location.
+end up: files that remain under the temporary directory (tempdir() or the
+location specified via set_tempdir_base()) keep gc = TRUE; files moved
+outside the temporary directory get gc = FALSE, protecting them from
+automatic deletion. Neither rename_ds() nor combine_ds() changes the gc
+flag because neither changes the file location.
 This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to gc_ds(). A warning is issued if gc is locked to TRUE but
-files land outside tempdir().
+files land outside the temporary directory.
 The object (x) is required to own the underlying files in order to move,
 rename, or combine them.
 All three functions modify x in place and file ownership stays with x.
@@ -69,7 +71,7 @@ All three functions modify x in place and file ownership stays with x.
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Move, rename, combine files in mrgsimsds objects</h1>
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/0.1.1/R/files.R" class="external-link"><code>R/files.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/R/files.R" class="external-link"><code>R/files.R</code></a></small>
       <div class="d-none name"><code>move_ds.Rd</code></div>
     </div>
 
@@ -81,13 +83,14 @@ brings simulated data from multiple backing files into a single file.</p><div cl
 
 
 <p>Only <code>move_ds()</code> automatically updates the gc flag based on where the files
-end up: files that remain under <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> keep <code>gc = TRUE</code>; files moved
-outside <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> get <code>gc = FALSE</code>, protecting them from automatic
-deletion. Neither <code>rename_ds()</code> nor <code>combine_ds()</code> changes the gc flag
-because neither changes the file location.</p>
+end up: files that remain under the temporary directory (<code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> or the
+location specified via <code><a href="set_tempdir_base.html">set_tempdir_base()</a></code>) keep <code>gc = TRUE</code>; files moved
+outside the temporary directory get <code>gc = FALSE</code>, protecting them from
+automatic deletion. Neither <code>rename_ds()</code> nor <code>combine_ds()</code> changes the gc
+flag because neither changes the file location.</p>
 <p>This automatic adjustment is skipped if the gc setting has been locked by a
 prior call to <code><a href="gc_ds.html">gc_ds()</a></code>. A warning is issued if gc is locked to <code>TRUE</code> but
-files land outside <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>.</p>
+files land outside the temporary directory.</p>
 <p>The object (<code>x</code>) is required to own the underlying files in order to move,
 rename, or combine them.</p>
 <p>All three functions modify <code>x</code> in place and file ownership stays with <code>x</code>.</p>
@@ -148,14 +151,14 @@ accessible via <code>x$files</code>.</p>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">rename_ds</span><span class="op">(</span><span class="va">out</span>, <span class="st">"new-name"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span><span class="op">$</span><span class="va">files</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-1.parquet"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-2.parquet"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "/tmp/Rtmpmh9hly/mrgsims-ds-new-name-3.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-1.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-2.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-new-name-3.parquet"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">combine_ds</span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out</span><span class="op">$</span><span class="va">files</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmpmh9hly/mrgsims-ds-191955d75272.parquet"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpbWHz1p/mrgsim.ds-1a2e5f3c1430/mrgsims-ds-1a2e3f60331b.parquet"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

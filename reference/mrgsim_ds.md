@@ -2,17 +2,14 @@
 
 Runs
 [`mrgsolve::mrgsim()`](https://mrgsolve.org/docs/reference/mrgsim.html)
-and writes simulation output to a parquet file in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html), returning an
-`mrgsimsds` object. Files in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) are auto-deleted on
-garbage collection by default. Use
+and writes simulation output to a parquet file in a temporary directory,
+returning an `mrgsimsds` object. Files in the temporary directory are
+auto-deleted on garbage collection by default. Use
 [`move_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/move_ds.md)
 or
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
-to relocate files outside
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html), which automatically
-disables gc, or call
+to relocate files outside of the temporary directory, which
+automatically disables gc, or call
 [`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
 to control gc directly. Note that full argument names must be used for
 all arguments.
@@ -57,8 +54,8 @@ mrgsim_ds(x, ..., tags = list(), verbose = FALSE, gc = TRUE)
   and
   [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
   will automatically adjust gc based on whether the files remain under
-  [`tempdir()`](https://rdrr.io/r/base/tempfile.html). To lock the gc
-  setting and prevent automatic adjustment, call
+  the temporary directory. To lock the gc setting and prevent automatic
+  adjustment, call
   [`gc_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/gc_ds.md)
   after creation.
 
@@ -69,7 +66,8 @@ An object with class `mrgsimsds`.
 ## See also
 
 [`as_mrgsim_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/as_mrgsim_ds.md),
-[mrgsimsds-methods](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsimsds-methods.md).
+[mrgsimsds-methods](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsimsds-methods.md),
+[`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md).
 
 ## Examples
 

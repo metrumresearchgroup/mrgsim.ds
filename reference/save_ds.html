@@ -47,7 +47,7 @@ returned object."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Save and restore an mrgsimsds object</h1>
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/0.1.1/R/files.R" class="external-link"><code>R/files.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/R/files.R" class="external-link"><code>R/files.R</code></a></small>
       <div class="d-none name"><code>save_ds.Rd</code></div>
     </div>
 
@@ -107,7 +107,8 @@ backing files.</p>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="mrgsim_ds.html">mrgsim_ds</a></span><span class="op">(</span><span class="va">mod</span>, events <span class="op">=</span> <span class="fu"><a href="https://mrgsolve.org/docs/reference/ev.html" class="external-link">ev</a></span><span class="op">(</span>amt <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu">save_ds</span><span class="op">(</span><span class="va">out</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"out.rds"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object and backing files will be saved to tempdir().</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> 1 file is now located in /tmp/RtmpbWHz1p; gc is on.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object and backing files will be saved to the temporary directory.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">out2</span> <span class="op">&lt;-</span> <span class="fu">read_ds</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

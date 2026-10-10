@@ -8,10 +8,9 @@ for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. Those files
 are automatically removed when the owning object goes out of scope and
 becomes subject to the R garbage collector. While “anonymous”,
-parquet-formatted files hold the data in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) as you are working
-in R, functions are provided to move this data to more permanent
-locations for later use.
+parquet-formatted files hold the data in a temporary directory as you
+are working in R, functions are provided to move this data to more
+permanent locations for later use.
 
 ## Installation
 
@@ -293,8 +292,7 @@ lobstr::obj_size(out2)
 
 ## Files on disk are automagically managed
 
-All `arrow` files are stored in the
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) in parquet format
+All `arrow` files are stored in a temporary directory in parquet format
 
 ``` r
 list_temp()
@@ -512,6 +510,16 @@ plot(out, IPRED ~ time, nid = 5)
 
 ![](reference/figures/README-parallel_output-1.png)
 
+### Simulating via workers on different machines
+
+The temporary directory in which output is written must be accessible to
+all R processes. When spreading simulations across multiple machines
+(e.g., via Slurm or SGE), you will likely need to instruct `mrgsim.ds`
+to create its temporary directory in a different location. See the
+“Overriding where temporary directory is created” section of the [Get
+Started](https://metrumresearchgroup.github.io/mrgsim.ds/articles/mrgsim.ds.html)
+vignette for more details.
+
 ## Save outputs
 
 You can save the simulation output object for use later
@@ -553,27 +561,6 @@ check_ownership(out)
 check_ownership(out2)
 . [1] TRUE
 ```
-
-## Details
-
-`mrgsim.ds` tracks the
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) location and the
-process ID (via
-[`Sys.getpid()`](https://rdrr.io/r/base/Sys.getpid.html)) of the R
-process where the model was loaded. When simulation outputs are saved to
-file, the save location is always
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) from that parent R
-process. When simulating in parallel, this will likely be *different*
-than what a call to [`tempdir()`](https://rdrr.io/r/base/tempfile.html)
-says on the worker node.
-
-At the time simulations are saved, the current R process id (`pid`) is
-saved to the simulation output object. In the parallel simulation case,
-this will be different than the `pid` from the parent R process, saved
-in the model object. The finalizer function for a simulation object
-which removes output files from disk when the object goes out of scope
-is only run when the finalizer is called from the parent R process as
-determined by [`Sys.getpid()`](https://rdrr.io/r/base/Sys.getpid.html).
 
 ## If this is so great, why not make it the default for mrgsolve?
 

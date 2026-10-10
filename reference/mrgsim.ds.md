@@ -8,10 +8,9 @@ for summarizing huge simulation outputs. The arrow-based simulation
 output objects in R claim ownership of their files on disk. Those files
 are automatically removed when the owning object goes out of scope and
 becomes subject to the R garbage collector. While "anonymous",
-parquet-formatted files hold the data in
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) as you are working
-in R, functions are provided to move this data to more permanent
-locations for later use.
+parquet-formatted files hold the data in a temporary directory as you
+are working in R, functions are provided to move this data to more
+permanent locations for later use.
 
 ## Function listing
 
@@ -88,6 +87,8 @@ locations for later use.
   - [`list_temp()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/list_temp.md)
 
   - [`purge_temp()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/list_temp.md)
+
+  - [`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md)
 
 - Enter dplyr / arrow pipelines with
 
@@ -205,7 +206,7 @@ plot(out, nid = 10)
 
 list_temp()
 #> 1 files [129 Kb]
-#> - mrgsims-ds-19195deee97.parquet
+#> - mrgsims-ds-1a2e4da9ec1a.parquet
 
 ownership()
 #> > Objects: 1 | Files: 1 | Size: 129 Kb

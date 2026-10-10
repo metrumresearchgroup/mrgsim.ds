@@ -1,7 +1,7 @@
 # Save information about the R process that loaded a model
 
-Stamps the model object with the current process ID and
-[`tempdir()`](https://rdrr.io/r/base/tempfile.html) path so that
+Stamps the model object with the current process ID and temporary
+directory path so that
 [`mrgsim_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mrgsim_ds.md)
 knows where to write output files. This is called automatically by
 [`mread_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/mread_ds.md),
