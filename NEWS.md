@@ -1,4 +1,7 @@
-# mrgsim.ds (development version)
+# mrgsim.ds 0.2.0
+
+- The new `set_tempdir_base()` function can be used to tell `mrgsim.ds` to
+  store its temporary files in a directory outside of `tempdir()` (#18).
 
 # mrgsim.ds 0.1.1
 
