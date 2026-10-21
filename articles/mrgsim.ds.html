@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mrgsim.ds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
       <h1>Get Started</h1>
                         <h4 data-toc-skip class="author"></h4>
             
-            <h4 data-toc-skip class="date">2026-10-14</h4>
+            <h4 data-toc-skip class="date">2026-10-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/vignettes/mrgsim.ds.Rmd" class="external-link"><code>vignettes/mrgsim.ds.Rmd</code></a></small>
       <div class="d-none name"><code>mrgsim.ds.Rmd</code></div>
@@ -220,7 +220,7 @@ cheap and easy to do with the <code><a href="../reference/as_duckdb_ds.html">as_
 <span>    .groups <span class="op">=</span> <span class="st">"drop"</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## duckdb keeps downloaded extensions and secrets in a temporary directory:</span></span>
-<span><span class="co">## <span style="color: #0000BB;">ℹ</span> /tmp/RtmpI0fkHJ/duckdb</span></span>
+<span><span class="co">## <span style="color: #0000BB;">ℹ</span> /tmp/Rtmp8VIytf/duckdb</span></span>
 <span><span class="co">## This is removed when the R session ends.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">•</span> Extensions are re-downloaded each session.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">•</span> Secrets are lost.</span></span>
@@ -311,24 +311,24 @@ directory.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/list_temp.html">list_temp</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## 10 files [2.9 Mb]</span></span>
-<span><span class="co">## - mrgsims-ds-1bb417aa465c.parquet</span></span>
-<span><span class="co">## - mrgsims-ds-1bb417fdd65a.parquet</span></span>
+<span><span class="co">## - mrgsims-ds-1d231aa91959.parquet</span></span>
+<span><span class="co">## - mrgsims-ds-1d2322f19707.parquet</span></span>
 <span><span class="co">##    ...</span></span>
-<span><span class="co">## - mrgsims-ds-1bb46538fa31.parquet</span></span>
-<span><span class="co">## - mrgsims-ds-1bb46d26d7a5.parquet</span></span></code></pre>
+<span><span class="co">## - mrgsims-ds-1d23684b9f46.parquet</span></span>
+<span><span class="co">## - mrgsims-ds-1d23791bfbd1.parquet</span></span></code></pre>
 <p>Or get a list of the files as an R character vector:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/files_ds.html">files_ds</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb46d26d7a5.parquet"</span></span>
-<span><span class="co">##  [2] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb4561810ba.parquet"</span></span>
-<span><span class="co">##  [3] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb45969c137.parquet"</span></span>
-<span><span class="co">##  [4] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb43ceee78.parquet" </span></span>
-<span><span class="co">##  [5] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb417aa465c.parquet"</span></span>
-<span><span class="co">##  [6] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb417fdd65a.parquet"</span></span>
-<span><span class="co">##  [7] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb42be24cf2.parquet"</span></span>
-<span><span class="co">##  [8] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb44427a920.parquet"</span></span>
-<span><span class="co">##  [9] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb46538fa31.parquet"</span></span>
-<span><span class="co">## [10] "/tmp/RtmpI0fkHJ/mrgsim.ds-1bb43e941523/mrgsims-ds-1bb43efde145.parquet"</span></span></code></pre>
+<pre><code><span><span class="co">##  [1] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d2331080c85.parquet"</span></span>
+<span><span class="co">##  [2] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d23684b9f46.parquet"</span></span>
+<span><span class="co">##  [3] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d232e2fcfba.parquet"</span></span>
+<span><span class="co">##  [4] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d231aa91959.parquet"</span></span>
+<span><span class="co">##  [5] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d2322f19707.parquet"</span></span>
+<span><span class="co">##  [6] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d23254faf8c.parquet"</span></span>
+<span><span class="co">##  [7] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d23380377b1.parquet"</span></span>
+<span><span class="co">##  [8] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d232f868eb6.parquet"</span></span>
+<span><span class="co">##  [9] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d234cce047a.parquet"</span></span>
+<span><span class="co">## [10] "/tmp/Rtmp8VIytf/mrgsim.ds-1d23771fdfd2/mrgsims-ds-1d23791bfbd1.parquet"</span></span></code></pre>
 <p>To save outputs to a persistent location, use
 <code><a href="../reference/save_ds.html">save_ds()</a></code>.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
@@ -358,7 +358,7 @@ to <code>save_dir</code>.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/move_ds.html">rename_ds</a></span><span class="op">(</span><span class="va">bah</span>, <span class="st">"regimen-1"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/move_ds.html">move_ds</a></span><span class="op">(</span><span class="va">bah</span>, <span class="va">save_dir</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #0000BB;">ℹ</span> 10 files are now located in /tmp/RtmpI0fkHJ; gc is off.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #0000BB;">ℹ</span> 10 files are now located in /tmp/Rtmp8VIytf; gc is off.</span></span></code></pre>
 <p>If you want all the simulated data output in a single parquet file
 that you name and locate.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
@@ -402,8 +402,8 @@ for garbage collection when appropriate.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/gc.html" class="external-link">gc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##           used  (Mb) gc trigger  (Mb) max used  (Mb)</span></span>
-<span><span class="co">## Ncells 2034516 108.7    4091372 218.6  3644189 194.7</span></span>
-<span><span class="co">## Vcells 4472589  34.2   10146329  77.5  6436180  49.2</span></span></code></pre>
+<span><span class="co">## Ncells 2034672 108.7    4091564 218.6  3643658 194.6</span></span>
+<span><span class="co">## Vcells 4472712  34.2   10146329  77.5  6436028  49.2</span></span></code></pre>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_files</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
@@ -419,8 +419,8 @@ your R session.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/gc.html" class="external-link">gc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##           used  (Mb) gc trigger  (Mb) max used  (Mb)</span></span>
-<span><span class="co">## Ncells 2031181 108.5    4091372 218.6  3644189 194.7</span></span>
-<span><span class="co">## Vcells 3744231  28.6   10146329  77.5  6436180  49.2</span></span></code></pre>
+<span><span class="co">## Ncells 2031337 108.5    4091564 218.6  3643658 194.6</span></span>
+<span><span class="co">## Vcells 3744351  28.6   10146329  77.5  6436028  49.2</span></span></code></pre>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>[mrgsim.ds] cleaning up <span class="dv">1</span> <span class="fu">file</span>(s) ...</span></code></pre></div>
 <p>You can prevent the file gc from removing the files.</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">

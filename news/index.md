@@ -1,6 +1,13 @@
 # Changelog
 
-## mrgsim.ds (development version)
+## mrgsim.ds 0.2.0
+
+- The new
+  [`set_tempdir_base()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/set_tempdir_base.md)
+  function can be used to tell `mrgsim.ds` to store its temporary files
+  in a directory outside of
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html)
+  ([\#18](https://github.com/metrumresearchgroup/mrgsim.ds/issues/18)).
 
 ## mrgsim.ds 0.1.1
 

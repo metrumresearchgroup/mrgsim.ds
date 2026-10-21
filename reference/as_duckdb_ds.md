@@ -41,7 +41,7 @@ if(requireNamespace("duckdb")) {
 }
 #> Loading required namespace: duckdb
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpTp35lt/duckdb
+#> ℹ /tmp/Rtmp6aw34q/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
