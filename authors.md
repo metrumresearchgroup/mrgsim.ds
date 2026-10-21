@@ -12,7 +12,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/metrumresearchgroup/mrgsim.ds/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/metrumresearchgroup/mrgsim.ds/blob/0.2.0/DESCRIPTION)
 
 Baron K, Meyer K (2026). *mrgsim.ds: 'Apache' 'Arrow' Dataset-Backed
 Simulation Outputs for 'mrgsolve'*. R package version 0.2.0,
