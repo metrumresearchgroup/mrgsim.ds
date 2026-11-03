@@ -14,7 +14,8 @@ Authors@R:
       )
 Maintainer: Kyle T Baron <kyleb@metrumrg.com>
 Description: Provides an 'Apache' 'Arrow'-backed simulation output
-  object for 'mrgsolve'.
+  object for 'mrgsolve', storing simulated data as 'parquet' files on disk
+  rather than in memory to reduce the memory footprint of large simulations.
 License: GPL (>=2)
 Depends: 
   R (>= 4.1), 
