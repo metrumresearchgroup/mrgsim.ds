@@ -105,7 +105,7 @@ as_arrow_ds.mrgsimsds <- function(x, ...) {
 #' 
 #' out <- mrgsim_ds(mod, events = ev(amt = 100))
 #' 
-#' if(requireNamespace("duckdb")) {
+#' if(requireNamespace("duckdb", quietly = TRUE)) {
 #'   as_duckdb_ds(out)
 #' }
 #' 

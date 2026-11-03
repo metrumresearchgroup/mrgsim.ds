@@ -35,6 +35,12 @@ directory, including its removal.
 This function aborts if it is called after any \code{mrgsim.ds} functionality that
 relies on the temporary directory.
 }
+\examples{
+\dontrun{
+set_tempdir_base("path/to/alt/tempdir")
+}
+
+}
 \seealso{
 \code{\link[=list_temp]{list_temp()}}
 }

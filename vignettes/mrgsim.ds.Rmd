@@ -19,6 +19,15 @@ library(dplyr)
 ```
 
 
+```{r, echo = FALSE}
+duck_available <- 
+  requireNamespace("duckdb", quietly = TRUE) && 
+  requireNamespace("DBI", quietly = TRUE) && 
+  requireNamespace("dbplyr", quietly = TRUE)
+lattice_available <- requireNamespace("lattice", quietly = TRUE) 
+```
+
+
 # Overview 
 
 `mrgsim.ds` provides an [Apache Arrow](https://arrow.apache.org/docs/r/)-backed 
@@ -69,7 +78,7 @@ out <- mrgsim_ds(mod, data = data, end = 5*24, recover = "dose")
 
 The output behaves very similarly to regular `mrgsim()` output.
 
-```{r, fig.width = 7, fig.height = 4}
+```{r}
 out
 
 head(out)
@@ -79,7 +88,9 @@ tail(out)
 dim(out)
 
 names(out)
+```
 
+```{r, eval = lattice_available, fig.width = 7, fig.height = 4}
 plot(out, nid = 10)
 ```
 
@@ -126,7 +137,7 @@ convert to a duckdb object. This is cheap and easy to do with the `as_duckdb_ds(
 function.
 
 
-```{r}
+```{r, eval = duck_available}
 
 out %>% 
   as_duckdb_ds() %>% 
@@ -244,7 +255,6 @@ If you want all the simulated data output in a single parquet file that you
 name and locate.
 
 ```{r, eval = FALSE}
-#| eval: false
 write_parquet_ds(x = bah, sink = "new/path/file.parquet")
 ```
 

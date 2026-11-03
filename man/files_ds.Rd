@@ -15,6 +15,12 @@ A character vector of absolute paths to the parquet files backing \code{x}.
 \description{
 Get names of backing files
 }
+\examples{
+mod <- house_ds()
+out <- mrgsim_ds(mod)
+files_ds(out)
+
+}
 \seealso{
 \code{\link[=move_ds]{move_ds()}}, \code{\link[=save_ds]{save_ds()}}
 }

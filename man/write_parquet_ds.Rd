@@ -29,6 +29,17 @@ writes all simulated data to a single \code{.parquet} file. \code{write_dataset_
 writes to a directory, optionally partitioned, via \code{\link[arrow:write_dataset]{arrow::write_dataset()}};
 the caller takes responsibility for the resulting files.
 }
+\examples{
+mod <- house_ds(end = 5)
+out <- mrgsim_ds(mod)
+
+sink <- tempfile(fileext = ".parquet")
+write_parquet_ds(out, sink = sink)
+
+path <- file.path(tempdir(), "example-dump")
+write_dataset_ds(out, path = path)
+
+}
 \seealso{
 \code{\link[=save_ds]{save_ds()}} to persist an object while staying within the
 \code{mrgsim.ds} universe.

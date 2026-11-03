@@ -1,7 +1,7 @@
 Package: mrgsim.ds
 Type: Package
 Title: 'Apache' 'Arrow' Dataset-Backed Simulation Outputs for 'mrgsolve'
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: 
     c(person(given = "Kyle T", family = "Baron",
              role = c("aut", "cre", "cph"),
@@ -14,13 +14,14 @@ Authors@R:
       )
 Maintainer: Kyle T Baron <kyleb@metrumrg.com>
 Description: Provides an 'Apache' 'Arrow'-backed simulation output
-  object for 'mrgsolve'.
+  object for 'mrgsolve', storing simulated data as 'parquet' files on disk
+  rather than in memory to reduce the memory footprint of large simulations.
 License: GPL (>=2)
 Depends: 
   R (>= 4.1), 
   mrgsolve
 Imports: arrow, rlang, dplyr, scales, glue, methods, fs, tibble, lobstr
-Suggests: testthat, knitr, rmarkdown, withr, duckdb, dbplyr, DBI, lattice
+Suggests: testthat, knitr, rmarkdown, withr, duckdb, DBI, dbplyr, lattice
 Encoding: UTF-8
 URL: https://metrumresearchgroup.github.io/mrgsim.ds/, https://github.com/metrumresearchgroup/mrgsim.ds
 BugReports: https://github.com/metrumresearchgroup/mrgsim.ds/issues
