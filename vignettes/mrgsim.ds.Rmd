@@ -20,7 +20,7 @@ library(dplyr)
 
 
 ```{r, echo = FALSE}
-duck_available <- requireNamespace("duckdb")
+duck_available <- requireNamespace("duckdb", quietly = TRUE)
 ```
 
 
