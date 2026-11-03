@@ -19,6 +19,11 @@ library(dplyr)
 ```
 
 
+```{r, echo = FALSE}
+duck_available <- requireNamespace("duckdb")
+```
+
+
 # Overview 
 
 `mrgsim.ds` provides an [Apache Arrow](https://arrow.apache.org/docs/r/)-backed 
@@ -126,7 +131,7 @@ convert to a duckdb object. This is cheap and easy to do with the `as_duckdb_ds(
 function.
 
 
-```{r}
+```{r, eval = duck_available}
 
 out %>% 
   as_duckdb_ds() %>% 
