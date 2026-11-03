@@ -42,7 +42,6 @@ reference:
   - write_parquet_ds
   - rename_ds
   - files_ds
-  - current_location
 - title: Manage or query ownership
   desc: |
     This applies to ownership parquet files holding simulation outputs for the
