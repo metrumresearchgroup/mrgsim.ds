@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' set_tempdir_base("path/to/files")
+#' set_tempdir_base("path/to/alt/tempdir")
 #' }
 #'
 #' @seealso [list_temp()]
