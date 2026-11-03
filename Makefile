@@ -80,3 +80,8 @@ tag-version:
 
 covr:
 	Rscript inst/script/covr.R
+
+clean: 	
+	rm -rf mrgsim\.ds\.Rcheck
+	rm -f mrgsim\.ds*\.tar\.gz
+	rm -f README.html
