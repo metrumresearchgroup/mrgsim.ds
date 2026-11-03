@@ -21,8 +21,8 @@ library(dplyr)
 
 ```{r, echo = FALSE}
 duck_available <- 
-  requireNamespace("duckdb", quietly = TRUE) & 
-  requireNamespace("DBI", quietly = TRUE) & 
+  requireNamespace("duckdb", quietly = TRUE) && 
+  requireNamespace("DBI", quietly = TRUE) && 
   requireNamespace("dbplyr", quietly = TRUE)
 lattice_available <- requireNamespace("lattice", quietly = TRUE) 
 ```
