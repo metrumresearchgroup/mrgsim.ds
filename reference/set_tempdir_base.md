@@ -48,3 +48,11 @@ that relies on the temporary directory.
 ## See also
 
 [`list_temp()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/list_temp.md)
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+set_tempdir_base("path/to/alt/tempdir")
+} # }
+```

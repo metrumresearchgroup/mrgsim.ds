@@ -45,3 +45,16 @@ write_dataset_ds(x, path, ...)
 
 [`save_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/save_ds.md)
 to persist an object while staying within the `mrgsim.ds` universe.
+
+## Examples
+
+``` r
+mod <- house_ds(end = 5)
+out <- mrgsim_ds(mod)
+
+sink <- tempfile(fileext = ".parquet")
+write_parquet_ds(out, sink = sink)
+
+path <- file.path(tempdir(), "example-dump")
+write_dataset_ds(out, path = path)
+```

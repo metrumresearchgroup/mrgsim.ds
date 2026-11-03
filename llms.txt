@@ -645,8 +645,6 @@ output.
   : Write simulations to a parquet file or partitioned dataset
 - [`files_ds()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/files_ds.md)
   : Get names of backing files
-- [`current_location()`](https://metrumresearchgroup.github.io/mrgsim.ds/reference/current_location.md)
-  : Get the current location of mrgsimsds object files
 
 ## Manage or query ownership
 

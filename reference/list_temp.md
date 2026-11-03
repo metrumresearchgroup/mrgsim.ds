@@ -43,12 +43,12 @@ mod <- house_ds()
 out <- lapply(1:10, \(x) mrgsim_ds(mod))
 
 list_temp()
-#> 16 files [148.9 Kb]
-#> - mrgsims-ds-198a128dfdeb.parquet
-#> - mrgsims-ds-198a1b1d6bcc.parquet
+#> 16 files [199.1 Kb]
+#> - mrgsims-ds-18dc1acac4d5.parquet
+#> - mrgsims-ds-18dc1c157b8f.parquet
 #>    ...
-#> - mrgsims-ds-198a78428286.parquet
-#> - mrgsims-ds-198aec81a2e.parquet
+#> - mrgsims-ds-18dca8fb53e.parquet
+#> - mrgsims-ds-18dcd7ebf15.parquet
 
 purge_temp()
 #> Discarding 16 files.
