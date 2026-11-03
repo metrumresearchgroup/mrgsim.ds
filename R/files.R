@@ -51,6 +51,7 @@ file_numbers <- function(x) {
 #' Get the current location of mrgsimsds object files
 #' 
 #' @param x an mrgsimsds object.
+#' @noRd
 current_location <- function(x) {
   require_ds(x)
   dirname(x$files[[1]])
