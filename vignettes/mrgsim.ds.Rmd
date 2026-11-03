@@ -249,7 +249,6 @@ If you want all the simulated data output in a single parquet file that you
 name and locate.
 
 ```{r, eval = FALSE}
-#| eval: false
 write_parquet_ds(x = bah, sink = "new/path/file.parquet")
 ```
 
