@@ -205,10 +205,10 @@ head.mrgsimsds <-  function(x, n = 6L, ...) {
   x <- safe_ds(x)
   if(length(x$files) > 1) {
     ds <- open_dataset(x$files[1])
-    collect(head(x$ds, n = n))
   } else {
-    collect(head(x$ds, n = n))  
+    ds <- x$ds
   }
+  collect(head(ds, n = n))
 }
 
 #' @name mrgsimsds-methods
