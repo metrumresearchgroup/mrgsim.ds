@@ -20,7 +20,11 @@ library(dplyr)
 
 
 ```{r, echo = FALSE}
-duck_available <- requireNamespace("duckdb", quietly = TRUE)
+duck_available <- 
+  requireNamespace("duckdb", quietly = TRUE) & 
+  requireNamespace("DBI", quietly = TRUE) & 
+  requireNamespace("dbplyr", quietly = TRUE)
+lattice_available <- requireNamespace("lattice", quietly = TRUE) 
 ```
 
 
@@ -74,7 +78,7 @@ out <- mrgsim_ds(mod, data = data, end = 5*24, recover = "dose")
 
 The output behaves very similarly to regular `mrgsim()` output.
 
-```{r, fig.width = 7, fig.height = 4}
+```{r}
 out
 
 head(out)
@@ -84,7 +88,9 @@ tail(out)
 dim(out)
 
 names(out)
+```
 
+```{r, eval = lattice_available, fig.width = 7, fig.height = 4}
 plot(out, nid = 10)
 ```
 
