@@ -29,6 +29,11 @@
 #' @return The absolute path (invisibly) to the subdirectory under `path` that
 #'   `mrgsim.ds` will use as its temporary directory.
 #'
+#' @examples
+#' \dontrun{
+#' set_tempdir_base("path/to/files")
+#' }
+#'
 #' @seealso [list_temp()]
 #' @export
 set_tempdir_base <- function(path) {

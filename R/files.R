@@ -63,6 +63,11 @@ current_location <- function(x) {
 #'
 #' @return A character vector of absolute paths to the parquet files backing `x`.
 #'
+#' @examples
+#' mod <- house_ds()
+#' out <- mrgsim_ds(mod)
+#' files_ds(out)
+#'
 #' @seealso [move_ds()], [save_ds()]
 #'
 #' @export
@@ -286,6 +291,16 @@ combine_ds <- function(x) {
 #' `write_parquet_ds()` returns `x` invisibly.
 #'
 #' `write_dataset_ds()` returns `path` invisibly.
+#'
+#' @examples
+#' mod <- house_ds(end = 5)
+#' out <- mrgsim_ds(mod)
+#'
+#' sink <- tempfile(fileext = ".parquet")
+#' write_parquet_ds(out, sink = sink)
+#'
+#' path <- file.path(tempdir(), "example-dump")
+#' write_dataset_ds(out, path = path)
 #'
 #' @seealso [save_ds()] to persist an object while staying within the
 #' `mrgsim.ds` universe.
