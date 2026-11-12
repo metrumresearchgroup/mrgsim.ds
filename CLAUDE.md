@@ -33,7 +33,8 @@ The central object is not a data frame — it's a lightweight environment with f
 - `$files` — paths to parquet files
 - `$pid` — process ID where the object was created
 - `$gc` — whether files are auto-deleted on GC finalization
-- `$mod` — the mrgsolve model object that produced the simulation
+- `$model` — name of the mrgsolve model that produced the simulation
+- `$mread_pid` — pid where the model was loaded; fixed at creation and used by the GC finalizer (unlike `$pid`, never refreshed)
 
 ### Ownership System (`R/own.R`)
 

@@ -40,7 +40,7 @@ test_that("ok to reduce", {
   expect_error(reduce_ds(x), "must have unique file names")
   
   bb <- copy_ds(b)
-  bb$mod@model <- "wrong-model"
+  bb$model <- "wrong-model"
   x <- list(a, bb, c)
   expect_error(reduce_ds(x))
 })
