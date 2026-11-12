@@ -30,7 +30,7 @@ print.mrgsimsds <- function(x, n = 8, ...) { # nocov start
     own <- paste0(own, ifelse(x$gc, " (gc)", " (no gc)"))  
   }
   nfile <- sum(file.exists(x$files))
-  cat("Model: ", x$mod@model, "\n", sep = "")
+  cat("Model: ", x$model, "\n", sep = "")
   cat("Dim  : ", dm1, " x ", dm[2L], "\n", sep = "")
   cat("Files: ", nfile, " [", size, "]", "\n", sep = "")
   cat("Owner: ", own, "\n", sep = "")

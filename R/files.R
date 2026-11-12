@@ -11,7 +11,7 @@ check_files_fatal <- function(x) {
   if(!ans) {
     nfile <- length(x$files)
     owner <- ifelse(check_ownership(x), "yes", "no")
-    model <- x$mod@model
+    model <- x$model
     body <- c(
       "Model: {model}",
       "Files: {nfile}", 

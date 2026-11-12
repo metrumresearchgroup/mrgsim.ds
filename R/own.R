@@ -9,10 +9,10 @@ teardown_ds <- function() {
   purge_temp(quietly = TRUE)
 }
 
-# This code needs to check pid_changed on the model object, 
-# not the mrgsimsds object.
+# pid_changed() compares against `mread_pid`, which is fixed at creation;
+# `pid` is updated by refresh_ds() and must not be used here.
 clean_up_ds <- function(x) {
-  if(x$gc && check_ownership(x) && !pid_changed(x$mod)) {
+  if(x$gc && check_ownership(x) && !pid_changed(x)) {
     if(isTRUE(x$gc_notify)) {
       n <- length(x$files)
       msg <- paste0("[mrgsim.ds] cleaning up ", n, " file(s) ...")
@@ -209,7 +209,8 @@ copy_ds <- function(x, own = TRUE) {
   ans <- new.env(parent = emptyenv())
   ans$ds <- open_dataset(x$files)
   ans$files <- x$files
-  ans$mod <- x$mod
+  ans$model <- x$model
+  ans$mread_pid <- x$mread_pid
   ans$dim <- x$dim
   ans$head <- x$head
   ans$names <- x$names

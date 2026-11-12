@@ -12,7 +12,7 @@ simlist_classes <- function(x) {
 simlist_models <- function(x) {
   models <- vapply(
     x,
-    FUN = \(xi) xi$mod@model,
+    FUN = \(xi) xi$model,
     FUN.VALUE = "model",
     USE.NAMES = FALSE
   )
