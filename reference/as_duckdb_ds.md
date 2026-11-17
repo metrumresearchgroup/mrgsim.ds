@@ -40,7 +40,7 @@ if(requireNamespace("duckdb", quietly = TRUE)) {
   as_duckdb_ds(out)
 }
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpkdcWHK/duckdb
+#> ℹ /tmp/RtmpTZCjBB/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
