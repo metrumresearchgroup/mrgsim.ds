@@ -1,4 +1,7 @@
-# mrgsim.ds (development version)
+# mrgsim.ds 0.2.1
+
+- Code review and cleanup ahead of CRAN: refactored `head()` method, added
+  examples, and expanded documentation (#20).
 
 # mrgsim.ds 0.2.0
 
