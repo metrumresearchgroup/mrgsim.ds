@@ -29,5 +29,5 @@ A character vector of absolute paths to the parquet files backing `x`.
 mod <- house_ds()
 out <- mrgsim_ds(mod)
 files_ds(out)
-#> [1] "/tmp/RtmpM5vrGL/mrgsim.ds-18eb42b03cd6/mrgsims-ds-18eb688b22f8.parquet"
+#> [1] "/tmp/RtmpkdcWHK/mrgsim.ds-19aa3be25118/mrgsims-ds-19aa2943c1c8.parquet"
 ```

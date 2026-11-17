@@ -1,6 +1,11 @@
 # Changelog
 
-## mrgsim.ds (development version)
+## mrgsim.ds 0.2.1
+
+- Code review and cleanup ahead of CRAN: refactored
+  [`head()`](https://rdrr.io/r/utils/head.html) method, added examples,
+  and expanded documentation
+  ([\#20](https://github.com/metrumresearchgroup/mrgsim.ds/issues/20)).
 
 ## mrgsim.ds 0.2.0
 

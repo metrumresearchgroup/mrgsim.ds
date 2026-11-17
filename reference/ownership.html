@@ -29,7 +29,7 @@ understand what is going on."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">mrgsim.ds</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,13 +126,15 @@ package-level ownership maps are updated in place.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ownership</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; Objects: 3 | Files: 3 | Size: 146.9 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; Objects: 5 | Files: 5 | Size: 385.7 Kb</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">list_ownership</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              file        address</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mrgsims-ds-18ebe14bdc1.parquet 0x574a22bfc608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 mrgsims-ds-18eb7c06662a.parquet 0x574a215b1d30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 mrgsims-ds-18eb1b92a4f6.parquet 0x574a21517958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 mrgsims-ds-19aa48d44257.parquet 0x5eaa722b61a0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 mrgsims-ds-19aa70ed6d66.parquet 0x5eaa765229b0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 mrgsims-ds-19aa4ff30298.parquet 0x5eaa73bdc518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 mrgsims-ds-19aa39bb5634.parquet 0x5eaa76a429a0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 mrgsims-ds-19aa17808348.parquet 0x5eaa74604f30</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mrgsolve.org/docs/reference/ev.html" class="external-link">ev</a></span><span class="op">(</span>amt <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mrgsolve.org/docs/reference/ev.html" class="external-link">ev</a></span><span class="op">(</span>amt <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
@@ -142,7 +144,7 @@ package-level ownership maps are updated in place.</p></li>
 <span class="r-in"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="reduce_ds.html">reduce_ds</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ownership</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; Objects: 4 | Files: 5 | Size: 200.2 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; Objects: 6 | Files: 7 | Size: 439 Kb</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">check_ownership</span><span class="op">(</span><span class="va">sims</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
